@@ -1,9 +1,9 @@
-import './App.css';
+import { GlobalStyle } from './styles/GlobalStyle';
 
 function App() {
   return (
     <>
-      <div className="card">Weather</div>
+      <GlobalStyle />
     </>
   );
 }
