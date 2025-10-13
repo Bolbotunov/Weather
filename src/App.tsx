@@ -1,10 +1,12 @@
-import { GlobalStyle } from './styles/GlobalStyle';
+import Content from '@/components/Content';
+
+import '@/styles/global.scss';
 
 function App() {
   return (
-    <>
-      <GlobalStyle />
-    </>
+    <div className="appContainer">
+      <Content />
+    </div>
   );
 }
 
