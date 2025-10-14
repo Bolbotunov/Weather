@@ -1,0 +1,50 @@
+$color-rainy: rgba(166, 138, 184, 1);
+$color-thunderstorm: rgba(75, 63, 114, 1);
+$color-stormy: rgba(122, 127, 140, 1);
+$color-sunny: rgba(214, 158, 54, 1);
+$color-snow: rgba(207, 232, 243, 1);
+$color-overcast: rgba(142, 155, 174, 1);
+$color-partly-cloudy: rgba(227, 197, 101, 1);
+$color-windy: rgba(158, 196, 217, 1);
+$color-cloudy: rgba(176, 176, 176, 1);
+$color-fog: rgba(214, 214, 214, 1);
+$color-heavy-rain: rgba(110, 90, 140, 1);
+$color-hail: rgba(184, 196, 204, 1);
+$color-text-primary: rgba(255, 255, 255, 1);
+
+$font-family: 'Inter, sans-serif';
+$font-size-12: 12px;
+$font-size-16: 16px;
+$font-size-20: 20px;
+$font-size-24: 24px;
+$font-size-32: 32px;
+$font-size-48: 48px;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 600;
+
+$spacing-4: 4px;
+$spacing-8: 8px;
+$spacing-12: 12px;
+$spacing-16: 16px;
+$spacing-20: 20px;
+$spacing-24: 24px;
+$spacing-28: 28px;
+$spacing-32: 32px;
+$spacing-36: 36px;
+$spacing-40: 40px;
+
+$radius-40: 40px;
+
+$layout-main-width: 1360px;
+
+$layout-width-lg: 881px;
+$layout-width-md: 446px;
+$layout-width-sm: 247px;
+
+$layout-height-sm: 81px;
+$layout-height-md: 190px;
+$layout-height-lg: calc(
+  #{$layout-height-sm} + #{$layout-height-md} + #{$spacing-20}
+);

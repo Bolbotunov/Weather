@@ -1,4 +1,8 @@
-export enum Themes {
-  LIGHT = 'light',
-  DARK = 'dark',
+export enum BlockSize {
+  CurrentWeatherCard = 'currentWeatherCard',
+  DailyBlock = 'dailyBlock',
+  HourlyBlock = 'hourlyBlock',
+  RunningLine = 'runningLine',
+  UserBlock = 'userBlock',
+  WeatherIconBlock = 'weatherIconBlock',
 }
