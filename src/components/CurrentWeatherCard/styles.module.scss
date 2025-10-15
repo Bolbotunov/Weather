@@ -4,34 +4,39 @@
   display: flex;
   align-items: center;
   gap: $spacing-8;
-  font-size: $font-size-16;
   color: $color-text-primary;
+  margin-bottom: $spacing-54;
 }
 
 .locationIcon {
-  width: $spacing-20;
-  height: $spacing-20;
-  background-color: $color-fog;
+  width: $spacing-24;
+  height: $spacing-32;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .locationText {
   white-space: nowrap;
+  font-size: $font-size-36;
+  font-weight: $font-weight-medium;
 }
 
 .condition {
-  margin-top: $spacing-12;
   color: $color-text-primary;
+  font-size: $font-size-48;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-54;
 }
 
 .temperature {
-  font-size: $font-size-32;
+  font-size: $font-size-64;
   margin-top: $spacing-12;
   color: $color-text-primary;
+  margin-bottom: $spacing-8;
 }
 
 .date {
-  margin-top: $spacing-12;
+  font-size: $font-size-18;
+  font-weight: $font-weight-regular;
   color: $color-text-primary;
 }
