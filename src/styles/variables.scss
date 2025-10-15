@@ -12,13 +12,16 @@ $color-heavy-rain: rgba(110, 90, 140, 1);
 $color-hail: rgba(184, 196, 204, 1);
 $color-text-primary: rgba(255, 255, 255, 1);
 
-$font-family: 'Inter, sans-serif';
+$font-family: 'Inter';
 $font-size-12: 12px;
 $font-size-16: 16px;
+$font-size-18: 18px;
 $font-size-20: 20px;
 $font-size-24: 24px;
 $font-size-32: 32px;
+$font-size-36: 36px;
 $font-size-48: 48px;
+$font-size-64: 64px;
 
 $font-weight-regular: 400;
 $font-weight-medium: 500;
@@ -34,6 +37,7 @@ $spacing-28: 28px;
 $spacing-32: 32px;
 $spacing-36: 36px;
 $spacing-40: 40px;
+$spacing-54: 54px;
 
 $radius-40: 40px;
 
@@ -44,7 +48,7 @@ $layout-width-md: 446px;
 $layout-width-sm: 247px;
 
 $layout-height-sm: 81px;
-$layout-height-md: 190px;
+$layout-height-md: 378px;
 $layout-height-lg: calc(
   #{$layout-height-sm} + #{$layout-height-md} + #{$spacing-20}
 );
