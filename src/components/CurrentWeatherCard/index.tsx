@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { setWeather } from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
 import LocationIcon from '@/assets/locationIcon.svg?react';
-import { BlockSize } from '@/constants/enums';
-import { WeatherData } from '@/types/types';
+import { RootState } from '@/store/store';
+import { BlockSize } from '@/types/types';
 import getFormatDate from '@/utils/getFormatDate';
 
 import Block from '../Block';
@@ -14,13 +16,14 @@ import '@/styles/global.scss';
 const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-
+  const dispatch = useDispatch();
+  const weather = useSelector((state: RootState) => state.app.weather);
   useEffect(() => {
     const fetchWeather = async () => {
       try {
         const weatherData = await getCurrentWeather();
         setWeather(weatherData);
+        dispatch(setWeather(weatherData));
         setLoading(false);
       } catch (err) {
         setError('Unable to determine location');

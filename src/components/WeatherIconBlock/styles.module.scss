@@ -1,0 +1,46 @@
+@use '@/styles/variables.scss' as *;
+
+.searchInput {
+  display: flex;
+  align-items: center;
+  background-color: $color-partly-cloudy;
+  width: 100%;
+  border-radius: $radius-40;
+  padding: $spacing-28 $spacing-24;
+  height: $spacing-54;
+  border: none;
+}
+
+.suggestions {
+  position: absolute;
+  overflow: hidden;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $color-background;
+  border-radius: $radius-40;
+  list-style: none;
+  margin: 0;
+  padding: $spacing-8;
+  z-index: 1;
+
+  li {
+    padding: $spacing-12;
+    cursor: pointer;
+    &:hover {
+      background: $color-hover;
+    }
+  }
+}
+
+.weatherIconBlock {
+  max-width: $layout-width-md;
+  height: $layout-height-md;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}

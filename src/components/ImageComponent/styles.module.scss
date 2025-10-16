@@ -1,0 +1,14 @@
+@use '@/styles/variables.scss' as *;
+
+.weatherIconButton {
+  all: unset;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weatherIconContent {
+  width: 304px;
+  height: 304px;
+  object-fit: contain;
+}

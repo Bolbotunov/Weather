@@ -1,6 +1,5 @@
+import { API_KEY } from '@/constants/constants';
 import { WeatherData } from '@/types/types';
-
-const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 export const getCurrentWeather = (): Promise<WeatherData> => {
   return new Promise((resolve, reject) => {
