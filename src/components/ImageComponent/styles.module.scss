@@ -1,14 +1,15 @@
 @use '@/styles/variables.scss' as *;
 
-.weatherIconButton {
-  all: unset;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .weatherIconContent {
-  width: 304px;
-  height: 304px;
-  object-fit: contain;
+  width: $layout-weatherIcon-size;
+  height: $layout-weatherIcon-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: $spacing-8;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }

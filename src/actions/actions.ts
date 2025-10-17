@@ -1,4 +1,4 @@
-import { SET_SUGGESTIONS, SET_WEATHER } from '@/reducers/reducers';
+import { SET_SUGGESTIONS, SET_WEATHER } from '@/constants/constants';
 import { LocationSuggestion, WeatherData } from '@/types/types';
 
 export const setWeather = (data: WeatherData) => ({

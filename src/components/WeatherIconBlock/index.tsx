@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setSuggestions } from '@/actions/actions';
+import { setSuggestions, setWeather } from '@/actions/actions';
+import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { API_KEY } from '@/constants/constants';
 import { useDebounce } from '@/hooks/useDebounce';
 import { RootState } from '@/store/store';
-import { WeatherConditionIcons, weatherIcons } from '@/types/types';
+import { LocationSuggestion, weatherIcons } from '@/types/types';
 
 import WeatherIconWrapper from '../ImageComponent';
 import styles from './styles.module.scss';
@@ -17,7 +18,7 @@ const WeatherIconBlock = () => {
   const dispatch = useDispatch();
   const suggestions = useSelector((state: RootState) => state.app.suggestions);
   const weather = useSelector((state: RootState) => state.app.weather);
-  const conditionKey = weather?.condition as WeatherConditionIcons;
+  const conditionKey = weather?.condition;
   const WeatherIcon = conditionKey ? weatherIcons[conditionKey] : null;
 
   const debouncedQuery = useDebounce(query, 1000);
@@ -36,16 +37,21 @@ const WeatherIconBlock = () => {
         console.error('Error fetching city suggestions:', error);
       }
     };
-
     fetchCitySuggestions();
   }, [debouncedQuery]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
-
-  const handleCitySelect = () => {
-    console.log('test');
+  const handleCitySelect = (city: LocationSuggestion) => async () => {
+    try {
+      const weatherData = await getCurrentWeather(city.lat, city.lon);
+      dispatch(setWeather(weatherData));
+      setQuery('');
+    } catch (error) {
+      console.error('Error fetching weather for selected city:', error);
+    }
+    dispatch(setSuggestions([]));
+    setQuery('');
   };
 
   return (
@@ -65,7 +71,7 @@ const WeatherIconBlock = () => {
               <li
                 key={index}
                 className={styles.suggestion}
-                onClick={handleCitySelect}
+                onClick={handleCitySelect(city)}
               >
                 {city.name}, {city.country}
               </li>

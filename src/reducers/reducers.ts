@@ -1,7 +1,5 @@
+import { SET_SUGGESTIONS, SET_WEATHER } from '@/constants/constants';
 import { AppState, LocationSuggestion, WeatherData } from '@/types/types';
-
-export const SET_WEATHER = 'SET_WEATHER';
-export const SET_SUGGESTIONS = 'SET_SUGGESTIONS';
 
 type SetWeatherAction = {
   type: typeof SET_WEATHER;

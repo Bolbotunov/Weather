@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import CloudsIcon from '@/assets/cloudsIcon.svg?react';
 
 export type LocationData = {
@@ -8,7 +10,7 @@ export type LocationData = {
 
 export type WeatherData = {
   temperature: number;
-  condition: string;
+  condition: WeatherConditionIcons;
   city: string;
 };
 
@@ -43,8 +45,19 @@ export enum WeatherConditionIcons {
   Hail = 'Hail',
 }
 
-export const weatherIcons: Partial<Record<WeatherConditionIcons, React.FC>> = {
-  [WeatherConditionIcons.Clouds]: CloudsIcon,
+export const weatherIcons: Record<WeatherConditionIcons, FC> = {
+  Rainy: CloudsIcon,
+  Thunderstorm: CloudsIcon,
+  Stormy: CloudsIcon,
+  Sunny: CloudsIcon,
+  Snow: CloudsIcon,
+  Overcast: CloudsIcon,
+  PartlyCloudy: CloudsIcon,
+  Windy: CloudsIcon,
+  Clouds: CloudsIcon,
+  Fog: CloudsIcon,
+  HeavyRain: CloudsIcon,
+  Hail: CloudsIcon,
 };
 
 export type LocationSuggestion = {

@@ -18,6 +18,7 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
   const weather = useSelector((state: RootState) => state.app.weather);
+
   useEffect(() => {
     const fetchWeather = async () => {
       try {
