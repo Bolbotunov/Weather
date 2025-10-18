@@ -1,18 +1,24 @@
-import { Provider } from 'react-redux';
+import { useLayoutEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import Content from '@/components/Content';
 
-import { store } from './store/store';
+import { RootState } from './store/store';
 
 import '@/styles/global.scss';
 
 function App() {
+  const theme = useSelector((state: RootState) => state.app.theme);
+  const themeClass = `${theme}-theme`;
+
+  useLayoutEffect(() => {
+    document.documentElement.className = themeClass;
+  }, [themeClass]);
+
   return (
-    <Provider store={store}>
-      <div className="appContainer">
-        <Content />
-      </div>
-    </Provider>
+    <div className="appContainer">
+      <Content />
+    </div>
   );
 }
 

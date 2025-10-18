@@ -6,7 +6,7 @@ import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { API_KEY } from '@/constants/constants';
 import { useDebounce } from '@/hooks/useDebounce';
 import { RootState } from '@/store/store';
-import { LocationSuggestion, weatherIcons } from '@/types/types';
+import { LocationSuggestion, weatherConfig } from '@/types/types';
 
 import WeatherIconWrapper from '../ImageComponent';
 import styles from './styles.module.scss';
@@ -19,8 +19,7 @@ const WeatherIconBlock = () => {
   const suggestions = useSelector((state: RootState) => state.app.suggestions);
   const weather = useSelector((state: RootState) => state.app.weather);
   const conditionKey = weather?.condition;
-  const WeatherIcon = conditionKey ? weatherIcons[conditionKey] : null;
-
+  const WeatherIcon = conditionKey ? weatherConfig[conditionKey]?.icon : null;
   const debouncedQuery = useDebounce(query, 1000);
 
   useEffect(() => {
@@ -38,7 +37,8 @@ const WeatherIconBlock = () => {
       }
     };
     fetchCitySuggestions();
-  }, [debouncedQuery]);
+  }, [debouncedQuery, dispatch]);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };

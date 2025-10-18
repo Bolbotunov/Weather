@@ -1,0 +1,67 @@
+@use './variables.scss' as *;
+
+:root {
+  --color-rainy: #{$color-rainy};
+  --color-rainy-dark: #{darken($color-rainy, 10%)};
+
+  --color-thunderstorm: #{$color-thunderstorm};
+  --color-thunderstorm-dark: #{darken($color-thunderstorm, 10%)};
+
+  --color-sunny: #{$color-sunny};
+  --color-sunny-dark: #{darken($color-sunny, 10%)};
+
+  --color-snow: #{$color-snow};
+  --color-snow-dark: #{darken($color-snow, 10%)};
+
+  --color-overcast: #{$color-overcast};
+  --color-overcast-dark: #{darken($color-overcast, 10%)};
+
+  --color-windy: #{$color-windy};
+  --color-windy-dark: #{darken($color-windy, 10%)};
+
+  --color-fog: #{$color-fog};
+  --color-fog-dark: #{darken($color-fog, 10%)};
+
+  --color-cloudy: #{$color-cloudy};
+  --color-cloudy-dark: #{darken($color-cloudy, 10%)};
+}
+
+.rainy-theme {
+  --color-background: var(--color-rainy);
+  --color-block: var(--color-rainy-dark);
+}
+
+.thunderstorm-theme {
+  --color-background: var(--color-thunderstorm);
+  --color-block: var(--color-thunderstorm-dark);
+}
+
+.sunny-theme {
+  --color-background: var(--color-sunny);
+  --color-block: var(--color-sunny-dark);
+}
+
+.snow-theme {
+  --color-background: var(--color-snow);
+  --color-block: var(--color-snow-dark);
+}
+
+.overcast-theme {
+  --color-background: var(--color-overcast);
+  --color-block: var(--color-overcast-dark);
+}
+
+.windy-theme {
+  --color-background: var(--color-windy);
+  --color-block: var(--color-windy-dark);
+}
+
+.fog-theme {
+  --color-background: var(--color-fog);
+  --color-block: var(--color-fog-dark);
+}
+
+.cloudy-theme {
+  --color-background: var(--color-cloudy);
+  --color-block: var(--color-cloudy-dark);
+}
