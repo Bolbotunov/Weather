@@ -1,0 +1,15 @@
+@use '@/styles/variables.scss' as *;
+
+.weatherIconContent {
+  width: $layout-weatherIcon-size;
+  height: $layout-weatherIcon-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: $spacing-8;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}

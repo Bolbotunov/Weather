@@ -13,7 +13,7 @@ const Content = () => {
     <main className={styles.grid}>
       <CurrentWeatherCard gridClass={styles.weather} />
       <UserBlock gridClass={styles.user} />
-      <WeatherIconBlock gridClass={styles.icon} />
+      <WeatherIconBlock />
       <RunningLine gridClass={styles.running} />
       <HourlyBlock gridClass={styles.hourly} />
       <DailyBlock gridClass={styles.daily} />

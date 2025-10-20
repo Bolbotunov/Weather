@@ -1,15 +1,8 @@
-import { BlockSize } from '@/constants/enums';
+import { BlockProps } from '@/types/types';
 
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
-
-type BlockProps = {
-  size: BlockSize;
-  className?: string;
-  gridClass?: string;
-  children?: React.ReactNode;
-};
 
 const Block = ({ size, className, gridClass, children }: BlockProps) => {
   return (

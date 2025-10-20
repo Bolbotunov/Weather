@@ -1,4 +1,4 @@
-import { BlockSize } from '@/constants/enums';
+import { BlockSize } from '@/types/types';
 
 import Block from '../Block';
 import styles from './styles.module.scss';
