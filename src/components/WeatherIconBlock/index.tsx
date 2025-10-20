@@ -1,8 +1,13 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setSuggestions, setWeather } from '@/actions/actions';
+import {
+  setHourlyWeather,
+  setSuggestions,
+  setWeather,
+} from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
+import { getHourlyWeather } from '@/api/getHourlyWeather';
 import { API_KEY } from '@/constants/constants';
 import { useDebounce } from '@/hooks/useDebounce';
 import { RootState } from '@/store/store';
@@ -46,6 +51,8 @@ const WeatherIconBlock = () => {
     try {
       const weatherData = await getCurrentWeather(city.lat, city.lon);
       dispatch(setWeather(weatherData));
+      const hourlyData = await getHourlyWeather(city.lat, city.lon);
+      dispatch(setHourlyWeather(hourlyData));
       setQuery('');
     } catch (error) {
       console.error('Error fetching weather for selected city:', error);

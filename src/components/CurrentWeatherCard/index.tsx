@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setWeather } from '@/actions/actions';
+import { setHourlyWeather, setWeather } from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
+import { getHourlyWeather } from '@/api/getHourlyWeather';
+import { getUserCoordinates } from '@/api/getUserCoordinates';
 import LocationIcon from '@/assets/locationIcon.svg?react';
 import useTheme from '@/hooks/useTheme';
 import { RootState } from '@/store/store';
@@ -23,9 +25,11 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const weatherData = await getCurrentWeather();
-        console.log('condition', weatherData.condition);
+        const { lat, lon } = await getUserCoordinates();
+        const weatherData = await getCurrentWeather(lat, lon);
         dispatch(setWeather(weatherData));
+        const hourlyData = await getHourlyWeather(lat, lon);
+        dispatch(setHourlyWeather(hourlyData));
         setLoading(false);
       } catch (err) {
         setError('Unable to determine location');
@@ -33,7 +37,6 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
         setLoading(false);
       }
     };
-
     fetchWeather();
   }, [dispatch]);
 

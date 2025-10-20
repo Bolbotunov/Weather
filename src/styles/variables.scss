@@ -1,18 +1,36 @@
 $color-rainy: rgba(166, 138, 184, 1);
+$color-rainy-dark: rgba(149, 124, 166, 1);
+
 $color-thunderstorm: rgba(75, 63, 114, 1);
-$color-stormy: rgba(122, 127, 140, 1);
+$color-thunderstorm-dark: rgba(67, 57, 103, 1);
+
 $color-sunny: rgba(214, 158, 54, 1);
+$color-sunny-dark: rgba(193, 142, 49, 1);
+
 $color-snow: rgba(207, 232, 243, 1);
+$color-snow-dark: rgba(186, 209, 219, 1);
+
 $color-overcast: rgba(142, 155, 174, 1);
-$color-partly-cloudy: rgba(227, 197, 101, 1);
+$color-overcast-dark: rgba(128, 139, 157, 1);
+
 $color-windy: rgba(158, 196, 217, 1);
+$color-windy-dark: rgba(142, 176, 195, 1);
+
 $color-cloudy: rgba(176, 176, 176, 1);
+$color-cloudy-dark: rgba(158, 158, 158, 1);
+
 $color-fog: rgba(214, 214, 214, 1);
+$color-fog-dark: rgba(193, 193, 193, 1);
+
+$color-stormy: rgba(122, 127, 140, 1);
+$color-partly-cloudy: rgba(227, 197, 101, 1);
 $color-heavy-rain: rgba(110, 90, 140, 1);
 $color-hail: rgba(184, 196, 204, 1);
+
 $color-text-primary: rgba(255, 255, 255, 1);
 $color-hover: rgb(226, 227, 189);
 $color-background: rgb(240, 234, 234);
+$color-white-10: rgba(255, 255, 255, 0.1);
 
 $font-family: 'Inter';
 $font-size-12: 12px;
@@ -54,3 +72,6 @@ $layout-height-md: 378px;
 $layout-height-lg: calc(
   #{$layout-height-sm} + #{$layout-height-md} + #{$spacing-20}
 );
+
+$layout-subBlock-width: 280px;
+$layout-subBlock-height: 160px;

@@ -19,6 +19,7 @@ export const getCurrentWeather = async (
     lat = position.coords.latitude;
     lon = position.coords.longitude;
   }
+
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`,
   );

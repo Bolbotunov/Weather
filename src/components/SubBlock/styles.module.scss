@@ -1,0 +1,18 @@
+@use '@/styles/variables.scss' as *;
+
+.subBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--color-subBlock);
+  width: 100%;
+  border-radius: $radius-40;
+  padding: $spacing-28 $spacing-24;
+  height: auto;
+}
+
+.hourlySubBlock {
+  max-width: $layout-subBlock-width;
+  height: $layout-subBlock-height;
+}
