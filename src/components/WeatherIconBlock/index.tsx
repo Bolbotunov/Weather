@@ -8,10 +8,10 @@ import {
 } from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
-import { API_KEY } from '@/constants/constants';
 import { useDebounce } from '@/hooks/useDebounce';
 import { RootState } from '@/store/store';
 import { LocationSuggestion, weatherConfig } from '@/types/types';
+import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 import WeatherIconWrapper from '../ImageComponent';
 import styles from './styles.module.scss';
@@ -33,7 +33,7 @@ const WeatherIconBlock = () => {
     const fetchCitySuggestions = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/geo/1.0/direct?q=${debouncedQuery}&limit=5&appid=${API_KEY}`,
+          getWeatherUrl({ endpoint: 'geo', query: debouncedQuery }),
         );
         const data = await response.json();
         dispatch(setSuggestions(data));
@@ -85,7 +85,9 @@ const WeatherIconBlock = () => {
             ))}
           </ul>
         )}
-        {WeatherIcon && <WeatherIconWrapper icon={<WeatherIcon />} />}
+        {WeatherIcon && (
+          <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
+        )}
       </section>
     </>
   );

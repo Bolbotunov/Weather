@@ -59,9 +59,13 @@ $spacing-36: 36px;
 $spacing-40: 40px;
 $spacing-54: 54px;
 
+$rotate-360: rotate(360deg);
+
 $radius-40: 40px;
+$radius-50: 50px;
 
 $layout-weatherIcon-size: 300px;
+$layout-weatherIcon-size-small: 45px;
 
 $layout-main-width: 1360px;
 $layout-width-lg: 881px;
@@ -74,4 +78,6 @@ $layout-height-lg: calc(
 );
 
 $layout-subBlock-width: 280px;
-$layout-subBlock-height: 160px;
+
+$layout-subBlock-count: 4;
+$layout-subBlock-fraction: calc(100% / #{$layout-subBlock-count});

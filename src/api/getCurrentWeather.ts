@@ -1,5 +1,5 @@
-import { API_KEY } from '@/constants/constants';
 import { WeatherData } from '@/types/types';
+import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 export const getCurrentWeather = async (
   lat?: number,
@@ -21,7 +21,7 @@ export const getCurrentWeather = async (
   }
 
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`,
+    getWeatherUrl({ endpoint: 'weather', lat, lon }),
   );
   if (!response.ok) {
     throw new Error('Error getting weather');

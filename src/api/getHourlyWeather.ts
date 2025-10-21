@@ -1,12 +1,12 @@
-import { API_KEY } from '@/constants/constants';
 import { HourlyWeatherData, OpenWeatherForecastEntry } from '@/types/types';
+import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 export const getHourlyWeather = async (
   lat: number,
   lon: number,
 ): Promise<HourlyWeatherData[]> => {
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`,
+    getWeatherUrl({ endpoint: 'forecast', lat, lon }),
   );
   if (!response.ok) {
     throw new Error('Error fetching hourly weather');

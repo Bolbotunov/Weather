@@ -1,0 +1,25 @@
+@use '@/styles/variables.scss' as *;
+
+.temperature {
+  font-size: $font-size-48;
+  font-weight: $font-weight-medium;
+}
+
+.speed,
+.time {
+  font-size: $font-size-24;
+  font-weight: $font-weight-regular;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  overflow-x: auto;
+  gap: $spacing-20;
+  padding: 0 $spacing-54;
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}

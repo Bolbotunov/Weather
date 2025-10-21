@@ -1,6 +1,18 @@
-.wrapper {
+@use '@/styles/variables.scss' as *;
+
+.location {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+.locationText {
+  font-size: $font-size-24;
+  font-weight: $font-weight-medium;
+}
+
+.clockWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

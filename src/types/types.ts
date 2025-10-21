@@ -39,6 +39,7 @@ export type BlockProps = {
 export type SubBlockProps = {
   size: SubBlockSize;
   children: React.ReactNode;
+  className?: string;
 };
 
 export enum SubBlockSize {

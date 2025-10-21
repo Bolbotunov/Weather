@@ -1,0 +1,17 @@
+@use '@/styles/variables.scss' as *;
+
+@keyframes spin {
+  to {
+    transform: $rotate-360;
+  }
+}
+
+.spinner {
+  width: $spacing-40;
+  height: $spacing-40;
+  border: $spacing-4 solid var(--color-background);
+  border-top-color: var(--color-block);
+  border-radius: $radius-50;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}

@@ -9,9 +9,10 @@ import LocationIcon from '@/assets/locationIcon.svg?react';
 import useTheme from '@/hooks/useTheme';
 import { RootState } from '@/store/store';
 import { BlockSize } from '@/types/types';
-import getFormatDate from '@/utils/getFormatDate';
+import { getFormatDate } from '@/utils/getFormatDate';
 
 import Block from '../Block';
+import Loader from '../Loader';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
@@ -40,33 +41,31 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
     fetchWeather();
   }, [dispatch]);
 
-  if (loading) {
-    return (
-      <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
-        <div className={styles.location}>loading location...</div>
-      </Block>
-    );
-  }
+  let content;
 
-  if (error || !weather) {
-    return (
-      <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
-        <div className={styles.location}>{error}</div>
-      </Block>
+  if (loading) {
+    content = <Loader />;
+  } else if (error || !weather) {
+    content = <div className={styles.location}>{error}</div>;
+  } else {
+    content = (
+      <>
+        <div className={styles.location}>
+          <LocationIcon className={styles.locationIcon} />
+          <div className={styles.locationText}>
+            {weather?.city ?? 'Your City'}
+          </div>
+        </div>
+        <div className={styles.condition}>{weather?.condition}</div>
+        <div className={styles.temperature}>{weather?.temperature}°C</div>
+        <div className={styles.date}>{getFormatDate(new Date(), 'date')}</div>
+      </>
     );
   }
 
   return (
     <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
-      <div className={styles.location}>
-        <LocationIcon className={styles.locationIcon} />
-        <div className={styles.locationText}>
-          {weather?.city ?? 'Your City'}
-        </div>
-      </div>
-      <div className={styles.condition}>{weather?.condition}</div>
-      <div className={styles.temperature}>{weather?.temperature}°C</div>
-      <div className={styles.date}>{getFormatDate(new Date())}</div>
+      {content}
     </Block>
   );
 };
