@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 
 import WeatherIconWrapper from '@/components/ImageComponent';
 import SubBlock from '@/components/SubBlock';
+import { visibleCount } from '@/constants/constants';
 import { HourlyWeatherData, SubBlockSize, weatherConfig } from '@/types/types';
 
 import styles from './styles.module.scss';
@@ -13,14 +14,12 @@ type WeatherSliderProps = {
 const WeatherSlider = ({ hourlyWeather }: WeatherSliderProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const currentHour = new Date().getHours();
-  const visibleCount = 2;
-  const maxVisible = 6;
 
-  const sorted = [...hourlyWeather].sort(
+  const visibleWeather = [...hourlyWeather].sort(
     (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime(),
   );
 
-  const centerIndex = sorted.findIndex(
+  const centerIndex = visibleWeather.findIndex(
     (hour) => new Date(hour.time).getHours() === currentHour,
   );
 
@@ -32,29 +31,17 @@ const WeatherSlider = ({ hourlyWeather }: WeatherSliderProps) => {
     start = 0;
   }
 
-  if (end > sorted.length) {
-    const overflow = end - sorted.length;
+  if (end > visibleWeather.length) {
+    const overflow = end - visibleWeather.length;
     start = Math.max(0, start - overflow);
-    end = sorted.length;
+    end = visibleWeather.length;
   }
-
-  const visibleWeather = sorted.slice(start, end).slice(0, maxVisible);
 
   useEffect(() => {
     const container = wrapperRef.current;
-    const centerCard = container?.children[centerIndex - start];
-
-    if (container && centerCard instanceof HTMLElement) {
-      const containerRect = container.getBoundingClientRect();
-      const targetRect = centerCard.getBoundingClientRect();
-      const offset =
-        targetRect.left -
-        containerRect.left -
-        container.clientWidth / 2 +
-        targetRect.width / 2;
-
+    if (container) {
       container.scrollTo({
-        left: container.scrollLeft + offset,
+        left: container.scrollLeft,
         behavior: 'smooth',
       });
     }
