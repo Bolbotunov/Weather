@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Content from '@/components/Content';
 
-import { RootState } from './store/store';
+import { RootState } from './reducers/rootReducer';
 
 import '@/styles/global.scss';
 

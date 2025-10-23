@@ -1,10 +1,11 @@
-import { reducers } from '@/reducers/reducers';
+import { rootReducer } from '@/reducers/rootReducer';
 
-import { combineReducers, createStore } from 'redux';
+import { createStore } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
 
-const rootReducer = combineReducers({
-  app: reducers,
-});
+import persistConfig from './persistConfig';
 
-export const store = createStore(rootReducer);
-export type RootState = ReturnType<typeof rootReducer>;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = createStore(persistedReducer);
+export const persistor = persistStore(store);

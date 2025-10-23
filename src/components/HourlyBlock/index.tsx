@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import ClockIcon from '@/assets/ClockIcon.svg?react';
-import { RootState } from '@/store/store';
+import { RootState } from '@/reducers/rootReducer';
 import { BlockSize } from '@/types/types';
 import { getFormatDate } from '@/utils/getFormatDate';
 

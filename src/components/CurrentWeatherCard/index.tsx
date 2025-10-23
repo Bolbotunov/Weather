@@ -7,9 +7,11 @@ import { getHourlyWeather } from '@/api/getHourlyWeather';
 import { getUserCoordinates } from '@/api/getUserCoordinates';
 import LocationIcon from '@/assets/locationIcon.svg?react';
 import useTheme from '@/hooks/useTheme';
-import { RootState } from '@/store/store';
+import { RootState } from '@/reducers/rootReducer';
 import { BlockSize } from '@/types/types';
 import { getFormatDate } from '@/utils/getFormatDate';
+
+import { PersistState } from 'redux-persist';
 
 import Block from '../Block';
 import Loader from '../Loader';
@@ -17,13 +19,27 @@ import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
 
+export type ExtendedRootState = RootState & {
+  _persist: PersistState;
+};
+
 const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
   const weather = useSelector((state: RootState) => state.app.weather);
+  const rehydrated = useSelector(
+    (state: ExtendedRootState) => state._persist?.rehydrated,
+  );
+
   useTheme();
   useEffect(() => {
+    if (!rehydrated) return;
+
+    if (weather) {
+      setLoading(false);
+      return;
+    }
     const fetchWeather = async () => {
       try {
         const { lat, lon } = await getUserCoordinates();
@@ -39,7 +55,7 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
       }
     };
     fetchWeather();
-  }, [dispatch]);
+  }, [dispatch, rehydrated, weather]);
 
   let content;
 

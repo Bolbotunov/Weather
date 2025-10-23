@@ -9,7 +9,7 @@ import {
 import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
 import { useDebounce } from '@/hooks/useDebounce';
-import { RootState } from '@/store/store';
+import { RootState } from '@/reducers/rootReducer';
 import { LocationSuggestion, weatherConfig } from '@/types/types';
 import { getWeatherUrl } from '@/utils/getWeatherUrl';
 

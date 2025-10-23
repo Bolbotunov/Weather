@@ -11,6 +11,8 @@ import {
   WeatherData,
 } from '@/types/types';
 
+import { AnyAction } from 'redux';
+
 type SetThemeAction = {
   type: typeof SET_THEME;
   payload: string;
@@ -44,7 +46,7 @@ const initialState: AppState = {
   hourlyWeather: [],
 };
 
-export const reducers = (state = initialState, action: AppAction): AppState => {
+export const reducers = (state = initialState, action: AnyAction): AppState => {
   switch (action.type) {
     case SET_WEATHER:
       return { ...state, weather: action.payload };
