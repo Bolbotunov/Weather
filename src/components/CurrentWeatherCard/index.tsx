@@ -9,7 +9,7 @@ import LocationIcon from '@/assets/locationIcon.svg?react';
 import useTheme from '@/hooks/useTheme';
 import { RootState } from '@/reducers/rootReducer';
 import { BlockSize } from '@/types/types';
-import { getFormatDate } from '@/utils/getFormatDate';
+import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
 import { PersistState } from 'redux-persist';
 
@@ -74,7 +74,9 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
         </div>
         <div className={styles.condition}>{weather?.condition}</div>
         <div className={styles.temperature}>{weather?.temperature}°C</div>
-        <div className={styles.date}>{getFormatDate(new Date(), 'date')}</div>
+        <div className={styles.date}>
+          {getFormatDate(new Date(), FormatType.Date)}
+        </div>
       </>
     );
   }

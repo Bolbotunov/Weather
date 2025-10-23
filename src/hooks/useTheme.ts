@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setTheme } from '@/actions/actions';
-import { RootState } from '@/store/store';
+import { RootState } from '@/reducers/rootReducer';
 import { weatherConfig } from '@/types/types';
 
 const useTheme = () => {
@@ -13,7 +13,8 @@ const useTheme = () => {
 
   useEffect(() => {
     if (condition) {
-      const theme = weatherConfig[condition]?.theme ?? 'sunny';
+      const theme =
+        weatherConfig[condition]?.theme ?? weatherConfig['Clear'].theme;
       dispatch(setTheme(theme));
     }
   }, [condition, dispatch]);
