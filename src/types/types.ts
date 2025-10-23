@@ -45,6 +45,7 @@ export type SubBlockProps = {
 export enum SubBlockSize {
   HourlySubBlock = 'hourlySubBlock',
   UserSubBlock = 'userSubBlock',
+  SignOutSubBlock = 'signOutSubBlock',
 }
 
 export enum WeatherCondition {

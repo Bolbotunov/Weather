@@ -16,4 +16,33 @@
 
 .hourlySubBlock {
   max-width: $layout-subBlock-width;
+  transition: $transition;
+
+  &:hover {
+    background-color: $color-hover;
+    cursor: pointer;
+    color: $color-text-hover;
+  }
+}
+
+.signOutSubBlock {
+  max-width: $layout-SignOut-subBlock-width;
+  height: $layout-SignOut-subBlock-height;
+  padding: $spacing-12;
+  flex: 1;
+  justify-content: center;
+  transition: $transition;
+
+  &:hover {
+    background-color: $color-hover;
+    cursor: pointer;
+    color: $color-text-hover;
+  }
+}
+
+.userSubBlock {
+  max-width: $layout-Task-subBlock-width;
+  height: $layout-SignOut-subBlock-height;
+  padding: $spacing-12;
+  justify-content: center;
 }

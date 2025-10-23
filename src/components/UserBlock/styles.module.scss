@@ -1,0 +1,31 @@
+@use '@/styles/variables.scss' as *;
+
+.blockWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.taskWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-8;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin: $spacing-16 $spacing-20 0;
+}
+
+.title {
+  font-size: $font-size-24;
+  font-weight: $font-weight-medium;
+}
