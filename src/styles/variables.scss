@@ -67,6 +67,9 @@ $transition: 0.4s;
 $radius-40: 40px;
 $radius-50: 50px;
 
+$signOut-button-width: 140px;
+$signOut-button-height: 55px;
+
 $layout-weatherIcon-size: 300px;
 $layout-weatherIcon-size-small: 45px;
 
@@ -81,9 +84,10 @@ $layout-height-lg: calc(
 );
 
 $layout-subBlock-width: 280px;
-$layout-SignOut-subBlock-width: 140px;
-$layout-Task-subBlock-width: 400px;
-$layout-SignOut-subBlock-height: 55px;
-
 $layout-subBlock-count: 4;
 $layout-subBlock-fraction: calc(100% / #{$layout-subBlock-count});
+
+$layout-tasks-height: 270px;
+$layout-task-subBlock-width: 410px;
+
+$layout-noTask-subBlock-height: 130px;

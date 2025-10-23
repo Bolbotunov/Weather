@@ -1,0 +1,20 @@
+@use '@/styles/variables.scss' as *;
+.button {
+  max-width: $signOut-button-width;
+  height: $signOut-button-height;
+  padding: $spacing-12;
+  flex: 1;
+  justify-content: center;
+  transition: $transition;
+  background-color: var(--color-subBlock);
+  border-radius: $radius-40;
+  border: none;
+  font-size: $font-size-24;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    background-color: $color-hover;
+    cursor: pointer;
+    color: $color-text-hover;
+  }
+}

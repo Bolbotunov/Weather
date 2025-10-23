@@ -25,24 +25,17 @@
   }
 }
 
-.signOutSubBlock {
-  max-width: $layout-SignOut-subBlock-width;
-  height: $layout-SignOut-subBlock-height;
+.userSubBlock {
+  max-width: $layout-task-subBlock-width;
+  height: $signOut-button-height;
   padding: $spacing-12;
-  flex: 1;
-  justify-content: center;
-  transition: $transition;
-
-  &:hover {
-    background-color: $color-hover;
-    cursor: pointer;
-    color: $color-text-hover;
-  }
+  justify-content: space-around;
+  flex-direction: row;
 }
 
-.userSubBlock {
-  max-width: $layout-Task-subBlock-width;
-  height: $layout-SignOut-subBlock-height;
-  padding: $spacing-12;
-  justify-content: center;
+.noTasksSubBlock {
+  max-width: $layout-task-subBlock-width;
+  height: $layout-noTask-subBlock-height;
+  text-align: center;
+  padding: $spacing-20;
 }

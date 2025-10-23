@@ -46,7 +46,10 @@ const initialState: AppState = {
   hourlyWeather: [],
 };
 
-export const reducers = (state = initialState, action: AnyAction): AppState => {
+export const appReducer = (
+  state = initialState,
+  action: AnyAction,
+): AppState => {
   switch (action.type) {
     case SET_WEATHER:
       return { ...state, weather: action.payload };

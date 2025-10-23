@@ -45,7 +45,7 @@ export type SubBlockProps = {
 export enum SubBlockSize {
   HourlySubBlock = 'hourlySubBlock',
   UserSubBlock = 'userSubBlock',
-  SignOutSubBlock = 'signOutSubBlock',
+  NoTasksSubBlock = 'noTasksSubBlock',
 }
 
 export enum WeatherCondition {
@@ -140,5 +140,14 @@ export type OpenWeatherForecastEntry = {
   }[];
   wind: {
     speed: number;
+  };
+};
+
+export type GoogleCalendarEventRaw = {
+  id: string;
+  summary: string;
+  start: {
+    dateTime?: string;
+    date?: string;
   };
 };

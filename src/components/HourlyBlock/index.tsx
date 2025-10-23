@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ClockIcon from '@/assets/ClockIcon.svg?react';
 import { RootState } from '@/reducers/rootReducer';
 import { BlockSize } from '@/types/types';
-import { getFormatDate } from '@/utils/getFormatDate';
+import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
 import Block from '../Block';
 import WeatherIconWrapper from '../ImageComponent';
@@ -22,7 +22,7 @@ const HourlyBlock = ({ gridClass }: { gridClass?: string }) => {
       <div className={styles.location}>
         <div className={styles.locationText}>24-hour forecast</div>
         <div className={styles.clockWrapper}>
-          <div>{getFormatDate(new Date(), 'time')}</div>
+          <div>{getFormatDate(new Date(), FormatType.Time12)}</div>
           <WeatherIconWrapper icon={<ClockIcon />} variant="small" />
         </div>
       </div>
