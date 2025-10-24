@@ -6,3 +6,6 @@ export const SET_HOURLY_WEATHER = 'SET_HOURLY_WEATHER';
 export const visibleCount = 2;
 export const SET_CALENDAR_EVENTS = 'SET_CALENDAR_EVENTS';
 export const SET_CALENDAR_SIGNED_IN = 'SET_CALENDAR_SIGNED_IN';
+export const MS_IN_MINUTE = 60 * 1000;
+export const MINUTES_IN_HOUR = 60;
+export const MINUTES_IN_DAY = 1440;

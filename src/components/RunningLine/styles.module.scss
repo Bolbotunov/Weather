@@ -1,0 +1,27 @@
+@use '@/styles/variables.scss' as *;
+
+.line {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.lineText {
+  display: inline-block;
+  padding: 0 $spacing-32;
+  font-size: $font-size-24;
+  animation: scrollText $transition-line linear infinite;
+}
+
+.textItem {
+  margin-right: $spacing-36;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -49,15 +49,6 @@ const UserBlock = ({ gridClass }: { gridClass?: string }) => {
             <p className={styles.noTasks}>Sign in to see your events</p>
           </SubBlock>
         )}
-
-        {/* {events.map((event) => (
-          <SubBlock key={event.id} size={SubBlockSize.UserSubBlock}>
-            <div className={styles.taskTime}>
-              {getFormatDate(new Date(event.start), FormatType.Time24)}
-            </div>
-            <div className={styles.taskTitle}>{event.summary}</div>
-          </SubBlock>
-        ))} */}
       </div>
     </Block>
   );
