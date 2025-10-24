@@ -1,31 +1,52 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setWeather } from '@/actions/actions';
+import { setHourlyWeather, setWeather } from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
+import { getHourlyWeather } from '@/api/getHourlyWeather';
+import { getUserCoordinates } from '@/api/getUserCoordinates';
 import LocationIcon from '@/assets/locationIcon.svg?react';
 import useTheme from '@/hooks/useTheme';
-import { RootState } from '@/store/store';
+import { RootState } from '@/reducers/rootReducer';
 import { BlockSize } from '@/types/types';
-import getFormatDate from '@/utils/getFormatDate';
+import { FormatType, getFormatDate } from '@/utils/getFormatDate';
+
+import { PersistState } from 'redux-persist';
 
 import Block from '../Block';
+import Loader from '../Loader';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
+
+export type ExtendedRootState = RootState & {
+  _persist: PersistState;
+};
 
 const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
   const weather = useSelector((state: RootState) => state.app.weather);
+  const rehydrated = useSelector(
+    (state: ExtendedRootState) => state._persist?.rehydrated,
+  );
+
   useTheme();
   useEffect(() => {
+    if (!rehydrated) return;
+
+    if (weather) {
+      setLoading(false);
+      return;
+    }
     const fetchWeather = async () => {
       try {
-        const weatherData = await getCurrentWeather();
-        console.log('condition', weatherData.condition);
+        const { lat, lon } = await getUserCoordinates();
+        const weatherData = await getCurrentWeather(lat, lon);
         dispatch(setWeather(weatherData));
+        const hourlyData = await getHourlyWeather(lat, lon);
+        dispatch(setHourlyWeather(hourlyData));
         setLoading(false);
       } catch (err) {
         setError('Unable to determine location');
@@ -33,37 +54,36 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
         setLoading(false);
       }
     };
-
     fetchWeather();
-  }, [dispatch]);
+  }, [dispatch, rehydrated, weather]);
+
+  let content;
 
   if (loading) {
-    return (
-      <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
-        <div className={styles.location}>loading location...</div>
-      </Block>
-    );
-  }
-
-  if (error || !weather) {
-    return (
-      <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
-        <div className={styles.location}>{error}</div>
-      </Block>
+    content = <Loader />;
+  } else if (error || !weather) {
+    content = <div className={styles.location}>{error}</div>;
+  } else {
+    content = (
+      <>
+        <div className={styles.location}>
+          <LocationIcon className={styles.locationIcon} />
+          <div className={styles.locationText}>
+            {weather?.city ?? 'Your City'}
+          </div>
+        </div>
+        <div className={styles.condition}>{weather?.condition}</div>
+        <div className={styles.temperature}>{weather?.temperature}°C</div>
+        <div className={styles.date}>
+          {getFormatDate(new Date(), FormatType.Date)}
+        </div>
+      </>
     );
   }
 
   return (
     <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
-      <div className={styles.location}>
-        <LocationIcon className={styles.locationIcon} />
-        <div className={styles.locationText}>
-          {weather?.city ?? 'Your City'}
-        </div>
-      </div>
-      <div className={styles.condition}>{weather?.condition}</div>
-      <div className={styles.temperature}>{weather?.temperature}°C</div>
-      <div className={styles.date}>{getFormatDate(new Date())}</div>
+      {content}
     </Block>
   );
 };

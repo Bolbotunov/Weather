@@ -3,12 +3,14 @@
 .searchInput {
   display: flex;
   align-items: center;
-  background-color: $color-partly-cloudy;
+  background-color: var(--color-block);
   width: 100%;
   border-radius: $radius-40;
   padding: $spacing-28 $spacing-24;
   height: $spacing-54;
   border: none;
+  font-size: $font-size-20;
+  font-weight: $font-weight-medium;
 }
 
 .suggestions {

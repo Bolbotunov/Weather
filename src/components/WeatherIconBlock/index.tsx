@@ -1,12 +1,17 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setSuggestions, setWeather } from '@/actions/actions';
+import {
+  setHourlyWeather,
+  setSuggestions,
+  setWeather,
+} from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
-import { API_KEY } from '@/constants/constants';
+import { getHourlyWeather } from '@/api/getHourlyWeather';
 import { useDebounce } from '@/hooks/useDebounce';
-import { RootState } from '@/store/store';
+import { RootState } from '@/reducers/rootReducer';
 import { LocationSuggestion, weatherConfig } from '@/types/types';
+import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 import WeatherIconWrapper from '../ImageComponent';
 import styles from './styles.module.scss';
@@ -28,7 +33,7 @@ const WeatherIconBlock = () => {
     const fetchCitySuggestions = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/geo/1.0/direct?q=${debouncedQuery}&limit=5&appid=${API_KEY}`,
+          getWeatherUrl({ endpoint: 'geo', query: debouncedQuery }),
         );
         const data = await response.json();
         dispatch(setSuggestions(data));
@@ -46,6 +51,8 @@ const WeatherIconBlock = () => {
     try {
       const weatherData = await getCurrentWeather(city.lat, city.lon);
       dispatch(setWeather(weatherData));
+      const hourlyData = await getHourlyWeather(city.lat, city.lon);
+      dispatch(setHourlyWeather(hourlyData));
       setQuery('');
     } catch (error) {
       console.error('Error fetching weather for selected city:', error);
@@ -78,7 +85,9 @@ const WeatherIconBlock = () => {
             ))}
           </ul>
         )}
-        {WeatherIcon && <WeatherIconWrapper icon={<WeatherIcon />} />}
+        {WeatherIcon && (
+          <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
+        )}
       </section>
     </>
   );

@@ -1,5 +1,17 @@
-import { SET_SUGGESTIONS, SET_THEME, SET_WEATHER } from '@/constants/constants';
-import { AppState, LocationSuggestion, WeatherData } from '@/types/types';
+import {
+  SET_HOURLY_WEATHER,
+  SET_SUGGESTIONS,
+  SET_THEME,
+  SET_WEATHER,
+} from '@/constants/constants';
+import {
+  AppState,
+  HourlyWeatherData,
+  LocationSuggestion,
+  WeatherData,
+} from '@/types/types';
+
+import { AnyAction } from 'redux';
 
 type SetThemeAction = {
   type: typeof SET_THEME;
@@ -16,18 +28,28 @@ type SetSuggestionsAction = {
   payload: LocationSuggestion[];
 };
 
+type SetHourlyWeather = {
+  type: typeof SET_HOURLY_WEATHER;
+  payload: HourlyWeatherData[];
+};
+
 export type AppAction =
   | SetWeatherAction
   | SetSuggestionsAction
-  | SetThemeAction;
+  | SetThemeAction
+  | SetHourlyWeather;
 
 const initialState: AppState = {
   weather: null,
   suggestions: [],
   theme: 'sunny',
+  hourlyWeather: [],
 };
 
-export const reducers = (state = initialState, action: AppAction): AppState => {
+export const appReducer = (
+  state = initialState,
+  action: AnyAction,
+): AppState => {
   switch (action.type) {
     case SET_WEATHER:
       return { ...state, weather: action.payload };
@@ -35,6 +57,8 @@ export const reducers = (state = initialState, action: AppAction): AppState => {
       return { ...state, suggestions: action.payload ?? [] };
     case SET_THEME:
       return { ...state, theme: action.payload };
+    case SET_HOURLY_WEATHER:
+      return { ...state, hourlyWeather: action.payload };
     default:
       return state;
   }

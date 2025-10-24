@@ -20,6 +20,14 @@ export type WeatherData = {
   condition: WeatherCondition;
   city: string;
 };
+export enum BlockSize {
+  CurrentWeatherCard = 'currentWeatherCard',
+  DailyBlock = 'dailyBlock',
+  HourlyBlock = 'hourlyBlock',
+  RunningLine = 'runningLine',
+  UserBlock = 'userBlock',
+  WeatherIconBlock = 'weatherIconBlock',
+}
 
 export type BlockProps = {
   size: BlockSize;
@@ -28,13 +36,16 @@ export type BlockProps = {
   children?: React.ReactNode;
 };
 
-export enum BlockSize {
-  CurrentWeatherCard = 'currentWeatherCard',
-  DailyBlock = 'dailyBlock',
-  HourlyBlock = 'hourlyBlock',
-  RunningLine = 'runningLine',
-  UserBlock = 'userBlock',
-  WeatherIconBlock = 'weatherIconBlock',
+export type SubBlockProps = {
+  size: SubBlockSize;
+  children: React.ReactNode;
+  className?: string;
+};
+
+export enum SubBlockSize {
+  HourlySubBlock = 'hourlySubBlock',
+  UserSubBlock = 'userSubBlock',
+  NoTasksSubBlock = 'noTasksSubBlock',
 }
 
 export enum WeatherCondition {
@@ -109,4 +120,34 @@ export type AppState = {
   weather: WeatherData | null;
   suggestions: LocationSuggestion[];
   theme: string;
+  hourlyWeather: HourlyWeatherData[];
+};
+
+export type HourlyWeatherData = {
+  temperature: number;
+  condition: WeatherCondition;
+  windSpeed: number;
+  time: number;
+};
+
+export type OpenWeatherForecastEntry = {
+  dt: number;
+  main: {
+    temp: number;
+  };
+  weather: {
+    main: WeatherCondition;
+  }[];
+  wind: {
+    speed: number;
+  };
+};
+
+export type GoogleCalendarEventRaw = {
+  id: string;
+  summary: string;
+  start: {
+    dateTime?: string;
+    date?: string;
+  };
 };

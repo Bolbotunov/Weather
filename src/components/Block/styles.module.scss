@@ -9,7 +9,7 @@
   width: 100%;
   border-radius: $radius-40;
   padding: $spacing-28 $spacing-24;
-  height: auto;
+  height: 100%;
 }
 
 .currentWeatherCard {
@@ -24,7 +24,7 @@
 
 .hourlyBlock {
   max-width: $layout-width-lg;
-  height: $layout-height-lg;
+  height: $layout-height-md;
 }
 
 .runningLine {

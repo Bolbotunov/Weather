@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   gap: $spacing-8;
-  color: $color-text-primary;
   margin-bottom: $spacing-54;
 }
 
@@ -22,7 +21,6 @@
 }
 
 .condition {
-  color: $color-text-primary;
   font-size: $font-size-48;
   font-weight: $font-weight-medium;
   margin-bottom: $spacing-54;
@@ -31,12 +29,10 @@
 .temperature {
   font-size: $font-size-64;
   margin-top: $spacing-12;
-  color: $color-text-primary;
   margin-bottom: $spacing-8;
 }
 
 .date {
   font-size: $font-size-18;
   font-weight: $font-weight-regular;
-  color: $color-text-primary;
 }
