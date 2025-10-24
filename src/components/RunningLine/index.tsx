@@ -15,8 +15,8 @@ const RunningLine = ({ gridClass }: { gridClass?: string }) => {
     (state: RootState) => state.calendar.isSignedIn,
   );
   const runningTextElements = isSignedIn
-    ? events.map((event, index) => (
-        <span className={styles.textItem} key={index}>
+    ? events.map((event) => (
+        <span className={styles.textItem} key={event.id}>
           {`${event.summary} • ${getTimeBeforeEvent(event.start)}`}
         </span>
       ))

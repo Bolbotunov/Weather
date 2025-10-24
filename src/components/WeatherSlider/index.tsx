@@ -52,7 +52,10 @@ const WeatherSlider = ({ hourlyWeather }: WeatherSliderProps) => {
       {visibleWeather.map((hour, index) => {
         const Icon = weatherConfig[hour.condition]?.icon;
         return (
-          <SubBlock key={index} size={SubBlockSize.HourlySubBlock}>
+          <SubBlock
+            key={`${index}-${hour.condition}`}
+            size={SubBlockSize.HourlySubBlock}
+          >
             <div className={styles.hourItem}>
               <div className={styles.temperature}>{hour.temperature}°C</div>
               <WeatherIconWrapper icon={<Icon />} variant="small" />

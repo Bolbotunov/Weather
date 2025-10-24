@@ -1,4 +1,5 @@
 import {
+  SET_DAILY_WEATHER,
   SET_HOURLY_WEATHER,
   SET_SUGGESTIONS,
   SET_THEME,
@@ -44,6 +45,7 @@ const initialState: AppState = {
   suggestions: [],
   theme: 'sunny',
   hourlyWeather: [],
+  dailyWeather: [],
 };
 
 export const appReducer = (
@@ -59,6 +61,8 @@ export const appReducer = (
       return { ...state, theme: action.payload };
     case SET_HOURLY_WEATHER:
       return { ...state, hourlyWeather: action.payload };
+    case SET_DAILY_WEATHER:
+      return { ...state, dailyWeather: action.payload };
     default:
       return state;
   }

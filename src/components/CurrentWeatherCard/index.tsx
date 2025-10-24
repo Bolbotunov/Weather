@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setHourlyWeather, setWeather } from '@/actions/actions';
+import {
+  setDailyWeather,
+  setHourlyWeather,
+  setWeather,
+} from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
+import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
 import { getUserCoordinates } from '@/api/getUserCoordinates';
 import LocationIcon from '@/assets/locationIcon.svg?react';
+import { useStatus } from '@/hooks/useStatus';
 import useTheme from '@/hooks/useTheme';
 import { RootState } from '@/reducers/rootReducer';
 import { BlockSize } from '@/types/types';
@@ -14,6 +20,7 @@ import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 import { PersistState } from 'redux-persist';
 
 import Block from '../Block';
+import ErrorBlock from '../ErrorBlock';
 import Loader from '../Loader';
 import styles from './styles.module.scss';
 
@@ -24,8 +31,7 @@ export type ExtendedRootState = RootState & {
 };
 
 const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { loading, error, setLoading, setError } = useStatus();
   const dispatch = useDispatch();
   const weather = useSelector((state: RootState) => state.app.weather);
   const rehydrated = useSelector(
@@ -41,12 +47,15 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
       return;
     }
     const fetchWeather = async () => {
+      setLoading(true);
       try {
         const { lat, lon } = await getUserCoordinates();
         const weatherData = await getCurrentWeather(lat, lon);
         dispatch(setWeather(weatherData));
         const hourlyData = await getHourlyWeather(lat, lon);
         dispatch(setHourlyWeather(hourlyData));
+        const dailyData = await getDailyWeather(lat, lon);
+        dispatch(setDailyWeather(dailyData));
         setLoading(false);
       } catch (err) {
         setError('Unable to determine location');
@@ -55,14 +64,14 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
       }
     };
     fetchWeather();
-  }, [dispatch, rehydrated, weather]);
+  }, [dispatch, rehydrated, weather, setError, setLoading]);
 
   let content;
 
   if (loading) {
     content = <Loader />;
-  } else if (error || !weather) {
-    content = <div className={styles.location}>{error}</div>;
+  } else if (error) {
+    content = <ErrorBlock message={error} />;
   } else {
     content = (
       <>
@@ -75,7 +84,7 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
         <div className={styles.condition}>{weather?.condition}</div>
         <div className={styles.temperature}>{weather?.temperature}°C</div>
         <div className={styles.date}>
-          {getFormatDate(new Date(), FormatType.Date)}
+          {getFormatDate(new Date(), FormatType.FullDate)}
         </div>
       </>
     );

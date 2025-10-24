@@ -3,6 +3,7 @@ export const SET_WEATHER = 'SET_WEATHER';
 export const SET_SUGGESTIONS = 'SET_SUGGESTIONS';
 export const SET_THEME = 'SET_THEME';
 export const SET_HOURLY_WEATHER = 'SET_HOURLY_WEATHER';
+export const SET_DAILY_WEATHER = 'SET_DAILY_WEATHER';
 export const visibleCount = 2;
 export const SET_CALENDAR_EVENTS = 'SET_CALENDAR_EVENTS';
 export const SET_CALENDAR_SIGNED_IN = 'SET_CALENDAR_SIGNED_IN';

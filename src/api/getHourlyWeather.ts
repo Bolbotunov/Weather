@@ -12,7 +12,6 @@ export const getHourlyWeather = async (
     throw new Error('Error fetching hourly weather');
   }
   const data = await response.json();
-
   return data.list.slice(0, 8).map((entry: OpenWeatherForecastEntry) => ({
     temperature: Math.round(entry.main.temp),
     condition: entry.weather[0].main,

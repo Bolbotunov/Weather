@@ -121,6 +121,7 @@ export type AppState = {
   suggestions: LocationSuggestion[];
   theme: string;
   hourlyWeather: HourlyWeatherData[];
+  dailyWeather: OpenWeatherForecastEntry[];
 };
 
 export type HourlyWeatherData = {
@@ -134,6 +135,7 @@ export type OpenWeatherForecastEntry = {
   dt: number;
   main: {
     temp: number;
+    feels_like: number;
   };
   weather: {
     main: WeatherCondition;
@@ -141,6 +143,8 @@ export type OpenWeatherForecastEntry = {
   wind: {
     speed: number;
   };
+  pop: number;
+  uvi: number;
 };
 
 export type GoogleCalendarEventRaw = {
