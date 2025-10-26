@@ -122,6 +122,7 @@ export type AppState = {
   theme: string;
   hourlyWeather: HourlyWeatherData[];
   dailyWeather: OpenWeatherForecastEntry[];
+  selectedDate: string;
 };
 
 export type HourlyWeatherData = {
@@ -154,4 +155,11 @@ export type GoogleCalendarEventRaw = {
     dateTime?: string;
     date?: string;
   };
+};
+
+export type DailySliderProps = {
+  forecast: OpenWeatherForecastEntry[];
+  activeIndex: number;
+  setActiveIndex: (index: number) => void;
+  handleDayChange?: (index: number) => void;
 };

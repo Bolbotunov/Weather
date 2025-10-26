@@ -16,6 +16,15 @@ const HourlyBlock = ({ gridClass }: { gridClass?: string }) => {
   const hourlyWeather = useSelector(
     (state: RootState) => state.app.hourlyWeather,
   );
+  const selectedDate = useSelector(
+    (state: RootState) => state.app.selectedDate,
+  );
+  const filteredWeather = hourlyWeather
+    .filter((entry) => {
+      const entryDate = new Date(entry.time).toDateString();
+      return entryDate === selectedDate;
+    })
+    .slice(0, 8);
 
   return (
     <Block size={BlockSize.HourlyBlock} gridClass={gridClass}>
@@ -26,7 +35,7 @@ const HourlyBlock = ({ gridClass }: { gridClass?: string }) => {
           <WeatherIconWrapper icon={<ClockIcon />} variant="small" />
         </div>
       </div>
-      <WeatherSlider hourlyWeather={hourlyWeather} />
+      <WeatherSlider hourlyWeather={filteredWeather} />
     </Block>
   );
 };

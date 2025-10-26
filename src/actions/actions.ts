@@ -1,6 +1,7 @@
 import {
   SET_DAILY_WEATHER,
   SET_HOURLY_WEATHER,
+  SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
   SET_WEATHER,
@@ -35,4 +36,9 @@ export const setHourlyWeather = (data: HourlyWeatherData[]) => ({
 export const setDailyWeather = (data: OpenWeatherForecastEntry[]) => ({
   type: SET_DAILY_WEATHER,
   payload: data,
+});
+
+export const setSelectedDate = (date: string) => ({
+  type: SET_SELECTED_DATE,
+  payload: date,
 });

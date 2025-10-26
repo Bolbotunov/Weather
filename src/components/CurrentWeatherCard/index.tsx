@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setDailyWeather,
   setHourlyWeather,
+  setSelectedDate,
   setWeather,
 } from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
@@ -56,6 +57,9 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
         dispatch(setHourlyWeather(hourlyData));
         const dailyData = await getDailyWeather(lat, lon);
         dispatch(setDailyWeather(dailyData));
+        dispatch(
+          setSelectedDate(new Date(dailyData[0].dt * 1000).toDateString()),
+        );
         setLoading(false);
       } catch (err) {
         setError('Unable to determine location');

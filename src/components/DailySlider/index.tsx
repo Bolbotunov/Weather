@@ -1,24 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 
-import { OpenWeatherForecastEntry, weatherConfig } from '@/types/types';
+import LeftIcon from '@/assets/LeftIcon.svg?react';
+import RightIcon from '@/assets/RightIcon.svg?react';
+import { CARD_OFFSET, SLIDE_WIDTH } from '@/constants/constants';
+import { DailySliderProps, weatherConfig } from '@/types/types';
 import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
 import WeatherIconWrapper from '../ImageComponent';
 import styles from './styles.module.scss';
 
-type Props = {
-  forecast: OpenWeatherForecastEntry[];
-};
+const DailySlider = ({
+  forecast,
+  activeIndex,
+  setActiveIndex,
+  handleDayChange,
+}: DailySliderProps) => {
+  const iconRowRef = useRef<HTMLDivElement>(null);
 
-const DailySlider = ({ forecast }: Props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  useEffect(() => {
+    const iconRow = iconRowRef.current;
+    if (!iconRow) return;
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? forecast.length - 1 : prev - 1));
+    iconRow.style.transform = `translateX(calc(${CARD_OFFSET}% + ${-activeIndex * SLIDE_WIDTH}px))`;
+  }, [activeIndex]);
+
+  const updateIndex = (delta: number) => {
+    const newIndex = (activeIndex + delta + forecast.length) % forecast.length;
+    setActiveIndex(newIndex);
+    handleDayChange?.(newIndex);
   };
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === forecast.length - 1 ? 0 : prev + 1));
+  const handlePrev = () => updateIndex(-1);
+  const handleNext = () => updateIndex(1);
+
+  const handleActiveIndex = (index: number) => () => {
+    setActiveIndex(index);
+    handleDayChange?.(index);
   };
 
   const activeDate = new Date(forecast[activeIndex].dt * 1000);
@@ -26,34 +43,36 @@ const DailySlider = ({ forecast }: Props) => {
 
   return (
     <div className={styles.sliderWrapper}>
-      <div className={styles.iconRow}>
-        {forecast.map(({ dt, weather }, index) => {
-          const date = new Date(dt * 1000);
-          const day = getFormatDate(date, FormatType.ShortDate);
-          const condition = weather[0].main;
-          const Icon = weatherConfig[condition]?.icon;
-          const isActive = index === activeIndex;
+      <div className={styles.sliderViewport}>
+        <div className={styles.iconRow} ref={iconRowRef}>
+          {forecast.map(({ dt, weather }, index) => {
+            const date = new Date(dt * 1000);
+            const day = getFormatDate(date, FormatType.ShortDate);
+            const condition = weather[0].main;
+            const Icon = weatherConfig[condition]?.icon;
+            const isActive = index === activeIndex;
 
-          return (
-            <div
-              key={dt}
-              className={`${styles.forecastItem} ${isActive ? styles.active : ''}`}
-              onClick={() => setActiveIndex(index)}
-            >
-              <span>{day}</span>
-              {Icon && <WeatherIconWrapper icon={<Icon />} variant="small" />}
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={dt}
+                className={`${styles.forecastItem} ${isActive ? styles.active : ''}`}
+                onClick={handleActiveIndex(index)}
+              >
+                <div>{day}</div>
+                {Icon && <WeatherIconWrapper icon={<Icon />} variant="small" />}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div className={styles.dateRow}>
         <button onClick={handlePrev} className={styles.navButton}>
-          {'<'}
+          <WeatherIconWrapper icon={<LeftIcon />} variant="small" />
         </button>
         <div className={styles.dateDisplay}>{formattedDate}</div>
         <button onClick={handleNext} className={styles.navButton}>
-          {'>'}
+          <WeatherIconWrapper icon={<RightIcon />} variant="small" />
         </button>
       </div>
     </div>

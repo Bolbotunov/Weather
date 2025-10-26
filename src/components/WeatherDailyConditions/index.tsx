@@ -8,10 +8,10 @@ type Props = {
 
 const WeatherDailyConditions = ({ conditions }: Props) => {
   const airData = [
-    { label: 'Real Feel', value: `${conditions.main.feels_like}°` },
-    { label: 'Chance of Rain', value: `${conditions.pop}%` },
-    { label: 'Wind', value: `${conditions.wind.speed} km/hr` },
-    { label: 'UV Index', value: `${conditions.uvi}` },
+    { label: 'Temperature', value: `${Math.round(conditions.main.temp)}°` },
+    { label: 'Chance of Rain', value: `${Math.round(conditions.pop)}%` },
+    { label: 'Wind', value: `${Math.round(conditions.wind.speed)} km/hr` },
+    { label: 'Real Feel', value: `${Math.round(conditions.main.feels_like)}°` },
   ];
 
   return (
