@@ -1,18 +1,5 @@
 @use '@/styles/variables.scss' as *;
 
-.blockWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 50%;
-}
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .taskWrapper {
   display: flex;
   align-items: center;
@@ -30,11 +17,6 @@
     height: 0;
   }
   scrollbar-width: none;
-}
-
-.title {
-  font-size: $font-size-24;
-  font-weight: $font-weight-medium;
 }
 
 .taskTime,

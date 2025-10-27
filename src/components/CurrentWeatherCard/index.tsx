@@ -11,7 +11,6 @@ import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
 import { getUserCoordinates } from '@/api/getUserCoordinates';
-import LocationIcon from '@/assets/locationIcon.svg?react';
 import { useStatus } from '@/hooks/useStatus';
 import useTheme from '@/hooks/useTheme';
 import { RootState } from '@/reducers/rootReducer';
@@ -21,6 +20,7 @@ import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 import { PersistState } from 'redux-persist';
 
 import Block from '../Block';
+import CurrentLocation from '../CurrentLocation';
 import ErrorBlock from '../ErrorBlock';
 import Loader from '../Loader';
 import styles from './styles.module.scss';
@@ -79,12 +79,7 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   } else {
     content = (
       <>
-        <div className={styles.location}>
-          <LocationIcon className={styles.locationIcon} />
-          <div className={styles.locationText}>
-            {weather?.city ?? 'Your City'}
-          </div>
-        </div>
+        <CurrentLocation />
         <div className={styles.condition}>{weather?.condition}</div>
         <div className={styles.temperature}>{weather?.temperature}°C</div>
         <div className={styles.date}>

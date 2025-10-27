@@ -1,15 +1,12 @@
 import { useSelector } from 'react-redux';
 
-import UserIcon from '@/assets/UserIcon.svg?react';
-import { useGoogleCalendar } from '@/hooks/useGoogleCalendar';
 import { RootState } from '@/reducers/rootReducer';
 import { BlockSize, SubBlockSize } from '@/types/types';
 import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
 import Block from '../Block';
-import Button from '../Button';
-import WeatherIconWrapper from '../ImageComponent';
 import SubBlock from '../SubBlock';
+import UserHeader from '../UserHeader';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
@@ -19,21 +16,10 @@ const UserBlock = ({ gridClass }: { gridClass?: string }) => {
     (state: RootState) => state.calendar.isSignedIn,
   );
   const events = useSelector((state: RootState) => state.calendar.events);
-  const { signIn, signOut } = useGoogleCalendar();
 
   return (
     <Block size={BlockSize.UserBlock} gridClass={gridClass}>
-      <div className={styles.wrapper}>
-        <div className={styles.blockWrapper}>
-          <Button onClick={isSignedIn ? signOut : signIn}>
-            {isSignedIn ? 'Sign Out' : 'Sign In'}
-          </Button>
-        </div>
-        <div className={styles.blockWrapper}>
-          <p className={styles.title}>Hello User</p>
-          <WeatherIconWrapper icon={<UserIcon />} variant="small" />
-        </div>
-      </div>
+      <UserHeader />
       <div className={styles.taskWrapper}>
         {isSignedIn ? (
           events.map((event) => (

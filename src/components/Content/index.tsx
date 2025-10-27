@@ -1,5 +1,6 @@
 import CurrentWeatherCard from '../CurrentWeatherCard';
 import DailyBlock from '../DailyBlock';
+import Header from '../Header';
 import HourlyBlock from '../HourlyBlock';
 import RunningLine from '../RunningLine';
 import UserBlock from '../UserBlock';
@@ -11,6 +12,7 @@ import '@/styles/global.scss';
 const Content = () => {
   return (
     <main className={styles.grid}>
+      <Header />
       <CurrentWeatherCard gridClass={styles.weather} />
       <UserBlock gridClass={styles.user} />
       <WeatherIconBlock />

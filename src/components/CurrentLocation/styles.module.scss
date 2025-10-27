@@ -1,0 +1,21 @@
+@use '@/styles/variables.scss' as *;
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: $spacing-8;
+  margin-bottom: $spacing-54;
+}
+
+.locationIcon {
+  width: $spacing-24;
+  height: $spacing-32;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.locationText {
+  white-space: nowrap;
+  font-size: $font-size-36;
+  font-weight: $font-weight-medium;
+}

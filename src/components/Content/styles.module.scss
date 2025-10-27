@@ -3,29 +3,56 @@
 .weather {
   grid-column: 1/2;
   grid-row: 1;
+
+  @media (max-width: $breakpoints-tablet) {
+    grid-column: 1;
+    grid-row: 2;
+  }
 }
 
 .icon {
   grid-column: 2/3;
   grid-row: 1;
+  @media (max-width: $breakpoints-tablet) {
+    grid-column: 1;
+    grid-row: 1;
+  }
 }
 
 .user {
   grid-column: 3/4;
   grid-row: 1;
+
+  @media (max-width: $breakpoints-tablet) {
+    grid-column: 1;
+    grid-row: 5;
+  }
 }
 
 .running {
   grid-column: 1/3;
   grid-row: 2;
+
+  @media (max-width: $breakpoints-tablet) {
+    grid-column: 1;
+    grid-row: 4;
+  }
 }
 
 .hourly {
   grid-column: 1/3;
   grid-row: 3;
+  @media (max-width: $breakpoints-tablet) {
+    grid-column: 1;
+    grid-row: 3;
+  }
 }
 
 .daily {
   grid-column: 3/4;
   grid-row: 2/4;
+  @media (max-width: $breakpoints-tablet) {
+    grid-column: 1;
+    grid-row: 2;
+  }
 }
