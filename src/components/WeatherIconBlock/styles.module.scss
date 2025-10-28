@@ -24,10 +24,12 @@
   margin: 0;
   padding: $spacing-8;
   z-index: 1;
+  font-size: $font-size-20;
 
   li {
     padding: $spacing-12;
     cursor: pointer;
+    color: $color-text-hover;
     &:hover {
       background: $color-hover;
     }
@@ -44,4 +46,9 @@
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
+}
+
+.inputError {
+  margin: $spacing-8;
+  color: $color-error;
 }

@@ -1,8 +1,6 @@
-import { useSelector } from 'react-redux';
-
 import UserIcon from '@/assets/UserIcon.svg?react';
+import useAppSelector from '@/hooks/useAppSelector';
 import { useGoogleCalendar } from '@/hooks/useGoogleCalendar';
-import { RootState } from '@/reducers/rootReducer';
 import { BlockSize, SubBlockSize } from '@/types/types';
 import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
@@ -15,10 +13,8 @@ import styles from './styles.module.scss';
 import '@/styles/global.scss';
 
 const UserBlock = ({ gridClass }: { gridClass?: string }) => {
-  const isSignedIn = useSelector(
-    (state: RootState) => state.calendar.isSignedIn,
-  );
-  const events = useSelector((state: RootState) => state.calendar.events);
+  const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
+  const events = useAppSelector((state) => state.calendar.events);
   const { signIn, signOut } = useGoogleCalendar();
 
   return (
@@ -49,15 +45,6 @@ const UserBlock = ({ gridClass }: { gridClass?: string }) => {
             <p className={styles.noTasks}>Sign in to see your events</p>
           </SubBlock>
         )}
-
-        {/* {events.map((event) => (
-          <SubBlock key={event.id} size={SubBlockSize.UserSubBlock}>
-            <div className={styles.taskTime}>
-              {getFormatDate(new Date(event.start), FormatType.Time24)}
-            </div>
-            <div className={styles.taskTitle}>{event.summary}</div>
-          </SubBlock>
-        ))} */}
       </div>
     </Block>
   );
