@@ -1,8 +1,10 @@
 import { useLayoutEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Content from '@/components/Content';
 
 import useAppSelector from './hooks/useAppSelector';
+import NotFound from './pages/notFound';
 
 import '@/styles/global.scss';
 
@@ -15,9 +17,14 @@ function App() {
   }, [themeClass]);
 
   return (
-    <div className="appContainer">
-      <Content />
-    </div>
+    <BrowserRouter>
+      <div className="appContainer">
+        <Routes>
+          <Route path="/" element={<Content />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
