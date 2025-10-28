@@ -1,14 +1,13 @@
 import { useLayoutEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 import Content from '@/components/Content';
 
-import { RootState } from './reducers/rootReducer';
+import useAppSelector from './hooks/useAppSelector';
 
 import '@/styles/global.scss';
 
 function App() {
-  const theme = useSelector((state: RootState) => state.app.theme);
+  const theme = useAppSelector((state) => state.app.theme);
   const themeClass = `${theme}-theme`;
 
   useLayoutEffect(() => {
