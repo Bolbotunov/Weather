@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import {
   setDailyWeather,
@@ -10,8 +10,8 @@ import {
 import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
+import useAppSelector from '@/hooks/useAppSelector';
 import { useDebounce } from '@/hooks/useDebounce';
-import { RootState } from '@/reducers/rootReducer';
 import { LocationSuggestion, weatherConfig } from '@/types/types';
 import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
@@ -23,8 +23,8 @@ import '@/styles/global.scss';
 const WeatherIconBlock = () => {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
-  const suggestions = useSelector((state: RootState) => state.app.suggestions);
-  const weather = useSelector((state: RootState) => state.app.weather);
+  const suggestions = useAppSelector((state) => state.app.suggestions);
+  const weather = useAppSelector((state) => state.app.weather);
   const conditionKey = weather?.condition;
   const WeatherIcon = conditionKey ? weatherConfig[conditionKey]?.icon : null;
   const debouncedQuery = useDebounce(query, 1000);

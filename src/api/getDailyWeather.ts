@@ -1,4 +1,5 @@
 import { OpenWeatherForecastEntry } from '@/types/types';
+import { formatDate, FormatType } from '@/utils/getFormatDate';
 import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 export const getDailyWeather = async (
@@ -14,7 +15,7 @@ export const getDailyWeather = async (
   const map = new Map<string, OpenWeatherForecastEntry>();
 
   data.list.forEach((entry: OpenWeatherForecastEntry) => {
-    const dateKey = new Date(entry.dt * 1000).toDateString();
+    const dateKey = formatDate(entry.dt, FormatType.RawDate);
     if (!map.has(dateKey)) {
       map.set(dateKey, entry);
     }

@@ -4,7 +4,7 @@ import LeftIcon from '@/assets/LeftIcon.svg?react';
 import RightIcon from '@/assets/RightIcon.svg?react';
 import { CARD_OFFSET, SLIDE_WIDTH } from '@/constants/constants';
 import { DailySliderProps, weatherConfig } from '@/types/types';
-import { FormatType, getFormatDate } from '@/utils/getFormatDate';
+import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import WeatherIconWrapper from '../ImageComponent';
 import styles from './styles.module.scss';
@@ -38,16 +38,17 @@ const DailySlider = ({
     handleDayChange?.(index);
   };
 
-  const activeDate = new Date(forecast[activeIndex].dt * 1000);
-  const formattedDate = getFormatDate(activeDate, FormatType.ShortDate);
+  const formattedDate = formatDate(
+    forecast[activeIndex].dt,
+    FormatType.ShortDate,
+  );
 
   return (
     <div className={styles.sliderWrapper}>
       <div className={styles.sliderViewport}>
         <div className={styles.iconRow} ref={iconRowRef}>
           {forecast.map(({ dt, weather }, index) => {
-            const date = new Date(dt * 1000);
-            const day = getFormatDate(date, FormatType.ShortDate);
+            const day = formatDate(dt, FormatType.ShortDate);
             const condition = weather[0].main;
             const Icon = weatherConfig[condition]?.icon;
             const isActive = index === activeIndex;

@@ -1,8 +1,6 @@
-import { useSelector } from 'react-redux';
-
 import UserIcon from '@/assets/UserIcon.svg?react';
+import useAppSelector from '@/hooks/useAppSelector';
 import { useGoogleCalendar } from '@/hooks/useGoogleCalendar';
-import { RootState } from '@/reducers/rootReducer';
 import { BlockSize, SubBlockSize } from '@/types/types';
 import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
@@ -15,10 +13,8 @@ import styles from './styles.module.scss';
 import '@/styles/global.scss';
 
 const UserBlock = ({ gridClass }: { gridClass?: string }) => {
-  const isSignedIn = useSelector(
-    (state: RootState) => state.calendar.isSignedIn,
-  );
-  const events = useSelector((state: RootState) => state.calendar.events);
+  const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
+  const events = useAppSelector((state) => state.calendar.events);
   const { signIn, signOut } = useGoogleCalendar();
 
   return (

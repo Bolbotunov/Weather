@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { setSelectedDate } from '@/actions/actions';
-import { RootState } from '@/reducers/rootReducer';
+import useAppSelector from '@/hooks/useAppSelector';
 import { BlockSize } from '@/types/types';
+import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import Block from '../Block';
 import DailySlider from '../DailySlider';
@@ -12,15 +13,13 @@ import WeatherDailyConditions from '../WeatherDailyConditions';
 import '@/styles/global.scss';
 
 const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
-  const dailyWeather = useSelector(
-    (state: RootState) => state.app.dailyWeather,
-  );
+  const dailyWeather = useAppSelector((state) => state.app.dailyWeather);
   const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleDayChange = (index: number) => {
     setActiveIndex(index);
-    const selected = new Date(dailyWeather[index].dt * 1000).toDateString();
+    const selected = formatDate(dailyWeather[index].dt, FormatType.RawDate);
     dispatch(setSelectedDate(selected));
   };
 
