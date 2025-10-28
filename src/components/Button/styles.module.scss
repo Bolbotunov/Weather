@@ -16,4 +16,9 @@
     cursor: pointer;
     color: $color-text-hover;
   }
+
+  @media (max-width: $breakpoints-tablet) {
+    font-size: $font-size-16;
+    padding: $spacing-8;
+  }
 }

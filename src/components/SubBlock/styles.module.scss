@@ -12,6 +12,10 @@
   height: auto;
   flex: 0 0 $layout-subBlock-fraction;
   min-width: $layout-subBlock-fraction;
+  @media (max-width: $breakpoints-tablet) {
+    flex: 1;
+    min-width: initial;
+  }
 }
 
 .hourlySubBlock {

@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Content from '@/components/Content';
 
 import useAppSelector from './hooks/useAppSelector';
-import NotFound from './pages/notFound';
+import NotFound from './pages/NotFound/index';
 
 import '@/styles/global.scss';
 

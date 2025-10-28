@@ -20,4 +20,9 @@
     width: $layout-weatherIcon-size;
     height: $layout-weatherIcon-size;
   }
+
+  &.extraSmall {
+    width: $layout-weatherIcon-size-extraSmall;
+    height: $layout-weatherIcon-size-extraSmall;
+  }
 }

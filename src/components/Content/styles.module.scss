@@ -10,9 +10,10 @@
   }
 }
 
-.icon {
-  grid-column: 2/3;
+.weatherIcon {
+  grid-column: 1;
   grid-row: 1;
+
   @media (max-width: $breakpoints-tablet) {
     grid-column: 1;
     grid-row: 1;

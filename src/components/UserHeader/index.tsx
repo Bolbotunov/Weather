@@ -1,8 +1,6 @@
-import { useSelector } from 'react-redux';
-
 import UserIcon from '@/assets/UserIcon.svg?react';
+import useAppSelector from '@/hooks/useAppSelector';
 import { useGoogleCalendar } from '@/hooks/useGoogleCalendar';
-import { RootState } from '@/reducers/rootReducer';
 
 import Button from '../Button';
 import WeatherIconWrapper from '../ImageComponent';
@@ -12,9 +10,7 @@ import '@/styles/global.scss';
 
 const UserHeader = () => {
   const { signIn, signOut } = useGoogleCalendar();
-  const isSignedIn = useSelector(
-    (state: RootState) => state.calendar.isSignedIn,
-  );
+  const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
   return (
     <>
       <div className={styles.wrapper}>
@@ -25,7 +21,7 @@ const UserHeader = () => {
         </div>
         <div className={styles.blockWrapper}>
           <p className={styles.title}>Hello User</p>
-          <WeatherIconWrapper icon={<UserIcon />} variant="small" />
+          <WeatherIconWrapper icon={<UserIcon />} variant="extraSmall" />
         </div>
       </div>
     </>

@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 type WeatherIconWrapperProps = {
   icon: ReactElement;
-  variant?: 'big' | 'small';
+  variant?: 'big' | 'small' | 'extraSmall';
 };
 
 const WeatherIconWrapper = ({

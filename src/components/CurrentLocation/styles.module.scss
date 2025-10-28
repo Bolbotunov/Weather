@@ -5,6 +5,10 @@
   align-items: center;
   gap: $spacing-8;
   margin-bottom: $spacing-54;
+
+  @media (max-width: $breakpoints-tablet) {
+    margin-bottom: 0px;
+  }
 }
 
 .locationIcon {
@@ -18,4 +22,7 @@
   white-space: nowrap;
   font-size: $font-size-36;
   font-weight: $font-weight-medium;
+  @media (max-width: $breakpoints-tablet) {
+    font-size: $font-size-20;
+  }
 }

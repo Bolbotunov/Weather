@@ -1,14 +1,12 @@
-import { useSelector } from 'react-redux';
-
 import LocationIcon from '@/assets/locationIcon.svg?react';
-import { RootState } from '@/reducers/rootReducer';
+import useAppSelector from '@/hooks/useAppSelector';
 
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
 
 const CurrentLocation = () => {
-  const weather = useSelector((state: RootState) => state.app.weather);
+  const weather = useAppSelector((state) => state.app.weather);
   return (
     <>
       <div className={styles.location}>

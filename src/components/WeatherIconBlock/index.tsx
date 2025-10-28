@@ -20,7 +20,11 @@ import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
 
-const WeatherIconBlock = () => {
+type Props = {
+  className?: string;
+};
+
+const WeatherIconBlock = ({ className }: Props) => {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
   const suggestions = useAppSelector((state) => state.app.suggestions);
@@ -75,7 +79,7 @@ const WeatherIconBlock = () => {
 
   return (
     <>
-      <section className={styles.weatherIconBlock}>
+      <section className={`${styles.weatherIconBlock} ${className}`}>
         <input
           type="text"
           value={query}
