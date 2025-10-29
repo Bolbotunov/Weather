@@ -5,6 +5,7 @@ import Content from '@/components/Content';
 
 import useAppSelector from './hooks/useAppSelector';
 import NotFound from './pages/NotFound/index';
+import { AppRoutes } from './types/types';
 
 import '@/styles/global.scss';
 
@@ -20,8 +21,8 @@ function App() {
     <BrowserRouter>
       <div className="appContainer">
         <Routes>
-          <Route path="/" element={<Content />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path={AppRoutes.CONTENT} element={<Content />} />
+          <Route path={AppRoutes.NOTFOUND} element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
