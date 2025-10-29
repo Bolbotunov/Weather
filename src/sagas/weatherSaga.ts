@@ -13,7 +13,7 @@ import { formatDate, FormatType } from '@/utils/getFormatDate';
 import type { SagaIterator } from 'redux-saga';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-function* fetchWeatherSaga(): SagaIterator {
+export function* fetchWeatherSaga(): SagaIterator {
   console.log('Saga triggered');
   try {
     const { lat, lon } = yield call(getUserCoordinates);

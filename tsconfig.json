@@ -10,7 +10,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "skipLibCheck": true,
-    "types": ["vite/client", "redux"],
+    "types": ["vite/client", "redux", "jest"],
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"]

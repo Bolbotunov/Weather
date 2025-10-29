@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setTheme } from '@/actions/actions';
-import { weatherConfig } from '@/types/types';
+import { weatherConfig } from '@/types/weatherConfig';
 
 import useAppSelector from './useAppSelector';
 

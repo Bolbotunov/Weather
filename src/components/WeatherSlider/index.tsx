@@ -3,7 +3,8 @@ import { useEffect, useRef } from 'react';
 import WeatherIconWrapper from '@/components/ImageComponent';
 import SubBlock from '@/components/SubBlock';
 import { visibleCount } from '@/constants/constants';
-import { HourlyWeatherData, SubBlockSize, weatherConfig } from '@/types/types';
+import { HourlyWeatherData, SubBlockSize } from '@/types/types';
+import { weatherConfig } from '@/types/weatherConfig';
 
 import styles from './styles.module.scss';
 

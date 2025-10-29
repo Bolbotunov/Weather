@@ -1,4 +1,4 @@
-export const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+export const API_KEY = process.env.VITE_WEATHER_API_KEY;
 export const SET_WEATHER = 'SET_WEATHER';
 export const SET_SUGGESTIONS = 'SET_SUGGESTIONS';
 export const SET_THEME = 'SET_THEME';

@@ -12,7 +12,8 @@ import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useDebounce } from '@/hooks/useDebounce';
-import { LocationSuggestion, weatherConfig } from '@/types/types';
+import { LocationSuggestion } from '@/types/types';
+import { weatherConfig } from '@/types/weatherConfig';
 import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 import WeatherIconWrapper from '../ImageComponent';
