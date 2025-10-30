@@ -1,4 +1,5 @@
 import {
+  FETCH_WEATHER_REQUEST,
   SET_DAILY_WEATHER,
   SET_HOURLY_WEATHER,
   SET_SELECTED_DATE,
@@ -41,4 +42,8 @@ export const setDailyWeather = (data: OpenWeatherForecastEntry[]) => ({
 export const setSelectedDate = (date: string) => ({
   type: SET_SELECTED_DATE,
   payload: date,
+});
+
+export const fetchWeatherRequest = () => ({
+  type: FETCH_WEATHER_REQUEST,
 });

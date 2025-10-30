@@ -8,6 +8,7 @@ import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
 import { getUserCoordinates } from '@/api/getUserCoordinates';
+import { FETCH_WEATHER_REQUEST } from '@/constants/constants';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import type { SagaIterator } from 'redux-saga';
@@ -33,5 +34,5 @@ export function* fetchWeatherSaga(): SagaIterator {
 }
 
 export function* weatherWatcherSaga() {
-  yield takeLatest('FETCH_WEATHER_REQUEST', fetchWeatherSaga);
+  yield takeLatest(FETCH_WEATHER_REQUEST, fetchWeatherSaga);
 }

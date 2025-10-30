@@ -19,6 +19,11 @@
   &.big {
     width: $layout-weatherIcon-size;
     height: $layout-weatherIcon-size;
+
+    @media (max-width: $breakpoints-tablet) {
+      width: $layout-weatherIcon-size-medium;
+      height: $layout-weatherIcon-size-medium;
+    }
   }
 
   &.extraSmall {

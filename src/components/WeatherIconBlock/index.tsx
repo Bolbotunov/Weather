@@ -10,7 +10,7 @@ import {
 import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
-import Condition from '@/Condition';
+import Condition from '@/components/Condition';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useBreakPoints } from '@/hooks/useBreakPoints';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -41,6 +41,7 @@ const WeatherIconBlock = ({ className }: Props) => {
 
   useEffect(() => {
     if (!debouncedQuery) return;
+    dispatch(setSuggestions([]));
 
     const fetchCitySuggestions = async () => {
       try {
@@ -85,32 +86,34 @@ const WeatherIconBlock = ({ className }: Props) => {
   return (
     <>
       <section className={className}>
-        <input
-          type="text"
-          value={query}
-          onChange={handleInputChange}
-          placeholder="Search..."
-          className={styles.searchInput}
-        />
-        {inputError && <div className={styles.inputError}>{inputError}</div>}
-        {suggestions.length > 0 && (
-          <ul className={styles.suggestions}>
-            {suggestions.map((city) => (
-              <li
-                key={city.name}
-                className={styles.suggestion}
-                onClick={handleCitySelect(city)}
-              >
-                {city.name}, {city.country}
-              </li>
-            ))}
-          </ul>
-        )}
-        {isTabletSize && <Condition />}
-        {WeatherIcon && (
-          <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
-        )}
-        {isTabletSize && <TemperatureAndDate />}
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            value={query}
+            onChange={handleInputChange}
+            placeholder="Search..."
+            className={styles.searchInput}
+          />
+          {inputError && <div className={styles.inputError}>{inputError}</div>}
+          {debouncedQuery && suggestions.length > 0 && (
+            <ul className={styles.suggestions}>
+              {suggestions.map((city) => (
+                <li
+                  key={city.name}
+                  className={styles.suggestion}
+                  onClick={handleCitySelect(city)}
+                >
+                  {city.name}, {city.country}
+                </li>
+              ))}
+            </ul>
+          )}
+          {isTabletSize && <Condition />}
+          {WeatherIcon && (
+            <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
+          )}
+          {isTabletSize && <TemperatureAndDate />}
+        </div>
       </section>
     </>
   );

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Condition from '@/Condition';
+import { fetchWeatherRequest } from '@/actions/actions';
+import Condition from '@/components/Condition';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useBreakPoints } from '@/hooks/useBreakPoints';
 import { useStatus } from '@/hooks/useStatus';
@@ -34,8 +35,9 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
 
   useTheme();
   useEffect(() => {
-    if (!rehydrated || weather) return;
-    dispatch({ type: 'FETCH_WEATHER_REQUEST' });
+    if (rehydrated && !weather) {
+      dispatch(fetchWeatherRequest());
+    }
   }, [dispatch, rehydrated, weather]);
 
   let content;
