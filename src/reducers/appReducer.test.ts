@@ -9,6 +9,8 @@ import {
 
 import { appReducer } from './appReducer';
 
+jest.mock('@/constants/constants');
+
 describe('appReducer', () => {
   it('should set weather', () => {
     const action = {

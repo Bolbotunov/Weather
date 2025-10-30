@@ -21,6 +21,8 @@ import { formatDate } from '@/utils/getFormatDate';
 import { mocked } from 'jest-mock';
 import { runSaga } from 'redux-saga';
 
+jest.mock('@/constants/constants');
+
 jest.mock('@/api/getUserCoordinates', () => ({
   getUserCoordinates: jest.fn(),
 }));

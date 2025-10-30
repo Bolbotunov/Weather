@@ -5,15 +5,15 @@ import {
   setCalendarEvents,
   setCalendarSignedIn,
 } from '@/actions/calendarActions';
+import { GOOGLE_ID, GOOGLE_KEY } from '@/config/env';
+import { GOOGLE_DOCS, GOOGLE_SCOPE } from '@/constants/constants';
 import { GoogleCalendarEventRaw } from '@/types/types';
 
 const config = {
-  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-  apiKey: import.meta.env.VITE_GOOGLE_API_KEY,
-  scope: 'https://www.googleapis.com/auth/calendar.readonly',
-  discoveryDocs: [
-    'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
-  ],
+  clientId: GOOGLE_ID,
+  apiKey: GOOGLE_KEY,
+  scope: GOOGLE_SCOPE,
+  discoveryDocs: [GOOGLE_DOCS],
 };
 
 const apiCalendar = new ApiCalendar(config);

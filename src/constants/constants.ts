@@ -1,4 +1,3 @@
-export const API_KEY = process.env.VITE_WEATHER_API_KEY;
 export const SET_WEATHER = 'SET_WEATHER';
 export const SET_SUGGESTIONS = 'SET_SUGGESTIONS';
 export const SET_THEME = 'SET_THEME';
@@ -15,3 +14,6 @@ export const SLIDE_WIDTH = 80;
 export const CARD_OFFSET = 40;
 export const TABLET_BREAKPOINT = 768;
 export const MOBILE_BREAKPOINT = 430;
+export const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/calendar.readonly';
+export const GOOGLE_DOCS =
+  'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
