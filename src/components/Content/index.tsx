@@ -16,8 +16,8 @@ const Content = () => {
   return (
     <main className={styles.grid}>
       {(isMobileSize || isTabletSize) && <Header />}
-      <WeatherIconBlock />
-      <CurrentWeatherCard gridClass={styles.weather} />
+      <WeatherIconBlock className={styles.weatherIcon} />
+      {!isTabletSize && <CurrentWeatherCard gridClass={styles.weather} />}
       <UserBlock gridClass={styles.user} />
       <RunningLine gridClass={styles.running} />
       <HourlyBlock gridClass={styles.hourly} />

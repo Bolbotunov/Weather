@@ -10,13 +10,16 @@ import {
 import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
+import Condition from '@/Condition';
 import useAppSelector from '@/hooks/useAppSelector';
+import { useBreakPoints } from '@/hooks/useBreakPoints';
 import { useDebounce } from '@/hooks/useDebounce';
 import { LocationSuggestion } from '@/types/types';
 import { weatherConfig } from '@/types/weatherConfig';
 import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 import WeatherIconWrapper from '../ImageComponent';
+import TemperatureAndDate from '../TemperatureAndDate';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
@@ -34,6 +37,7 @@ const WeatherIconBlock = ({ className }: Props) => {
   const WeatherIcon = conditionKey ? weatherConfig[conditionKey]?.icon : null;
   const debouncedQuery = useDebounce(query, 1000);
   const [inputError, setInputError] = useState<string | null>(null);
+  const { isTabletSize } = useBreakPoints();
 
   useEffect(() => {
     if (!debouncedQuery) return;
@@ -80,7 +84,7 @@ const WeatherIconBlock = ({ className }: Props) => {
 
   return (
     <>
-      <section className={`${styles.weatherIconBlock} ${className}`}>
+      <section className={className}>
         <input
           type="text"
           value={query}
@@ -102,9 +106,11 @@ const WeatherIconBlock = ({ className }: Props) => {
             ))}
           </ul>
         )}
+        {isTabletSize && <Condition />}
         {WeatherIcon && (
           <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
         )}
+        {isTabletSize && <TemperatureAndDate />}
       </section>
     </>
   );

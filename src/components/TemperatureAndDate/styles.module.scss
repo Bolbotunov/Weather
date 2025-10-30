@@ -1,0 +1,15 @@
+@use '@/styles/variables.scss' as *;
+
+.temperature {
+  font-size: $font-size-64;
+  margin-top: $spacing-12;
+  margin-bottom: $spacing-8;
+  @media (max-width: $breakpoints-tablet) {
+    margin: 0;
+  }
+}
+
+.date {
+  font-size: $font-size-18;
+  font-weight: $font-weight-regular;
+}

@@ -9,6 +9,7 @@ import { formatDate, FormatType } from '@/utils/getFormatDate';
 import Block from '../Block';
 import DailySlider from '../DailySlider';
 import WeatherDailyConditions from '../WeatherDailyConditions';
+import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
 
@@ -34,7 +35,7 @@ const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
         setActiveIndex={setActiveIndex}
         handleDayChange={handleDayChange}
       />
-
+      <p className={styles.title}>AIR CONDITIONS</p>
       <WeatherDailyConditions conditions={dailyWeather[activeIndex]} />
     </Block>
   );

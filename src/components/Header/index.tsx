@@ -7,11 +7,11 @@ import styles from './styles.module.scss';
 import '@/styles/global.scss';
 
 const Header = () => {
-  const { isDesktopSize } = useBreakPoints();
+  const { isTabletSize } = useBreakPoints();
   return (
     <>
       <header className={styles.header}>
-        {!isDesktopSize && <CurrentLocation />}
+        {isTabletSize && <CurrentLocation />}
         <UserHeader />
       </header>
     </>

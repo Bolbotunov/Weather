@@ -6,17 +6,23 @@
 
   @media (max-width: $breakpoints-tablet) {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 3;
   }
 }
 
 .weatherIcon {
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  padding: $spacing-24;
 
   @media (max-width: $breakpoints-tablet) {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
   }
 }
 
@@ -26,7 +32,7 @@
 
   @media (max-width: $breakpoints-tablet) {
     grid-column: 1;
-    grid-row: 5;
+    grid-row: 7;
   }
 }
 
@@ -36,7 +42,7 @@
 
   @media (max-width: $breakpoints-tablet) {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 5;
   }
 }
 
@@ -45,7 +51,7 @@
   grid-row: 3;
   @media (max-width: $breakpoints-tablet) {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 6;
   }
 }
 
@@ -54,6 +60,6 @@
   grid-row: 2/4;
   @media (max-width: $breakpoints-tablet) {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 4;
   }
 }

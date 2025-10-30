@@ -23,9 +23,6 @@ export const useBreakpoint = (query: string): boolean => {
 export const useBreakPoints = () => {
   return {
     isMobileSize: useBreakpoint(`(max-width: ${MOBILE_BREAKPOINT}px)`),
-    isTabletSize: useBreakpoint(
-      `(min-width: ${MOBILE_BREAKPOINT}px) and (max-width: ${TABLET_BREAKPOINT}px)`,
-    ),
-    isDesktopSize: useBreakpoint(`(min-width: ${TABLET_BREAKPOINT}px)`),
+    isTabletSize: useBreakpoint(`(max-width: ${TABLET_BREAKPOINT}px)`),
   };
 };

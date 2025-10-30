@@ -13,11 +13,11 @@ import '@/styles/global.scss';
 const UserBlock = ({ gridClass }: { gridClass?: string }) => {
   const events = useAppSelector((state) => state.calendar.events);
   const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
-  const { isDesktopSize } = useBreakPoints();
+  const { isTabletSize } = useBreakPoints();
 
   return (
     <Block size={BlockSize.UserBlock} gridClass={gridClass}>
-      {isDesktopSize && <Header />}
+      {!isTabletSize && <Header />}
       <div className={styles.taskWrapper}>
         {isSignedIn ? (
           events.map((event) => (
