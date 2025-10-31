@@ -15,6 +15,7 @@ import Block from '../Block';
 import CurrentLocation from '../CurrentLocation';
 import StatusWrapper from '../StatusWrapper';
 import TemperatureAndDate from '../TemperatureAndDate';
+import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
 
@@ -42,10 +43,10 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
       <StatusWrapper>
         <CurrentLocation />
         {!isTabletSize && (
-          <>
+          <div className={styles.wrapper}>
             <Condition />
             <TemperatureAndDate />
-          </>
+          </div>
         )}
       </StatusWrapper>
     </Block>

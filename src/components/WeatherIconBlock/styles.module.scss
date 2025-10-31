@@ -48,9 +48,4 @@
 .searchContainer {
   position: relative;
   width: 100%;
-  @media (max-width: $breakpoints-tablet) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }
