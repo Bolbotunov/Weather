@@ -1,6 +1,8 @@
 import {
   SET_DAILY_WEATHER,
+  SET_ERROR,
   SET_HOURLY_WEATHER,
+  SET_LOADING,
   SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
@@ -48,6 +50,8 @@ const initialState: AppState = {
   hourlyWeather: [],
   dailyWeather: [],
   selectedDate: '',
+  loading: false,
+  error: null,
 };
 
 export const appReducer = (
@@ -67,6 +71,10 @@ export const appReducer = (
       return { ...state, dailyWeather: action.payload };
     case SET_SELECTED_DATE:
       return { ...state, selectedDate: action.payload };
+    case SET_LOADING:
+      return { ...state, loading: action.payload };
+    case SET_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

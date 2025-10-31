@@ -1,6 +1,8 @@
 import {
   setDailyWeather,
+  setError,
   setHourlyWeather,
+  setLoading,
   setSelectedDate,
   setWeather,
 } from '@/actions/actions';
@@ -12,24 +14,33 @@ import { FETCH_WEATHER_REQUEST } from '@/constants/constants';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import type { SagaIterator } from 'redux-saga';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 export function* fetchWeatherSaga(): SagaIterator {
-  console.log('Saga triggered');
   try {
+    yield put(setLoading(true));
+    yield put(setError(null));
     const { lat, lon } = yield call(getUserCoordinates);
-    const weather = yield call(getCurrentWeather, lat, lon);
+
+    const [weather, hourly, daily] = yield all([
+      call(getCurrentWeather, lat, lon),
+      call(getHourlyWeather, lat, lon),
+      call(getDailyWeather, lat, lon),
+    ]);
+
     yield put(setWeather(weather));
-
-    const hourly = yield call(getHourlyWeather, lat, lon);
     yield put(setHourlyWeather(hourly));
-
-    const daily = yield call(getDailyWeather, lat, lon);
     yield put(setDailyWeather(daily));
 
     yield put(setSelectedDate(formatDate(daily[0].dt, FormatType.RawDate)));
   } catch (error) {
-    console.error('Saga error:', error);
+    if (error instanceof Error) {
+      yield put(setError(error.message));
+    } else {
+      yield put(setError('Unknown Error'));
+    }
+  } finally {
+    yield put(setLoading(false));
   }
 }
 

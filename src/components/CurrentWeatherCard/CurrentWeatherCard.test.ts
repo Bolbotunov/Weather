@@ -1,5 +1,4 @@
 import { getCurrentWeather } from '@/api/getCurrentWeather';
-jest.mock('@/constants/constants');
 
 global.fetch = jest.fn(() =>
   Promise.resolve({

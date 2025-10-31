@@ -1,3 +1,5 @@
+import { ReactElement, ReactNode } from 'react';
+
 export type LocationData = {
   latitude: number;
   longitude: number;
@@ -71,6 +73,8 @@ export type AppState = {
   hourlyWeather: HourlyWeatherData[];
   dailyWeather: OpenWeatherForecastEntry[];
   selectedDate: string;
+  loading: boolean;
+  error: string | null;
 };
 
 export type HourlyWeatherData = {
@@ -110,4 +114,36 @@ export type DailySliderProps = {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
   handleDayChange?: (index: number) => void;
+};
+
+export type CalendarEventProps = {
+  id: string;
+  summary: string;
+  start: string;
+};
+
+export type ChildrenProps = {
+  children?: ReactNode;
+};
+
+export type BoundaryState = {
+  hasError: boolean;
+  error: Error | null;
+};
+
+export type WeatherIconWrapperProps = {
+  icon: ReactElement;
+  variant?: 'big' | 'small' | 'extraSmall';
+};
+
+export type OpenWeatherForecastEntryProps = {
+  conditions: OpenWeatherForecastEntry;
+};
+
+export type ClassNameProps = {
+  className?: string;
+};
+
+export type WeatherSliderProps = {
+  hourlyWeather: HourlyWeatherData[];
 };

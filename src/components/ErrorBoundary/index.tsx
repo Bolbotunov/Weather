@@ -1,23 +1,16 @@
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo } from 'react';
+
+import { BoundaryState, ChildrenProps } from '@/types/types';
 
 import styles from './styles.module.scss';
 
-type Props = {
-  children?: ReactNode;
-};
-
-type State = {
-  hasError: boolean;
-  error: Error | null;
-};
-
-export class ErrorBoundary extends Component<Props, State> {
-  state: State = {
+export class ErrorBoundary extends Component<ChildrenProps, BoundaryState> {
+  state: BoundaryState = {
     hasError: false,
     error: null,
   };
 
-  static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): BoundaryState {
     return { hasError: true, error };
   }
 

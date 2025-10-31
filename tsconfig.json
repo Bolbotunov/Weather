@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "module": "ESNext",
     "jsx": "react-jsx",
     "strict": true,
@@ -10,7 +10,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "skipLibCheck": true,
-    "types": ["vite/client", "redux", "jest"],
+    "types": ["vite/client", "redux", "jest", "@testing-library/jest-dom"],
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"]

@@ -5,6 +5,7 @@ import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
 import Block from '../Block';
 import WeatherIconWrapper from '../ImageComponent';
+import StatusWrapper from '../StatusWrapper';
 import WeatherSlider from '../WeatherSlider';
 import styles from './styles.module.scss';
 
@@ -22,14 +23,16 @@ const HourlyBlock = ({ gridClass }: { gridClass?: string }) => {
 
   return (
     <Block size={BlockSize.HourlyBlock} gridClass={gridClass}>
-      <div className={styles.location}>
-        <div className={styles.locationText}>24-hour forecast</div>
-        <div className={styles.clockWrapper}>
-          <div>{getFormatDate(new Date(), FormatType.Time12)}</div>
-          <WeatherIconWrapper icon={<ClockIcon />} variant="small" />
+      <StatusWrapper>
+        <div className={styles.location}>
+          <div className={styles.locationText}>24-hour forecast</div>
+          <div className={styles.clockWrapper}>
+            <div>{getFormatDate(new Date(), FormatType.Time12)}</div>
+            <WeatherIconWrapper icon={<ClockIcon />} variant="small" />
+          </div>
         </div>
-      </div>
-      <WeatherSlider hourlyWeather={filteredWeather} />
+        <WeatherSlider hourlyWeather={filteredWeather} />
+      </StatusWrapper>
     </Block>
   );
 };

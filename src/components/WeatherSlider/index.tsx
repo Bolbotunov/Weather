@@ -3,14 +3,10 @@ import { useEffect, useRef } from 'react';
 import WeatherIconWrapper from '@/components/ImageComponent';
 import SubBlock from '@/components/SubBlock';
 import { visibleCount } from '@/constants/constants';
-import { HourlyWeatherData, SubBlockSize } from '@/types/types';
+import { SubBlockSize, WeatherSliderProps } from '@/types/types';
 import { weatherConfig } from '@/types/weatherConfig';
 
 import styles from './styles.module.scss';
-
-type WeatherSliderProps = {
-  hourlyWeather: HourlyWeatherData[];
-};
 
 const WeatherSlider = ({ hourlyWeather }: WeatherSliderProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);

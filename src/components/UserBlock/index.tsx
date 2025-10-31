@@ -5,6 +5,7 @@ import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
 import Block from '../Block';
 import Header from '../Header';
+import StatusWrapper from '../StatusWrapper';
 import SubBlock from '../SubBlock';
 import styles from './styles.module.scss';
 
@@ -17,23 +18,25 @@ const UserBlock = ({ gridClass }: { gridClass?: string }) => {
 
   return (
     <Block size={BlockSize.UserBlock} gridClass={gridClass}>
-      {!isTabletSize && <Header />}
-      <div className={styles.taskWrapper}>
-        {isSignedIn ? (
-          events.map((event) => (
-            <SubBlock key={event.id} size={SubBlockSize.UserSubBlock}>
-              <div className={styles.taskTime}>
-                {getFormatDate(new Date(event.start), FormatType.Time24)}
-              </div>
-              <div className={styles.taskTitle}>{event.summary}</div>
+      <StatusWrapper>
+        {!isTabletSize && <Header />}
+        <div className={styles.taskWrapper}>
+          {isSignedIn ? (
+            events.map(({ id, summary, start }) => (
+              <SubBlock key={id} size={SubBlockSize.UserSubBlock}>
+                <div className={styles.taskTime}>
+                  {getFormatDate(new Date(start), FormatType.Time24)}
+                </div>
+                <div className={styles.taskTitle}>{summary}</div>
+              </SubBlock>
+            ))
+          ) : (
+            <SubBlock size={SubBlockSize.NoTasksSubBlock}>
+              <p className={styles.noTasks}>Sign in to see your events</p>
             </SubBlock>
-          ))
-        ) : (
-          <SubBlock size={SubBlockSize.NoTasksSubBlock}>
-            <p className={styles.noTasks}>Sign in to see your events</p>
-          </SubBlock>
-        )}
-      </div>
+          )}
+        </div>
+      </StatusWrapper>
     </Block>
   );
 };

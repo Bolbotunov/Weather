@@ -1,13 +1,8 @@
-import { ReactElement } from 'react';
+import { WeatherIconWrapperProps } from '@/types/types';
 
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
-
-type WeatherIconWrapperProps = {
-  icon: ReactElement;
-  variant?: 'big' | 'small' | 'extraSmall';
-};
 
 const WeatherIconWrapper = ({
   icon,

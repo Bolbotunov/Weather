@@ -1,7 +1,9 @@
 import {
   FETCH_WEATHER_REQUEST,
   SET_DAILY_WEATHER,
+  SET_ERROR,
   SET_HOURLY_WEATHER,
+  SET_LOADING,
   SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
@@ -46,4 +48,14 @@ export const setSelectedDate = (date: string) => ({
 
 export const fetchWeatherRequest = () => ({
   type: FETCH_WEATHER_REQUEST,
+});
+
+export const setLoading = (value: boolean) => ({
+  type: SET_LOADING,
+  payload: value,
+});
+
+export const setError = (message: string | null) => ({
+  type: SET_ERROR,
+  payload: message,
 });

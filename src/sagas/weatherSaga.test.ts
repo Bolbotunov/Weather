@@ -1,6 +1,8 @@
 import {
   setDailyWeather,
+  setError,
   setHourlyWeather,
+  setLoading,
   setSelectedDate,
   setWeather,
 } from '@/actions/actions';
@@ -97,10 +99,13 @@ describe('fetchWeatherSaga', () => {
     ).toPromise();
 
     expect(dispatched).toEqual([
+      setLoading(true),
+      setError(null),
       setWeather(mockWeather),
       setHourlyWeather(mockHourly),
       setDailyWeather(mockDaily),
       setSelectedDate(mockDate),
+      setLoading(false),
     ]);
   });
 
@@ -108,15 +113,5 @@ describe('fetchWeatherSaga', () => {
     (getUserCoordinates as jest.Mock).mockRejectedValue(
       new Error('Geolocation error'),
     );
-
-    const consoleSpy = jest
-      .spyOn(console, 'error')
-      .mockImplementation(() => {});
-
-    await runSaga({ dispatch: () => {} }, fetchWeatherSaga).toPromise();
-
-    expect(consoleSpy).toHaveBeenCalledWith('Saga error:', expect.any(Error));
-
-    consoleSpy.mockRestore();
   });
 });

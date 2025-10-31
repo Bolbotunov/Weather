@@ -2,12 +2,7 @@ import {
   SET_CALENDAR_EVENTS,
   SET_CALENDAR_SIGNED_IN,
 } from '@/constants/constants';
-
-type CalendarEventProps = {
-  id: string;
-  summary: string;
-  start: string;
-};
+import { CalendarEventProps } from '@/types/types';
 
 export const setCalendarEvents = (events: CalendarEventProps[]) => ({
   type: SET_CALENDAR_EVENTS,

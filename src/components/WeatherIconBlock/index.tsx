@@ -14,21 +14,18 @@ import Condition from '@/components/Condition';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useBreakPoints } from '@/hooks/useBreakPoints';
 import { useDebounce } from '@/hooks/useDebounce';
-import { LocationSuggestion } from '@/types/types';
+import { ClassNameProps, LocationSuggestion } from '@/types/types';
 import { weatherConfig } from '@/types/weatherConfig';
 import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 import WeatherIconWrapper from '../ImageComponent';
+import StatusWrapper from '../StatusWrapper';
 import TemperatureAndDate from '../TemperatureAndDate';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
 
-type Props = {
-  className?: string;
-};
-
-const WeatherIconBlock = ({ className }: Props) => {
+const WeatherIconBlock = ({ className }: ClassNameProps) => {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
   const suggestions = useAppSelector((state) => state.app.suggestions);
@@ -86,34 +83,38 @@ const WeatherIconBlock = ({ className }: Props) => {
   return (
     <>
       <section className={className}>
-        <div className={styles.searchContainer}>
-          <input
-            type="text"
-            value={query}
-            onChange={handleInputChange}
-            placeholder="Search..."
-            className={styles.searchInput}
-          />
-          {inputError && <div className={styles.inputError}>{inputError}</div>}
-          {debouncedQuery && suggestions.length > 0 && (
-            <ul className={styles.suggestions}>
-              {suggestions.map((city) => (
-                <li
-                  key={city.name}
-                  className={styles.suggestion}
-                  onClick={handleCitySelect(city)}
-                >
-                  {city.name}, {city.country}
-                </li>
-              ))}
-            </ul>
-          )}
-          {isTabletSize && <Condition />}
-          {WeatherIcon && (
-            <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
-          )}
-          {isTabletSize && <TemperatureAndDate />}
-        </div>
+        <StatusWrapper>
+          <div className={styles.searchContainer}>
+            <input
+              type="text"
+              value={query}
+              onChange={handleInputChange}
+              placeholder="Search..."
+              className={styles.searchInput}
+            />
+            {inputError && (
+              <div className={styles.inputError}>{inputError}</div>
+            )}
+            {debouncedQuery && suggestions.length > 0 && (
+              <ul className={styles.suggestions}>
+                {suggestions.map((city) => (
+                  <li
+                    key={city.name}
+                    className={styles.suggestion}
+                    onClick={handleCitySelect(city)}
+                  >
+                    {city.name}, {city.country}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {isTabletSize && <Condition />}
+            {WeatherIcon && (
+              <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
+            )}
+            {isTabletSize && <TemperatureAndDate />}
+          </div>
+        </StatusWrapper>
       </section>
     </>
   );

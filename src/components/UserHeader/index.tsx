@@ -1,5 +1,4 @@
 import UserIcon from '@/assets/UserIcon.svg?react';
-import useAppSelector from '@/hooks/useAppSelector';
 import { useGoogleCalendar } from '@/hooks/useGoogleCalendar';
 
 import Button from '../Button';
@@ -9,15 +8,13 @@ import styles from './styles.module.scss';
 import '@/styles/global.scss';
 
 const UserHeader = () => {
-  const { signIn, signOut } = useGoogleCalendar();
-  const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
+  const { buttonLabel, handleAuth } = useGoogleCalendar();
+
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.blockWrapper}>
-          <Button onClick={isSignedIn ? signOut : signIn}>
-            {isSignedIn ? 'Sign Out' : 'Sign In'}
-          </Button>
+          <Button onClick={handleAuth}>{buttonLabel}</Button>
         </div>
         <div className={styles.blockWrapper}>
           <p className={styles.title}>Hello User</p>

@@ -5,7 +5,6 @@ import { fetchWeatherRequest } from '@/actions/actions';
 import Condition from '@/components/Condition';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useBreakPoints } from '@/hooks/useBreakPoints';
-import { useStatus } from '@/hooks/useStatus';
 import useTheme from '@/hooks/useTheme';
 import { RootState } from '@/reducers/rootReducer';
 import { BlockSize } from '@/types/types';
@@ -14,8 +13,7 @@ import { PersistState } from 'redux-persist';
 
 import Block from '../Block';
 import CurrentLocation from '../CurrentLocation';
-import ErrorBlock from '../ErrorBlock';
-import Loader from '../Loader';
+import StatusWrapper from '../StatusWrapper';
 import TemperatureAndDate from '../TemperatureAndDate';
 
 import '@/styles/global.scss';
@@ -25,7 +23,6 @@ export type ExtendedRootState = RootState & {
 };
 
 const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
-  const { loading, error } = useStatus();
   const { isTabletSize } = useBreakPoints();
   const dispatch = useDispatch();
   const weather = useAppSelector((state) => state.app.weather);
@@ -40,15 +37,9 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
     }
   }, [dispatch, rehydrated, weather]);
 
-  let content;
-
-  if (loading) {
-    content = <Loader />;
-  } else if (error) {
-    content = <ErrorBlock message={error} />;
-  } else {
-    content = (
-      <>
+  return (
+    <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
+      <StatusWrapper>
         <CurrentLocation />
         {!isTabletSize && (
           <>
@@ -56,13 +47,7 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
             <TemperatureAndDate />
           </>
         )}
-      </>
-    );
-  }
-
-  return (
-    <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
-      {content}
+      </StatusWrapper>
     </Block>
   );
 };

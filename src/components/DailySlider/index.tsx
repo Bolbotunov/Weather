@@ -8,6 +8,7 @@ import { weatherConfig } from '@/types/weatherConfig';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import WeatherIconWrapper from '../ImageComponent';
+import StatusWrapper from '../StatusWrapper';
 import styles from './styles.module.scss';
 
 const DailySlider = ({
@@ -46,37 +47,41 @@ const DailySlider = ({
 
   return (
     <div className={styles.sliderWrapper}>
-      <div className={styles.sliderViewport}>
-        <div className={styles.iconRow} ref={iconRowRef}>
-          {forecast.map(({ dt, weather }, index) => {
-            const day = formatDate(dt, FormatType.ShortDate);
-            const condition = weather[0].main;
-            const Icon = weatherConfig[condition]?.icon;
-            const isActive = index === activeIndex;
+      <StatusWrapper>
+        <div className={styles.sliderViewport}>
+          <div className={styles.iconRow} ref={iconRowRef}>
+            {forecast.map(({ dt, weather }, index) => {
+              const day = formatDate(dt, FormatType.ShortDate);
+              const condition = weather[0].main;
+              const Icon = weatherConfig[condition]?.icon;
+              const isActive = index === activeIndex;
 
-            return (
-              <div
-                key={dt}
-                className={`${styles.forecastItem} ${isActive ? styles.active : ''}`}
-                onClick={handleActiveIndex(index)}
-              >
-                <div>{day}</div>
-                {Icon && <WeatherIconWrapper icon={<Icon />} variant="small" />}
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={dt}
+                  className={`${styles.forecastItem} ${isActive ? styles.active : ''}`}
+                  onClick={handleActiveIndex(index)}
+                >
+                  <div>{day}</div>
+                  {Icon && (
+                    <WeatherIconWrapper icon={<Icon />} variant="small" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      <div className={styles.dateRow}>
-        <button onClick={handlePrev} className={styles.navButton}>
-          <WeatherIconWrapper icon={<LeftIcon />} variant="small" />
-        </button>
-        <div className={styles.dateDisplay}>{formattedDate}</div>
-        <button onClick={handleNext} className={styles.navButton}>
-          <WeatherIconWrapper icon={<RightIcon />} variant="small" />
-        </button>
-      </div>
+        <div className={styles.dateRow}>
+          <button onClick={handlePrev} className={styles.navButton}>
+            <WeatherIconWrapper icon={<LeftIcon />} variant="small" />
+          </button>
+          <div className={styles.dateDisplay}>{formattedDate}</div>
+          <button onClick={handleNext} className={styles.navButton}>
+            <WeatherIconWrapper icon={<RightIcon />} variant="small" />
+          </button>
+        </div>
+      </StatusWrapper>
     </div>
   );
 };
