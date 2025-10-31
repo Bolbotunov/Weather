@@ -10,6 +10,7 @@
   display: inline-block;
   padding: 0 $spacing-32;
   font-size: $font-size-24;
+  padding-left: 100%;
   animation: scrollText $transition-line linear infinite;
   @media (max-width: $breakpoints-tablet) {
     font-size: $font-size-16;
