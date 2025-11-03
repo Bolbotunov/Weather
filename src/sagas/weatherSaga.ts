@@ -14,7 +14,6 @@ import type { SagaIterator } from 'redux-saga';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 function* fetchWeatherSaga(): SagaIterator {
-  console.log('Saga triggered');
   try {
     const { lat, lon } = yield call(getUserCoordinates);
     const weather = yield call(getCurrentWeather, lat, lon);
