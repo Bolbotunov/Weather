@@ -8,14 +8,13 @@ import WeatherIconWrapper from '../ImageComponent';
 import WeatherSlider from '../WeatherSlider';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const HourlyBlock = ({ gridClass }: { gridClass?: string }) => {
   const hourlyWeather = useAppSelector((state) => state.app.hourlyWeather);
   const selectedDate = useAppSelector((state) => state.app.selectedDate);
   const filteredWeather = hourlyWeather
     .filter((entry) => {
       const entryDate = new Date(entry.time).toDateString();
+
       return entryDate === selectedDate;
     })
     .slice(0, 8);

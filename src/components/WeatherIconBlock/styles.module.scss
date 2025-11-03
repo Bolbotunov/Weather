@@ -46,6 +46,7 @@
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
+
   @media (max-width: $breakpoints-tablet) {
     height: auto;
     padding: $spacing-24;

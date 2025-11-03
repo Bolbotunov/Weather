@@ -51,6 +51,7 @@ const WeatherSlider = ({ hourlyWeather }: WeatherSliderProps) => {
     <div className={styles.wrapper} ref={wrapperRef}>
       {visibleWeather.map((hour, index) => {
         const Icon = weatherConfig[hour.condition]?.icon;
+
         return (
           <SubBlock
             key={`${index}-${hour.condition}`}

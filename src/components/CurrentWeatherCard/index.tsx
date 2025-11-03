@@ -26,8 +26,6 @@ import ErrorBlock from '../ErrorBlock';
 import Loader from '../Loader';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 export type ExtendedRootState = RootState & {
   _persist: PersistState;
 };
@@ -46,6 +44,7 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
 
     if (weather) {
       setLoading(false);
+
       return;
     }
     const fetchWeather = async () => {

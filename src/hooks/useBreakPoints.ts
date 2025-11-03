@@ -14,6 +14,7 @@ export const useBreakpoint = (query: string): boolean => {
     };
 
     mediaQuery.addEventListener('change', handleChange);
+
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [query]);
 

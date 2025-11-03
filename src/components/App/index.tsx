@@ -1,13 +1,9 @@
 import { useLayoutEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Content from '@/components/Content';
+import useAppSelector from '@/hooks/useAppSelector';
 
-import useAppSelector from './hooks/useAppSelector';
-import NotFound from './pages/NotFound/index';
-import { AppRoutes } from './types/types';
-
-import '@/styles/global.scss';
+import { configRoutes } from './config';
 
 function App() {
   const theme = useAppSelector((state) => state.app.theme);
@@ -21,8 +17,9 @@ function App() {
     <BrowserRouter>
       <div className="appContainer">
         <Routes>
-          <Route path={AppRoutes.CONTENT} element={<Content />} />
-          <Route path={AppRoutes.NOTFOUND} element={<NotFound />} />
+          {configRoutes.map(({ path, element }) => (
+            <Route path={path} element={element} />
+          ))}
         </Routes>
       </div>
     </BrowserRouter>

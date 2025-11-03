@@ -9,10 +9,9 @@ import UserBlock from '../UserBlock';
 import WeatherIconBlock from '../WeatherIconBlock';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const Content = () => {
   const { isTabletSize, isMobileSize } = useBreakPoints();
+
   return (
     <main className={styles.grid}>
       {(isMobileSize || isTabletSize) && <Header />}

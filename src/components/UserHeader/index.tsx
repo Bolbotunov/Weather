@@ -6,11 +6,10 @@ import Button from '../Button';
 import WeatherIconWrapper from '../ImageComponent';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const UserHeader = () => {
   const { signIn, signOut } = useGoogleCalendar();
   const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
+
   return (
     <>
       <div className={styles.wrapper}>
