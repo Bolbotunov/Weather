@@ -1,7 +1,7 @@
 import { useBreakPoints } from '@/hooks/useBreakPoints';
 
 import CurrentLocation from '../CurrentLocation';
-import UserHeader from '../UserHeader';
+import UserIconBlock from '../UserIconBlock';
 import styles from './styles.module.scss';
 
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
     <>
       <header className={styles.header}>
         {!isDesktopSize && <CurrentLocation />}
-        <UserHeader />
+        <UserIconBlock />
       </header>
     </>
   );

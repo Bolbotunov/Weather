@@ -77,7 +77,9 @@ const WeatherIconBlock = ({ className }: Props) => {
 
   return (
     <>
-      <section className={`${styles.weatherIconBlock} ${className}`}>
+      <section
+        className={`${styles.weatherIconBlock} ${className ? className : ''}`}
+      >
         <input
           type="text"
           value={query}
