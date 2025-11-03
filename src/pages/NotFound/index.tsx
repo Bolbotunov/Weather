@@ -9,7 +9,7 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   function returnHandle() {
-    navigate(AppRoutes.CONTENT);
+    navigate(AppRoutes.MAINLAYOUT);
   }
 
   return (

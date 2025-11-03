@@ -1,8 +1,9 @@
-import Content from '@/components/Content';
 import NotFound from '@/pages/NotFound';
 import { AppRoutes } from '@/types/types';
 
+import MainLayout from '../MainLayout';
+
 export const configRoutes = [
-  { path: AppRoutes.CONTENT, element: <Content /> },
+  { path: AppRoutes.MAINLAYOUT, element: <MainLayout /> },
   { path: AppRoutes.NOTFOUND, element: <NotFound /> },
 ];
