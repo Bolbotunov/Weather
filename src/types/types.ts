@@ -1,5 +1,10 @@
 import { ReactElement, ReactNode } from 'react';
 
+export enum AppRoutes {
+  CONTENT = '/',
+  NOTFOUND = '*',
+}
+
 export type LocationData = {
   latitude: number;
   longitude: number;
