@@ -43,6 +43,14 @@ export default defineConfig([
       ],
       'simple-import-sort/exports': 'error',
       'react/react-in-jsx-scope': 'off',
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: 'import', next: '*' },
+        { blankLine: 'any', prev: 'import', next: 'import' },
+        { blankLine: 'always', prev: '*', next: 'return' },
+        { blankLine: 'always', prev: '*', next: ['function', 'class'] },
+        { blankLine: 'always', prev: 'const', next: 'const' },
+      ],
     },
   },
 ]);

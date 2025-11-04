@@ -9,11 +9,13 @@ export const useBreakpoint = (query: string): boolean => {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(query);
+
     const handleChange = (e: MediaQueryListEvent) => {
       setMatches(e.matches);
     };
 
     mediaQuery.addEventListener('change', handleChange);
+
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [query]);
 

@@ -15,7 +15,9 @@ import '@/styles/global.scss';
 
 const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
   const dailyWeather = useAppSelector((state) => state.app.dailyWeather);
+
   const dispatch = useDispatch();
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleDayChange = (index: number) => {
@@ -27,6 +29,7 @@ const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
   if (!dailyWeather || dailyWeather.length === 0) {
     return null;
   }
+
   return (
     <WidgetContainer size={BlockSize.DailyBlock} gridClass={gridClass}>
       <DailySlider

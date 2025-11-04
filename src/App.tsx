@@ -10,6 +10,7 @@ import '@/styles/global.scss';
 
 function App() {
   const theme = useAppSelector((state) => state.app.theme);
+
   const themeClass = `${theme}-theme`;
 
   useLayoutEffect(() => {

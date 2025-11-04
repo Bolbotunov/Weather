@@ -10,6 +10,7 @@ const NotFound = () => {
   function returnHandle() {
     navigate('/');
   }
+
   return (
     <div className={styles.notFound}>
       <h1>404 — Page not found</h1>

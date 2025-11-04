@@ -15,12 +15,14 @@ describe('appReducer', () => {
       type: SET_WEATHER,
       payload: { temperature: 20, condition: 'Clouds', city: 'Minsk' },
     };
+
     const state = appReducer(undefined, action);
     expect(state.weather).toEqual(action.payload);
   });
 
   it('should set theme', () => {
     const action = { type: SET_THEME, payload: 'rainy' };
+
     const state = appReducer(undefined, action);
     expect(state.theme).toBe('rainy');
   });
@@ -30,6 +32,7 @@ describe('appReducer', () => {
       type: SET_SUGGESTIONS,
       payload: [{ name: 'Minsk', lat: 53.9, lon: 27.5667 }],
     };
+
     const state = appReducer(undefined, action);
     expect(state.suggestions).toEqual(action.payload);
   });
@@ -41,6 +44,7 @@ describe('appReducer', () => {
         { temperature: 18, condition: 'Clear', windSpeed: 5, time: 123 },
       ],
     };
+
     const state = appReducer(undefined, action);
     expect(state.hourlyWeather).toEqual(action.payload);
   });
@@ -57,12 +61,14 @@ describe('appReducer', () => {
         },
       ],
     };
+
     const state = appReducer(undefined, action);
     expect(state.dailyWeather).toEqual(action.payload);
   });
 
   it('should set selected date', () => {
     const action = { type: SET_SELECTED_DATE, payload: '2025-10-29' };
+
     const state = appReducer(undefined, action);
     expect(state.selectedDate).toBe('2025-10-29');
   });

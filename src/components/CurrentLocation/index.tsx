@@ -7,6 +7,7 @@ import '@/styles/global.scss';
 
 const CurrentLocation = () => {
   const weather = useAppSelector((state) => state.app.weather);
+
   return (
     <>
       <div className={styles.location}>

@@ -3,7 +3,9 @@ import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 describe('getWeatherUrl', () => {
   const lat = 53.9;
+
   const lon = 27.5667;
+
   const query = 'Minsk';
 
   it('returns correct URL for weather endpoint', () => {

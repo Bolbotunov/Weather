@@ -10,6 +10,7 @@ import { formatDate } from '@/utils/getFormatDate';
 
 describe('getDailyWeather', () => {
   const mockLat = 53.9;
+
   const mockLon = 27.5667;
 
   const mockApiResponse = {

@@ -8,6 +8,7 @@ import persistConfig from './persistConfig';
 import { rootSaga } from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(

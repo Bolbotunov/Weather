@@ -13,7 +13,9 @@ import '@/styles/global.scss';
 
 const UserBlock = ({ gridClass }: { gridClass?: string }) => {
   const events = useAppSelector((state) => state.calendar.events);
+
   const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
+
   const { isTabletSize } = useBreakPoints();
 
   return (

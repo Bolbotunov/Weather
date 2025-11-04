@@ -8,6 +8,7 @@ import '@/styles/global.scss';
 
 const Header = () => {
   const { isTabletSize } = useBreakPoints();
+
   return (
     <>
       <header className={styles.header}>

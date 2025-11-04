@@ -11,7 +11,9 @@ import '@/styles/global.scss';
 
 const RunningLine = ({ gridClass }: { gridClass?: string }) => {
   const events = useAppSelector((state) => state.calendar.events);
+
   const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
+
   const runningTextElements = useMemo(() => {
     if (!isSignedIn) {
       return 'Sign in to see your events';
@@ -23,6 +25,7 @@ const RunningLine = ({ gridClass }: { gridClass?: string }) => {
       </span>
     ));
   }, [isSignedIn, events]);
+
   return (
     <WidgetContainer size={BlockSize.RunningLine} gridClass={gridClass}>
       <div className={styles.line}>

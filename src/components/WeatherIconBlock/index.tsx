@@ -11,11 +11,11 @@ import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
 import WeatherConditions from '@/components/WeatherConditions';
+import { weatherConfig } from '@/constants/weatherConfig';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useBreakPoints } from '@/hooks/useBreakPoints';
 import { useDebounce } from '@/hooks/useDebounce';
 import { ClassNameProps, LocationSuggestion } from '@/types/types';
-import { weatherConfig } from '@/types/weatherConfig';
 import { getWeatherUrl } from '@/utils/getWeatherUrl';
 
 import WeatherIconWrapper from '../ImageComponent';
@@ -27,13 +27,21 @@ import '@/styles/global.scss';
 
 const WeatherIconBlock = ({ className }: ClassNameProps) => {
   const [query, setQuery] = useState('');
+
   const dispatch = useDispatch();
+
   const suggestions = useAppSelector((state) => state.app.suggestions);
+
   const weather = useAppSelector((state) => state.app.weather);
+
   const conditionKey = weather?.condition;
+
   const WeatherIcon = conditionKey ? weatherConfig[conditionKey]?.icon : null;
+
   const debouncedQuery = useDebounce(query, 1000);
+
   const [inputError, setInputError] = useState<string | null>(null);
+
   const { isTabletSize } = useBreakPoints();
 
   useEffect(() => {
@@ -45,6 +53,7 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
         const response = await fetch(
           getWeatherUrl({ endpoint: 'geo', query: debouncedQuery }),
         );
+
         const data = await response.json();
         dispatch(setSuggestions(data));
       } catch (error) {
@@ -64,6 +73,7 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
       setInputError(null);
     }
   };
+
   const handleCitySelect = (city: LocationSuggestion) => async () => {
     try {
       const weatherData = await getCurrentWeather(city.lat, city.lon);

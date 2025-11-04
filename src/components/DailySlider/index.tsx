@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react';
 import LeftIcon from '@/assets/LeftIcon.svg?react';
 import RightIcon from '@/assets/RightIcon.svg?react';
 import { CARD_OFFSET, SLIDE_WIDTH } from '@/constants/constants';
+import { weatherConfig } from '@/constants/weatherConfig';
 import { DailySliderProps } from '@/types/types';
-import { weatherConfig } from '@/types/weatherConfig';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import WeatherIconWrapper from '../ImageComponent';
@@ -33,6 +33,7 @@ const DailySlider = ({
   };
 
   const handlePrev = () => updateIndex(-1);
+
   const handleNext = () => updateIndex(1);
 
   const handleActiveIndex = (index: number) => () => {
@@ -52,8 +53,11 @@ const DailySlider = ({
           <div className={styles.iconRow} ref={iconRowRef}>
             {forecast.map(({ dt, weather }, index) => {
               const day = formatDate(dt, FormatType.ShortDate);
+
               const condition = weather[0].main;
+
               const Icon = weatherConfig[condition]?.icon;
+
               const isActive = index === activeIndex;
 
               return (

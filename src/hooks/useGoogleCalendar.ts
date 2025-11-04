@@ -1,7 +1,8 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import ApiCalendar from 'react-google-calendar-api';
 import { useDispatch } from 'react-redux';
 
+import { setError } from '@/actions/actions';
 import {
   setCalendarEvents,
   setCalendarSignedIn,
@@ -28,6 +29,7 @@ export type CalendarEvent = {
 
 export const useGoogleCalendar = () => {
   const dispatch = useDispatch();
+
   const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
 
   const signOut = useCallback(() => {
@@ -40,9 +42,11 @@ export const useGoogleCalendar = () => {
     try {
       if (!apiCalendar.sign) {
         console.warn('User not signed in');
+
         return;
       }
       const response = await apiCalendar.listUpcomingEvents(10);
+
       const events = response.result.items.map(
         ({ id, summary, start }: GoogleCalendarEventRaw) => ({
           id,
@@ -54,6 +58,7 @@ export const useGoogleCalendar = () => {
       dispatch(setCalendarSignedIn(true));
     } catch (error) {
       console.error('Failed to load events', error);
+      dispatch(setError('error loading calendar events'));
     }
   }, [dispatch]);
 
@@ -66,12 +71,9 @@ export const useGoogleCalendar = () => {
       }
     } catch (error) {
       console.error('Sign-in failed', error);
+      dispatch(setError('error of authorization'));
     }
   }, [dispatch, loadEvents]);
-  const buttonLabel = useMemo(
-    () => (isSignedIn ? 'Sign Out' : 'Sign In'),
-    [isSignedIn],
-  );
 
   const handleAuth = useCallback(() => {
     if (isSignedIn) {
@@ -83,7 +85,6 @@ export const useGoogleCalendar = () => {
 
   return {
     isSignedIn,
-    buttonLabel,
     handleAuth,
   };
 };

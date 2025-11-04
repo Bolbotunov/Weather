@@ -25,8 +25,11 @@ export type ExtendedRootState = RootState & {
 
 const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   const { isTabletSize } = useBreakPoints();
+
   const dispatch = useDispatch();
+
   const weather = useAppSelector((state) => state.app.weather);
+
   const rehydrated = useSelector(
     (state: ExtendedRootState) => state._persist?.rehydrated,
   );
