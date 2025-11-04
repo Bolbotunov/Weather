@@ -4,10 +4,12 @@ import {
   setSelectedDate,
   setWeather,
 } from '@/actions/actions';
-import { getCurrentWeather } from '@/api/getCurrentWeather';
-import { getDailyWeather } from '@/api/getDailyWeather';
-import { getHourlyWeather } from '@/api/getHourlyWeather';
-import { getUserCoordinates } from '@/api/getUserCoordinates';
+import {
+  getCurrentWeather,
+  getDailyWeather,
+  getHourlyWeather,
+  getUserCoordinates,
+} from '@/api';
 import { FETCH_WEATHER_REQUEST } from '@/constants/constants';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
