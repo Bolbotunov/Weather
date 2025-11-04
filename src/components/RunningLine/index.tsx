@@ -4,7 +4,7 @@ import useAppSelector from '@/hooks/useAppSelector';
 import { BlockSize } from '@/types/types';
 import getTimeBeforeEvent from '@/utils/getTimeBeforeEvent';
 
-import Block from '../Block';
+import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
@@ -24,11 +24,11 @@ const RunningLine = ({ gridClass }: { gridClass?: string }) => {
     ));
   }, [isSignedIn, events]);
   return (
-    <Block size={BlockSize.RunningLine} gridClass={gridClass}>
+    <WidgetContainer size={BlockSize.RunningLine} gridClass={gridClass}>
       <div className={styles.line}>
         <span className={styles.lineText}>{runningTextElements}</span>
       </div>
-    </Block>
+    </WidgetContainer>
   );
 };
 

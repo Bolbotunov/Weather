@@ -3,10 +3,10 @@ import useAppSelector from '@/hooks/useAppSelector';
 import { BlockSize } from '@/types/types';
 import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
-import Block from '../Block';
 import WeatherIconWrapper from '../ImageComponent';
 import StatusWrapper from '../StatusWrapper';
 import WeatherSlider from '../WeatherSlider';
+import Block from '../WidgetContainer';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';

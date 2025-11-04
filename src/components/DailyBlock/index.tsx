@@ -6,9 +6,9 @@ import useAppSelector from '@/hooks/useAppSelector';
 import { BlockSize } from '@/types/types';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
-import Block from '../Block';
 import DailySlider from '../DailySlider';
 import WeatherDailyConditions from '../WeatherDailyConditions';
+import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
@@ -28,7 +28,7 @@ const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
     return null;
   }
   return (
-    <Block size={BlockSize.DailyBlock} gridClass={gridClass}>
+    <WidgetContainer size={BlockSize.DailyBlock} gridClass={gridClass}>
       <DailySlider
         forecast={dailyWeather}
         activeIndex={activeIndex}
@@ -37,7 +37,7 @@ const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
       />
       <p className={styles.title}>AIR CONDITIONS</p>
       <WeatherDailyConditions conditions={dailyWeather[activeIndex]} />
-    </Block>
+    </WidgetContainer>
   );
 };
 

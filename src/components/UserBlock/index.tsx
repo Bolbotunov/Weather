@@ -3,10 +3,10 @@ import { useBreakPoints } from '@/hooks/useBreakPoints';
 import { BlockSize, SubBlockSize } from '@/types/types';
 import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
-import Block from '../Block';
 import Header from '../Header';
 import StatusWrapper from '../StatusWrapper';
 import SubBlock from '../SubBlock';
+import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
@@ -17,7 +17,7 @@ const UserBlock = ({ gridClass }: { gridClass?: string }) => {
   const { isTabletSize } = useBreakPoints();
 
   return (
-    <Block size={BlockSize.UserBlock} gridClass={gridClass}>
+    <WidgetContainer size={BlockSize.UserBlock} gridClass={gridClass}>
       <StatusWrapper>
         {!isTabletSize && <Header />}
         <div className={styles.taskWrapper}>
@@ -37,7 +37,7 @@ const UserBlock = ({ gridClass }: { gridClass?: string }) => {
           )}
         </div>
       </StatusWrapper>
-    </Block>
+    </WidgetContainer>
   );
 };
 

@@ -2,7 +2,7 @@ import useAppSelector from '@/hooks/useAppSelector';
 
 import styles from './styles.module.scss';
 
-const Condition = () => {
+const WeatherConditions = () => {
   const weather = useAppSelector((state) => state.app.weather);
   return (
     <div className={styles.wrapper}>
@@ -11,4 +11,4 @@ const Condition = () => {
   );
 };
 
-export default Condition;
+export default WeatherConditions;

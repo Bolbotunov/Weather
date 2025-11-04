@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchWeatherRequest } from '@/actions/actions';
-import Condition from '@/components/Condition';
+import WeatherConditions from '@/components/WeatherConditions';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useBreakPoints } from '@/hooks/useBreakPoints';
 import useTheme from '@/hooks/useTheme';
@@ -11,10 +11,10 @@ import { BlockSize } from '@/types/types';
 
 import { PersistState } from 'redux-persist';
 
-import Block from '../Block';
 import CurrentLocation from '../CurrentLocation';
 import StatusWrapper from '../StatusWrapper';
 import TemperatureAndDate from '../TemperatureAndDate';
+import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
@@ -39,17 +39,17 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   }, [dispatch, rehydrated, weather]);
 
   return (
-    <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
+    <WidgetContainer size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
       <StatusWrapper>
         <CurrentLocation />
         {!isTabletSize && (
           <div className={styles.wrapper}>
-            <Condition />
+            <WeatherConditions />
             <TemperatureAndDate />
           </div>
         )}
       </StatusWrapper>
-    </Block>
+    </WidgetContainer>
   );
 };
 

@@ -10,7 +10,7 @@ import {
 import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getDailyWeather } from '@/api/getDailyWeather';
 import { getHourlyWeather } from '@/api/getHourlyWeather';
-import Condition from '@/components/Condition';
+import WeatherConditions from '@/components/WeatherConditions';
 import useAppSelector from '@/hooks/useAppSelector';
 import { useBreakPoints } from '@/hooks/useBreakPoints';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -108,7 +108,7 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
                 ))}
               </ul>
             )}
-            {isTabletSize && <Condition />}
+            {isTabletSize && <WeatherConditions />}
             {WeatherIcon && (
               <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
             )}
