@@ -1,10 +1,10 @@
-import { Component, ErrorInfo } from 'react';
+import { Component, ErrorInfo, PropsWithChildren } from 'react';
 
-import { BoundaryState, ChildrenProps } from '@/types/types';
+import { BoundaryState } from '@/types/types';
 
 import styles from './styles.module.scss';
 
-export class ErrorBoundary extends Component<ChildrenProps, BoundaryState> {
+export class ErrorBoundary extends Component<PropsWithChildren, BoundaryState> {
   state: BoundaryState = {
     hasError: false,
     error: null,

@@ -1,12 +1,11 @@
+import { PropsWithChildren } from 'react';
+
 import ErrorBlock from '@/components/ErrorBlock';
 import Loader from '@/components/Loader';
 import useAppSelector from '@/hooks/useAppSelector';
-import { ChildrenProps } from '@/types/types';
 
-const StatusWrapper = ({ children }: ChildrenProps) => {
-  const loading = useAppSelector((state) => state.app.loading);
-
-  const error = useAppSelector((state) => state.app.error);
+const StatusWrapper = ({ children }: PropsWithChildren) => {
+  const { loading, error } = useAppSelector((state) => state.app);
 
   if (loading) return <Loader />;
   if (error) return <ErrorBlock message={error} />;

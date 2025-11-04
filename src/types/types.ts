@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement } from 'react';
 
 export type LocationData = {
   latitude: number;
@@ -15,7 +15,7 @@ export enum BlockSize {
   CurrentWeatherCard = 'currentWeatherCard',
   DailyBlock = 'dailyBlock',
   HourlyBlock = 'hourlyBlock',
-  RunningLine = 'runningLine',
+  UserEvents = 'userEvents',
   UserBlock = 'userBlock',
   WeatherIconBlock = 'weatherIconBlock',
 }
@@ -120,10 +120,6 @@ export type CalendarEventProps = {
   id: string;
   summary: string;
   start: string;
-};
-
-export type ChildrenProps = {
-  children?: ReactNode;
 };
 
 export type BoundaryState = {

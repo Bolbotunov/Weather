@@ -9,10 +9,8 @@ import styles from './styles.module.scss';
 
 import '@/styles/global.scss';
 
-const RunningLine = ({ gridClass }: { gridClass?: string }) => {
-  const events = useAppSelector((state) => state.calendar.events);
-
-  const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
+const UserEvents = ({ gridClass }: { gridClass?: string }) => {
+  const { isSignedIn, events } = useAppSelector((state) => state.calendar);
 
   const runningTextElements = useMemo(() => {
     if (!isSignedIn) {
@@ -27,7 +25,7 @@ const RunningLine = ({ gridClass }: { gridClass?: string }) => {
   }, [isSignedIn, events]);
 
   return (
-    <WidgetContainer size={BlockSize.RunningLine} gridClass={gridClass}>
+    <WidgetContainer size={BlockSize.UserEvents} gridClass={gridClass}>
       <div className={styles.line}>
         <span className={styles.lineText}>{runningTextElements}</span>
       </div>
@@ -35,4 +33,4 @@ const RunningLine = ({ gridClass }: { gridClass?: string }) => {
   );
 };
 
-export default RunningLine;
+export default UserEvents;
