@@ -30,7 +30,7 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
 
   const dispatch = useDispatch();
 
-  const suggestions = useAppSelector((state) => state.app.suggestions);
+  const citySuggestions = useAppSelector((state) => state.app.suggestions);
 
   const weather = useAppSelector((state) => state.app.weather);
 
@@ -105,15 +105,15 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
             {inputError && (
               <div className={styles.inputError}>{inputError}</div>
             )}
-            {debouncedQuery && suggestions.length > 0 && (
+            {debouncedQuery && citySuggestions.length > 0 && (
               <ul className={styles.suggestions}>
-                {suggestions.map((city) => (
+                {citySuggestions.map(({ name, country, lat, lon }) => (
                   <li
-                    key={city.name}
+                    key={name}
                     className={styles.suggestion}
-                    onClick={handleCitySelect(city)}
+                    onClick={handleCitySelect({ name, country, lat, lon })}
                   >
-                    {city.name}, {city.country}
+                    {name}, {country}
                   </li>
                 ))}
               </ul>

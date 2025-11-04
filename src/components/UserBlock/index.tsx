@@ -4,8 +4,8 @@ import { BlockSize, SubBlockSize } from '@/types/types';
 import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
 import Header from '../Header';
+import InnerWidgetContainer from '../InnerWidgetContainer';
 import StatusWrapper from '../StatusWrapper';
-import SubBlock from '../SubBlock';
 import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
@@ -25,17 +25,17 @@ const UserBlock = ({ gridClass }: { gridClass?: string }) => {
         <div className={styles.taskWrapper}>
           {isSignedIn ? (
             events.map(({ id, summary, start }) => (
-              <SubBlock key={id} size={SubBlockSize.UserSubBlock}>
+              <InnerWidgetContainer key={id} size={SubBlockSize.UserSubBlock}>
                 <div className={styles.taskTime}>
                   {getFormatDate(new Date(start), FormatType.Time24)}
                 </div>
                 <div className={styles.taskTitle}>{summary}</div>
-              </SubBlock>
+              </InnerWidgetContainer>
             ))
           ) : (
-            <SubBlock size={SubBlockSize.NoTasksSubBlock}>
+            <InnerWidgetContainer size={SubBlockSize.NoTasksSubBlock}>
               <p className={styles.noTasks}>Sign in to see your events</p>
-            </SubBlock>
+            </InnerWidgetContainer>
           )}
         </div>
       </StatusWrapper>
