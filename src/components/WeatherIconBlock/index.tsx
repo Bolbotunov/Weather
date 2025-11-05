@@ -18,8 +18,6 @@ import { getWeatherUrl } from '@/utils/getWeatherUrl';
 import WeatherIconWrapper from '../ImageComponent';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 type Props = {
   className?: string;
 };
@@ -79,7 +77,9 @@ const WeatherIconBlock = ({ className }: Props) => {
 
   return (
     <>
-      <section className={`${styles.weatherIconBlock} ${className}`}>
+      <section
+        className={`${styles.weatherIconBlock} ${className ? className : ''}`}
+      >
         <input
           type="text"
           value={query}

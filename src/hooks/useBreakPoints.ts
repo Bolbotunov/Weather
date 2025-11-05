@@ -2,30 +2,44 @@ import { useEffect, useState } from 'react';
 
 import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from '@/constants/constants';
 
-export const useBreakpoint = (query: string): boolean => {
-  const [matches, setMatches] = useState(
-    () => window.matchMedia(query).matches,
-  );
+export const useBreakPoints = () => {
+  const [matches, setMatches] = useState({
+    isMobileSize: false,
+    isTabletSize: false,
+    isDesktopSize: false,
+  });
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const handleChange = (e: MediaQueryListEvent) => {
-      setMatches(e.matches);
+    const mobileQuery = window.matchMedia(
+      `(max-width: ${MOBILE_BREAKPOINT}px)`,
+    );
+    const tabletQuery = window.matchMedia(
+      `(min-width: ${MOBILE_BREAKPOINT}px) and (max-width: ${TABLET_BREAKPOINT}px)`,
+    );
+    const desktopQuery = window.matchMedia(
+      `(min-width: ${TABLET_BREAKPOINT}px)`,
+    );
+
+    const handleChange = () => {
+      setMatches({
+        isMobileSize: mobileQuery.matches,
+        isTabletSize: tabletQuery.matches,
+        isDesktopSize: desktopQuery.matches,
+      });
     };
 
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [query]);
+    handleChange();
+
+    mobileQuery.addEventListener('change', handleChange);
+    tabletQuery.addEventListener('change', handleChange);
+    desktopQuery.addEventListener('change', handleChange);
+
+    return () => {
+      mobileQuery.removeEventListener('change', handleChange);
+      tabletQuery.removeEventListener('change', handleChange);
+      desktopQuery.removeEventListener('change', handleChange);
+    };
+  }, [matches.isDesktopSize, matches.isMobileSize, matches.isTabletSize]);
 
   return matches;
-};
-
-export const useBreakPoints = () => {
-  return {
-    isMobileSize: useBreakpoint(`(max-width: ${MOBILE_BREAKPOINT}px)`),
-    isTabletSize: useBreakpoint(
-      `(min-width: ${MOBILE_BREAKPOINT}px) and (max-width: ${TABLET_BREAKPOINT}px)`,
-    ),
-    isDesktopSize: useBreakpoint(`(min-width: ${TABLET_BREAKPOINT}px)`),
-  };
 };

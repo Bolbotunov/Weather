@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/Button';
+import { AppRoutes } from '@/types/types';
 
 import styles from './styles.module.scss';
 
@@ -8,8 +9,9 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   function returnHandle() {
-    navigate('/');
+    navigate(AppRoutes.MAINLAYOUT);
   }
+
   return (
     <div className={styles.notFound}>
       <h1>404 — Page not found</h1>

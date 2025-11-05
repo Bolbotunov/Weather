@@ -20,5 +20,6 @@ export const getDailyWeather = async (
       map.set(dateKey, entry);
     }
   });
+
   return Array.from(map.values()).slice(0, 7);
 };

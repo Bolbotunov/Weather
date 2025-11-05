@@ -48,6 +48,7 @@ export const useGoogleCalendar = () => {
     try {
       if (!apiCalendar.sign) {
         console.warn('User not signed in');
+
         return;
       }
       const response = await apiCalendar.listUpcomingEvents(10);

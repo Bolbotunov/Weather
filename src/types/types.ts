@@ -10,7 +10,7 @@ import SunnyIcon from '@/assets/SunnyIcon.svg?react';
 import ThunderStormIcon from '@/assets/ThunderStormIcon.svg?react';
 
 export enum AppRoutes {
-  CONTENT = '/',
+  MAINLAYOUT = '/',
   NOTFOUND = '*',
 }
 

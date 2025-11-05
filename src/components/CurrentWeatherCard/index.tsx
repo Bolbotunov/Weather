@@ -13,8 +13,6 @@ import ErrorBlock from '../ErrorBlock';
 import Loader from '../Loader';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
   const { loading, error } = useStatus();
   const dispatch = useDispatch();

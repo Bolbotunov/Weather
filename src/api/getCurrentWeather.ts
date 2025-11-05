@@ -27,6 +27,7 @@ export const getCurrentWeather = async (
     throw new Error('Error getting weather');
   }
   const data = await response.json();
+
   return {
     temperature: Math.round(data.main.temp),
     condition: data.weather[0].main,
