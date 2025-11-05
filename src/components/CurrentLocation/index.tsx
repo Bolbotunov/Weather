@@ -1,4 +1,5 @@
 import LocationIcon from '@/assets/locationIcon.svg?react';
+import { DEFAULT_CITY } from '@/constants/constants';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import styles from './styles.module.scss';
@@ -9,7 +10,7 @@ const CurrentLocation = () => {
   return (
     <div className={styles.location}>
       <LocationIcon className={styles.locationIcon} />
-      <p className={styles.locationText}>{weather?.city ?? 'Your City'}</p>
+      <div className={styles.locationText}>{weather?.city ?? DEFAULT_CITY}</div>
     </div>
   );
 };
