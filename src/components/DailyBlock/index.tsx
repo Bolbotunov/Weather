@@ -10,8 +10,6 @@ import Block from '../Block';
 import DailySlider from '../DailySlider';
 import WeatherDailyConditions from '../WeatherDailyConditions';
 
-import '@/styles/global.scss';
-
 const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
   const dailyWeather = useAppSelector((state) => state.app.dailyWeather);
   const dispatch = useDispatch();
@@ -26,6 +24,7 @@ const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
   if (!dailyWeather || dailyWeather.length === 0) {
     return null;
   }
+
   return (
     <Block size={BlockSize.DailyBlock} gridClass={gridClass}>
       <DailySlider

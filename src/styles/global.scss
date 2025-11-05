@@ -35,4 +35,12 @@ main {
   grid-template-columns: repeat(auto-fit, minmax($layout-width-sm, 1fr));
   grid-template-rows: auto;
   gap: $spacing-20;
+
+  @media (max-width: $breakpoints-tablet) {
+    grid-template-columns: minmax(0px, 1fr);
+    grid-template-rows: auto;
+    max-width: $breakpoints-tablet;
+    place-items: center;
+    max-width: $layout-main-tablet-width;
+  }
 }

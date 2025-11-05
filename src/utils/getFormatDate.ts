@@ -8,6 +8,7 @@ export enum FormatType {
 
 export const formatDate = (dt: number, type: FormatType) => {
   const date = new Date(dt * 1000);
+
   return getFormatDate(date, type);
 };
 
@@ -20,6 +21,7 @@ export const getFormatDate = (date: Date, type: FormatType) => {
         month: 'short',
         year: 'numeric',
       });
+
       return `${weekday} | ${dayMonthYear}`;
     }
 

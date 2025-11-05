@@ -18,5 +18,6 @@ export default function getTimeBeforeEvent(start: string) {
 
   if (days > 0) return `in ${days}d ${hours}h`;
   if (hours > 0) return `in ${hours}h ${minutes}m`;
+
   return `in ${minutes} min`;
 }

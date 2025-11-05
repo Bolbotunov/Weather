@@ -74,8 +74,10 @@ $signOut-button-height: 55px;
 
 $layout-weatherIcon-size: 300px;
 $layout-weatherIcon-size-small: 45px;
+$layout-weatherIcon-size-extraSmall: 40px;
 
 $layout-main-width: 1360px;
+$layout-main-tablet-width: 390px;
 $layout-width-lg: 881px;
 $layout-width-md: 446px;
 $layout-width-sm: 247px;
@@ -99,3 +101,6 @@ $opacity-05: 0.5;
 
 $scale-10: scale(1.1);
 $scale-20: scale(1.2);
+
+$breakpoints-tablet: 768px;
+$breakpoints-mobile: 390px;

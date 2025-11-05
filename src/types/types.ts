@@ -9,6 +9,11 @@ import SquallIcon from '@/assets/SquallIcon.svg?react';
 import SunnyIcon from '@/assets/SunnyIcon.svg?react';
 import ThunderStormIcon from '@/assets/ThunderStormIcon.svg?react';
 
+export enum AppRoutes {
+  MAINLAYOUT = '/',
+  NOTFOUND = '*',
+}
+
 export type LocationData = {
   latitude: number;
   longitude: number;

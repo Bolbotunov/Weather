@@ -1,19 +1,23 @@
+import { useBreakPoints } from '@/hooks/useBreakPoints';
+
 import CurrentWeatherCard from '../CurrentWeatherCard';
 import DailyBlock from '../DailyBlock';
+import Header from '../Header';
 import HourlyBlock from '../HourlyBlock';
 import RunningLine from '../RunningLine';
 import UserBlock from '../UserBlock';
 import WeatherIconBlock from '../WeatherIconBlock';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
+const MainLayout = () => {
+  const { isTabletSize, isMobileSize } = useBreakPoints();
 
-const Content = () => {
   return (
     <main className={styles.grid}>
+      {(isMobileSize || isTabletSize) && <Header />}
+      <WeatherIconBlock />
       <CurrentWeatherCard gridClass={styles.weather} />
       <UserBlock gridClass={styles.user} />
-      <WeatherIconBlock />
       <RunningLine gridClass={styles.running} />
       <HourlyBlock gridClass={styles.hourly} />
       <DailyBlock gridClass={styles.daily} />
@@ -21,4 +25,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default MainLayout;

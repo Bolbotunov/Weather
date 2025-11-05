@@ -1,10 +1,9 @@
 @use '@/styles/variables.scss' as *;
 .button {
   max-width: $signOut-button-width;
-  height: $signOut-button-height;
-  padding: $spacing-12;
-  flex: 1;
+  padding: $spacing-16;
   justify-content: center;
+  text-align: center;
   transition: $transition;
   background-color: var(--color-subBlock);
   border-radius: $radius-40;
@@ -16,5 +15,10 @@
     background-color: $color-hover;
     cursor: pointer;
     color: $color-text-hover;
+  }
+
+  @media (max-width: $breakpoints-tablet) {
+    font-size: $font-size-16;
+    padding: $spacing-8;
   }
 }
