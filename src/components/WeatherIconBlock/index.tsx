@@ -23,16 +23,12 @@ import StatusWrapper from '../StatusWrapper';
 import TemperatureAndDate from '../TemperatureAndDate';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const WeatherIconBlock = ({ className }: ClassNameProps) => {
   const [query, setQuery] = useState('');
 
   const dispatch = useDispatch();
 
-  const citySuggestions = useAppSelector((state) => state.app.suggestions);
-
-  const weather = useAppSelector((state) => state.app.weather);
+  const { citySuggestions, weather } = useAppSelector((state) => state.app);
 
   const conditionKey = weather?.condition;
 

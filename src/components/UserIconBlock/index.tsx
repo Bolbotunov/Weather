@@ -6,9 +6,7 @@ import WeatherIconWrapper from '../ImageComponent';
 import StatusWrapper from '../StatusWrapper';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
-const UserHeader = () => {
+const UserIconBlock = () => {
   const { handleAuth, isSignedIn } = useGoogleCalendar();
 
   const buttonLabel = isSignedIn ? 'Sign Out' : 'Sign In';
@@ -28,4 +26,4 @@ const UserHeader = () => {
   );
 };
 
-export default UserHeader;
+export default UserIconBlock;

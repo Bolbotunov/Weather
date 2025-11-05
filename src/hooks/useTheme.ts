@@ -6,7 +6,7 @@ import { weatherConfig } from '@/constants/weatherConfig';
 
 import useAppSelector from './useAppSelector';
 
-const useTheme = () => {
+const useApplyCurrentTheme = () => {
   const dispatch = useDispatch();
 
   const condition = useAppSelector((state) => state.app.weather?.condition);
@@ -20,4 +20,4 @@ const useTheme = () => {
   }, [condition, dispatch]);
 };
 
-export default useTheme;
+export default useApplyCurrentTheme;

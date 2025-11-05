@@ -1,5 +1,10 @@
 import { ReactElement } from 'react';
 
+export enum AppRoutes {
+  MAINLAYOUT = '/',
+  NOTFOUND = '*',
+}
+
 export type LocationData = {
   latitude: number;
   longitude: number;
@@ -48,6 +53,7 @@ export enum WeatherCondition {
   Snow = 'Snow',
   Fog = 'Fog',
   Squall = 'Squall',
+  Mist = 'Mist',
 }
 
 export type WeatherThemeKey =
@@ -57,7 +63,8 @@ export type WeatherThemeKey =
   | 'thunderstorm'
   | 'snow'
   | 'fog'
-  | 'windy';
+  | 'windy'
+  | 'mist';
 
 export type LocationSuggestion = {
   name: string;
@@ -68,7 +75,7 @@ export type LocationSuggestion = {
 
 export type AppState = {
   weather: WeatherData | null;
-  suggestions: LocationSuggestion[];
+  citySuggestions: LocationSuggestion[];
   theme: string;
   hourlyWeather: HourlyWeatherData[];
   dailyWeather: OpenWeatherForecastEntry[];

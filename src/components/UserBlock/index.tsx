@@ -9,8 +9,6 @@ import StatusWrapper from '../StatusWrapper';
 import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const UserBlock = ({ gridClass }: { gridClass?: string }) => {
   const events = useAppSelector((state) => state.calendar.events);
 

@@ -9,8 +9,6 @@ import WeatherSlider from '../WeatherSlider';
 import Block from '../WidgetContainer';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const HourlyBlock = ({ gridClass }: { gridClass?: string }) => {
   const hourlyWeather = useAppSelector((state) => state.app.hourlyWeather);
 

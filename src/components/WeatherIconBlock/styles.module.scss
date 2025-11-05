@@ -40,6 +40,23 @@
   }
 }
 
+.weatherIconBlock {
+  max-width: $layout-width-md;
+  height: $layout-height-md;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+
+  @media (max-width: $breakpoints-tablet) {
+    height: auto;
+    padding: $spacing-24;
+  }
+}
+
 .inputError {
   margin: $spacing-8;
   color: $color-error;
@@ -48,4 +65,5 @@
 .searchContainer {
   position: relative;
   width: 100%;
+  height: 100%;
 }

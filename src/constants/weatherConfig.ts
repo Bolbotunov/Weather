@@ -3,6 +3,7 @@ import { FC } from 'react';
 import CloudsIcon from '@/assets/CloudsIcon.svg?react';
 import DrizzleIcon from '@/assets/DrizzleIcon.svg?react';
 import FogIcon from '@/assets/FogIcon.svg?react';
+import MistIcon from '@/assets/MistIcon.svg?react';
 import RainyIcon from '@/assets/RainyIcon.svg?react';
 import SnowIcon from '@/assets/SnowIcon.svg?react';
 import SquallIcon from '@/assets/SquallIcon.svg?react';
@@ -49,5 +50,9 @@ export const weatherConfig: Record<
   [WeatherCondition.Squall]: {
     icon: SquallIcon,
     theme: 'windy',
+  },
+  [WeatherCondition.Mist]: {
+    icon: MistIcon,
+    theme: 'mist',
   },
 };

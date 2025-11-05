@@ -45,7 +45,7 @@ export type AppAction =
 
 const initialState: AppState = {
   weather: null,
-  suggestions: [],
+  citySuggestions: [],
   theme: 'sunny',
   hourlyWeather: [],
   dailyWeather: [],
@@ -62,7 +62,7 @@ export const appReducer = (
     case SET_WEATHER:
       return { ...state, weather: action.payload };
     case SET_SUGGESTIONS:
-      return { ...state, suggestions: action.payload ?? [] };
+      return { ...state, citySuggestions: action.payload ?? [] };
     case SET_THEME:
       return { ...state, theme: action.payload };
     case SET_HOURLY_WEATHER:

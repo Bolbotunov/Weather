@@ -9,9 +9,7 @@ import UserEvents from '../UserEvents';
 import WeatherIconBlock from '../WeatherIconBlock';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
-const Content = () => {
+const MainLayout = () => {
   const { isTabletSize, isMobileSize } = useBreakPoints();
 
   return (
@@ -27,4 +25,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default MainLayout;

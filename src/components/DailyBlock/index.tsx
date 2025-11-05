@@ -11,8 +11,6 @@ import WeatherDailyConditions from '../WeatherDailyConditions';
 import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
   const dailyWeather = useAppSelector((state) => state.app.dailyWeather);
 

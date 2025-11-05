@@ -6,10 +6,12 @@ import {
   setSelectedDate,
   setWeather,
 } from '@/actions/actions';
-import { getCurrentWeather } from '@/api/getCurrentWeather';
-import { getDailyWeather } from '@/api/getDailyWeather';
-import { getHourlyWeather } from '@/api/getHourlyWeather';
-import { getUserCoordinates } from '@/api/getUserCoordinates';
+import {
+  getCurrentWeather,
+  getDailyWeather,
+  getHourlyWeather,
+  getUserCoordinates,
+} from '@/api';
 import { FETCH_WEATHER_REQUEST } from '@/constants/constants';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
@@ -22,17 +24,19 @@ export function* fetchWeatherSaga(): SagaIterator {
     yield put(setError(null));
     const { lat, lon } = yield call(getUserCoordinates);
 
-    const [weather, hourly, daily] = yield all([
+    const [currentWeather, hourlyWeather, dailyWeather] = yield all([
       call(getCurrentWeather, lat, lon),
       call(getHourlyWeather, lat, lon),
       call(getDailyWeather, lat, lon),
     ]);
 
-    yield put(setWeather(weather));
-    yield put(setHourlyWeather(hourly));
-    yield put(setDailyWeather(daily));
+    yield put(setWeather(currentWeather));
+    yield put(setHourlyWeather(hourlyWeather));
+    yield put(setDailyWeather(dailyWeather));
 
-    yield put(setSelectedDate(formatDate(daily[0].dt, FormatType.RawDate)));
+    yield put(
+      setSelectedDate(formatDate(dailyWeather[0].dt, FormatType.RawDate)),
+    );
   } catch (error) {
     if (error instanceof Error) {
       yield put(setError(error.message));

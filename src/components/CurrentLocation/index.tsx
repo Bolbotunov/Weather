@@ -1,22 +1,17 @@
 import LocationIcon from '@/assets/locationIcon.svg?react';
+import { DEFAULT_CITY } from '@/constants/constants';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import styles from './styles.module.scss';
-
-import '@/styles/global.scss';
 
 const CurrentLocation = () => {
   const weather = useAppSelector((state) => state.app.weather);
 
   return (
-    <>
-      <div className={styles.location}>
-        <LocationIcon className={styles.locationIcon} />
-        <div className={styles.locationText}>
-          {weather?.city ?? 'Your City'}
-        </div>
-      </div>
-    </>
+    <div className={styles.location}>
+      <LocationIcon className={styles.locationIcon} />
+      <div className={styles.locationText}>{weather?.city ?? DEFAULT_CITY}</div>
+    </div>
   );
 };
 

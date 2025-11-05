@@ -34,7 +34,7 @@ describe('appReducer', () => {
     };
 
     const state = appReducer(undefined, action);
-    expect(state.suggestions).toEqual(action.payload);
+    expect(state.citySuggestions).toEqual(action.payload);
   });
 
   it('should set hourly weather', () => {
