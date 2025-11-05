@@ -1,4 +1,5 @@
 import { getDailyWeather } from '@/api/getDailyWeather';
+import { MOCK_TIMESTAMP } from '@/constants/constants';
 import { WeatherCondition } from '@/types/types';
 
 jest.mock('@/utils/getFormatDate', () => ({
@@ -48,7 +49,7 @@ describe('getDailyWeather', () => {
   beforeEach(() => {
     global.fetch = jest.fn().mockResolvedValue(mockApiResponse);
     (formatDate as jest.Mock).mockImplementation((dt: number) => {
-      return dt === 123456 ? '2025-10-29' : '2025-10-30';
+      return dt === MOCK_TIMESTAMP ? '2025-10-29' : '2025-10-30';
     });
   });
 

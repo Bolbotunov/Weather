@@ -21,3 +21,4 @@ export const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/calendar.readonly';
 export const GOOGLE_DOCS =
   'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 export const DEFAULT_CITY = 'Your City';
+export const MOCK_TIMESTAMP = 123456;
