@@ -39,7 +39,7 @@ export const useBreakPoints = () => {
       tabletQuery.removeEventListener('change', handleChange);
       desktopQuery.removeEventListener('change', handleChange);
     };
-  }, []);
+  }, [matches.isDesktopSize, matches.isMobileSize, matches.isTabletSize]);
 
   return matches;
 };
