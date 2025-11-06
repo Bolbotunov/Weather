@@ -22,6 +22,9 @@ $color-cloudy-dark: rgba(158, 158, 158, 1);
 $color-fog: rgba(214, 214, 214, 1);
 $color-fog-dark: rgba(193, 193, 193, 1);
 
+$color-mist: rgba(166, 138, 184, 1);
+$color-mist-dark: rgba(149, 124, 166, 1);
+
 $color-stormy: rgba(122, 127, 140, 1);
 $color-partly-cloudy: rgba(227, 197, 101, 1);
 $color-heavy-rain: rgba(110, 90, 140, 1);
@@ -73,11 +76,12 @@ $signOut-button-width: 140px;
 $signOut-button-height: 55px;
 
 $layout-weatherIcon-size: 300px;
+$layout-weatherIcon-size-medium: 200px;
 $layout-weatherIcon-size-small: 45px;
 $layout-weatherIcon-size-extraSmall: 40px;
 
 $layout-main-width: 1360px;
-$layout-main-tablet-width: 390px;
+$layout-main-tablet-width: 420px;
 $layout-width-lg: 881px;
 $layout-width-md: 446px;
 $layout-width-sm: 247px;

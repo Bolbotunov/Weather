@@ -12,6 +12,7 @@ export const getDailyWeather = async (
   if (!response.ok) throw new Error('Error fetching daily weather');
 
   const data = await response.json();
+
   const map = new Map<string, OpenWeatherForecastEntry>();
 
   data.list.forEach((entry: OpenWeatherForecastEntry) => {

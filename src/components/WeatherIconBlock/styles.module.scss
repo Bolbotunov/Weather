@@ -11,6 +11,9 @@
   border: none;
   font-size: $font-size-20;
   font-weight: $font-weight-medium;
+  @media (max-width: $breakpoints-tablet) {
+    max-width: $layout-main-tablet-width;
+  }
 }
 
 .suggestions {
@@ -25,6 +28,7 @@
   padding: $spacing-8;
   z-index: 1;
   font-size: $font-size-20;
+  overflow-y: auto;
 
   li {
     padding: $spacing-12;
@@ -56,4 +60,10 @@
 .inputError {
   margin: $spacing-8;
   color: $color-error;
+}
+
+.searchContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }

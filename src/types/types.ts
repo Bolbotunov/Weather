@@ -1,13 +1,4 @@
-import { FC } from 'react';
-
-import CloudsIcon from '@/assets/CloudsIcon.svg?react';
-import DrizzleIcon from '@/assets/DrizzleIcon.svg?react';
-import FogIcon from '@/assets/FogIcon.svg?react';
-import RainyIcon from '@/assets/RainyIcon.svg?react';
-import SnowIcon from '@/assets/SnowIcon.svg?react';
-import SquallIcon from '@/assets/SquallIcon.svg?react';
-import SunnyIcon from '@/assets/SunnyIcon.svg?react';
-import ThunderStormIcon from '@/assets/ThunderStormIcon.svg?react';
+import { ReactElement } from 'react';
 
 export enum AppRoutes {
   MAINLAYOUT = '/',
@@ -29,7 +20,7 @@ export enum BlockSize {
   CurrentWeatherCard = 'currentWeatherCard',
   DailyBlock = 'dailyBlock',
   HourlyBlock = 'hourlyBlock',
-  RunningLine = 'runningLine',
+  UserEvents = 'userEvents',
   UserBlock = 'userBlock',
   WeatherIconBlock = 'weatherIconBlock',
 }
@@ -62,6 +53,7 @@ export enum WeatherCondition {
   Snow = 'Snow',
   Fog = 'Fog',
   Squall = 'Squall',
+  Mist = 'Mist',
 }
 
 export type WeatherThemeKey =
@@ -71,48 +63,8 @@ export type WeatherThemeKey =
   | 'thunderstorm'
   | 'snow'
   | 'fog'
-  | 'windy';
-
-export const weatherConfig: Record<
-  WeatherCondition,
-  {
-    icon: FC;
-    theme: WeatherThemeKey;
-  }
-> = {
-  [WeatherCondition.Clear]: {
-    icon: SunnyIcon,
-    theme: 'sunny',
-  },
-  [WeatherCondition.Clouds]: {
-    icon: CloudsIcon,
-    theme: 'cloudy',
-  },
-  [WeatherCondition.Rain]: {
-    icon: RainyIcon,
-    theme: 'rainy',
-  },
-  [WeatherCondition.Drizzle]: {
-    icon: DrizzleIcon,
-    theme: 'rainy',
-  },
-  [WeatherCondition.Thunderstorm]: {
-    icon: ThunderStormIcon,
-    theme: 'thunderstorm',
-  },
-  [WeatherCondition.Snow]: {
-    icon: SnowIcon,
-    theme: 'snow',
-  },
-  [WeatherCondition.Fog]: {
-    icon: FogIcon,
-    theme: 'fog',
-  },
-  [WeatherCondition.Squall]: {
-    icon: SquallIcon,
-    theme: 'windy',
-  },
-};
+  | 'windy'
+  | 'mist';
 
 export type LocationSuggestion = {
   name: string;
@@ -123,11 +75,13 @@ export type LocationSuggestion = {
 
 export type AppState = {
   weather: WeatherData | null;
-  suggestions: LocationSuggestion[];
+  citySuggestions: LocationSuggestion[];
   theme: string;
   hourlyWeather: HourlyWeatherData[];
   dailyWeather: OpenWeatherForecastEntry[];
   selectedDate: string;
+  loading: boolean;
+  error: string | null;
 };
 
 export type HourlyWeatherData = {
@@ -167,4 +121,32 @@ export type DailySliderProps = {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
   handleDayChange?: (index: number) => void;
+};
+
+export type CalendarEventProps = {
+  id: string;
+  summary: string;
+  start: string;
+};
+
+export type BoundaryState = {
+  hasError: boolean;
+  error: Error | null;
+};
+
+export type WeatherIconWrapperProps = {
+  icon: ReactElement;
+  variant?: 'big' | 'small' | 'extraSmall';
+};
+
+export type OpenWeatherForecastEntryProps = {
+  conditions: OpenWeatherForecastEntry;
+};
+
+export type ClassNameProps = {
+  className?: string;
+};
+
+export type WeatherSliderProps = {
+  hourlyWeather: HourlyWeatherData[];
 };

@@ -1,19 +1,23 @@
+import { useCallback } from 'react';
 import ApiCalendar from 'react-google-calendar-api';
 import { useDispatch } from 'react-redux';
 
+import { setError } from '@/actions/actions';
 import {
   setCalendarEvents,
   setCalendarSignedIn,
 } from '@/actions/calendarActions';
+import { GOOGLE_ID, GOOGLE_KEY } from '@/config/env';
+import { GOOGLE_DOCS, GOOGLE_SCOPE } from '@/constants/constants';
 import { GoogleCalendarEventRaw } from '@/types/types';
 
+import useAppSelector from './useAppSelector';
+
 const config = {
-  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-  apiKey: import.meta.env.VITE_GOOGLE_API_KEY,
-  scope: 'https://www.googleapis.com/auth/calendar.readonly',
-  discoveryDocs: [
-    'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
-  ],
+  clientId: GOOGLE_ID,
+  apiKey: GOOGLE_KEY,
+  scope: GOOGLE_SCOPE,
+  discoveryDocs: [GOOGLE_DOCS],
 };
 
 const apiCalendar = new ApiCalendar(config);
@@ -26,25 +30,15 @@ export type CalendarEvent = {
 export const useGoogleCalendar = () => {
   const dispatch = useDispatch();
 
-  const signIn = async () => {
-    try {
-      await apiCalendar.handleAuthClick();
-      if (apiCalendar.sign) {
-        dispatch(setCalendarSignedIn(true));
-        loadEvents();
-      }
-    } catch (error) {
-      console.error('Sign-in failed', error);
-    }
-  };
+  const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
 
-  const signOut = () => {
+  const signOut = useCallback(() => {
     apiCalendar.handleSignoutClick();
     dispatch(setCalendarSignedIn(false));
     dispatch(setCalendarEvents([]));
-  };
+  }, [dispatch]);
 
-  const loadEvents = async () => {
+  const loadEvents = useCallback(async () => {
     try {
       if (!apiCalendar.sign) {
         console.warn('User not signed in');
@@ -52,19 +46,45 @@ export const useGoogleCalendar = () => {
         return;
       }
       const response = await apiCalendar.listUpcomingEvents(10);
+
       const events = response.result.items.map(
-        (event: GoogleCalendarEventRaw) => ({
-          id: event.id,
-          summary: event.summary,
-          start: event.start.dateTime || event.start.date,
+        ({ id, summary, start }: GoogleCalendarEventRaw) => ({
+          id,
+          summary,
+          start: start.dateTime || start.date,
         }),
       );
       dispatch(setCalendarEvents(events));
       dispatch(setCalendarSignedIn(true));
     } catch (error) {
       console.error('Failed to load events', error);
+      dispatch(setError('error loading calendar events'));
     }
-  };
+  }, [dispatch]);
 
-  return { signIn, signOut };
+  const signIn = useCallback(async () => {
+    try {
+      await apiCalendar.handleAuthClick();
+      if (apiCalendar.sign) {
+        dispatch(setCalendarSignedIn(true));
+        await loadEvents();
+      }
+    } catch (error) {
+      console.error('Sign-in failed', error);
+      dispatch(setError('error of authorization'));
+    }
+  }, [dispatch, loadEvents]);
+
+  const handleAuth = useCallback(() => {
+    if (isSignedIn) {
+      signOut();
+    } else {
+      signIn();
+    }
+  }, [isSignedIn, signIn, signOut]);
+
+  return {
+    isSignedIn,
+    handleAuth,
+  };
 };

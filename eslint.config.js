@@ -49,6 +49,7 @@ export default defineConfig([
         { blankLine: 'any', prev: 'import', next: 'import' },
         { blankLine: 'always', prev: '*', next: 'return' },
         { blankLine: 'always', prev: '*', next: ['function', 'class'] },
+        { blankLine: 'always', prev: 'const', next: 'const' },
       ],
     },
   },

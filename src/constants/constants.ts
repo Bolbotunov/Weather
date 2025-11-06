@@ -1,4 +1,3 @@
-export const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 export const SET_WEATHER = 'SET_WEATHER';
 export const SET_SUGGESTIONS = 'SET_SUGGESTIONS';
 export const SET_THEME = 'SET_THEME';
@@ -8,6 +7,9 @@ export const SET_SELECTED_DATE = 'SET_SELECTED_DATE';
 export const visibleCount = 2;
 export const SET_CALENDAR_EVENTS = 'SET_CALENDAR_EVENTS';
 export const SET_CALENDAR_SIGNED_IN = 'SET_CALENDAR_SIGNED_IN';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_ERROR = 'SET_ERROR';
+export const FETCH_WEATHER_REQUEST = 'FETCH_WEATHER_REQUEST';
 export const MS_IN_MINUTE = 60 * 1000;
 export const MINUTES_IN_HOUR = 60;
 export const MINUTES_IN_DAY = 1440;
@@ -15,3 +17,8 @@ export const SLIDE_WIDTH = 80;
 export const CARD_OFFSET = 40;
 export const TABLET_BREAKPOINT = 768;
 export const MOBILE_BREAKPOINT = 430;
+export const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/calendar.readonly';
+export const GOOGLE_DOCS =
+  'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+export const DEFAULT_CITY = 'Your City';
+export const MOCK_TIMESTAMP = 123456;

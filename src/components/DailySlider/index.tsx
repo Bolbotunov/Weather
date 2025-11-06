@@ -3,10 +3,12 @@ import { useEffect, useRef } from 'react';
 import LeftIcon from '@/assets/LeftIcon.svg?react';
 import RightIcon from '@/assets/RightIcon.svg?react';
 import { CARD_OFFSET, SLIDE_WIDTH } from '@/constants/constants';
-import { DailySliderProps, weatherConfig } from '@/types/types';
+import { weatherConfig } from '@/constants/weatherConfig';
+import { DailySliderProps } from '@/types/types';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import WeatherIconWrapper from '../ImageComponent';
+import StatusWrapper from '../StatusWrapper';
 import styles from './styles.module.scss';
 
 const DailySlider = ({
@@ -31,6 +33,7 @@ const DailySlider = ({
   };
 
   const handlePrev = () => updateIndex(-1);
+
   const handleNext = () => updateIndex(1);
 
   const handleActiveIndex = (index: number) => () => {
@@ -45,37 +48,44 @@ const DailySlider = ({
 
   return (
     <div className={styles.sliderWrapper}>
-      <div className={styles.sliderViewport}>
-        <div className={styles.iconRow} ref={iconRowRef}>
-          {forecast.map(({ dt, weather }, index) => {
-            const day = formatDate(dt, FormatType.ShortDate);
-            const condition = weather[0].main;
-            const Icon = weatherConfig[condition]?.icon;
-            const isActive = index === activeIndex;
+      <StatusWrapper>
+        <div className={styles.sliderViewport}>
+          <div className={styles.iconRow} ref={iconRowRef}>
+            {forecast.map(({ dt, weather }, index) => {
+              const day = formatDate(dt, FormatType.ShortDate);
 
-            return (
-              <div
-                key={dt}
-                className={`${styles.forecastItem} ${isActive ? styles.active : ''}`}
-                onClick={handleActiveIndex(index)}
-              >
-                <div>{day}</div>
-                {Icon && <WeatherIconWrapper icon={<Icon />} variant="small" />}
-              </div>
-            );
-          })}
+              const condition = weather[0].main;
+
+              const Icon = weatherConfig[condition]?.icon;
+
+              const isActive = index === activeIndex;
+
+              return (
+                <div
+                  key={dt}
+                  className={`${styles.forecastItem} ${isActive ? styles.active : ''}`}
+                  onClick={handleActiveIndex(index)}
+                >
+                  <div>{day}</div>
+                  {Icon && (
+                    <WeatherIconWrapper icon={<Icon />} variant="small" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      <div className={styles.dateRow}>
-        <button onClick={handlePrev} className={styles.navButton}>
-          <WeatherIconWrapper icon={<LeftIcon />} variant="small" />
-        </button>
-        <div className={styles.dateDisplay}>{formattedDate}</div>
-        <button onClick={handleNext} className={styles.navButton}>
-          <WeatherIconWrapper icon={<RightIcon />} variant="small" />
-        </button>
-      </div>
+        <div className={styles.dateRow}>
+          <button onClick={handlePrev} className={styles.navButton}>
+            <WeatherIconWrapper icon={<LeftIcon />} variant="small" />
+          </button>
+          <div className={styles.dateDisplay}>{formattedDate}</div>
+          <button onClick={handleNext} className={styles.navButton}>
+            <WeatherIconWrapper icon={<RightIcon />} variant="small" />
+          </button>
+        </div>
+      </StatusWrapper>
     </div>
   );
 };

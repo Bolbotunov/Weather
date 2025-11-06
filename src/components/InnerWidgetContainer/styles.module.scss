@@ -32,7 +32,7 @@
 
 .userSubBlock {
   max-width: $layout-task-subBlock-width;
-  height: $signOut-button-height;
+  max-height: $signOut-button-height;
   padding: $spacing-12;
   justify-content: space-around;
   flex-direction: row;

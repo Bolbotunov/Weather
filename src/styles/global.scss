@@ -42,5 +42,6 @@ main {
     max-width: $breakpoints-tablet;
     place-items: center;
     max-width: $layout-main-tablet-width;
+    padding: $spacing-12;
   }
 }

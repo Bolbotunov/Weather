@@ -32,6 +32,10 @@
   --color-cloudy: #{$color-cloudy};
   --color-cloudy-dark: #{$color-cloudy-dark};
   --color-cloudy-light: #{$color-white-10};
+
+  --color-mist: #{$color-rainy};
+  --color-mist-dark: #{$color-rainy-dark};
+  --color-mist-light: #{$color-white-10};
 }
 
 .rainy-theme {
@@ -80,4 +84,10 @@
   --color-background: var(--color-cloudy);
   --color-block: var(--color-cloudy-dark);
   --color-subBlock: var(--color-cloudy-light);
+}
+
+.mist-theme {
+  --color-background: var(--color-rainy);
+  --color-block: var(--color-rainy-dark);
+  --color-subBlock: var(--color-rainy-light);
 }
