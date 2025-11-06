@@ -1,12 +1,10 @@
-import { OpenWeatherForecastEntry } from '@/types/types';
+import { OpenWeatherForecastEntryProps } from '@/types/types';
 
 import styles from './styles.module.scss';
 
-type Props = {
-  conditions: OpenWeatherForecastEntry;
-};
-
-const WeatherDailyConditions = ({ conditions }: Props) => {
+const WeatherDailyConditions = ({
+  conditions,
+}: OpenWeatherForecastEntryProps) => {
   const airData = [
     { label: 'Temperature', value: `${Math.round(conditions.main.temp)}°` },
     { label: 'Chance of Rain', value: `${Math.round(conditions.pop)}%` },

@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setTheme } from '@/actions/actions';
-import { weatherConfig } from '@/types/types';
+import { weatherConfig } from '@/constants/weatherConfig';
 
 import useAppSelector from './useAppSelector';
 
 const useApplyCurrentTheme = () => {
   const dispatch = useDispatch();
+
   const condition = useAppSelector((state) => state.app.weather?.condition);
 
   useEffect(() => {

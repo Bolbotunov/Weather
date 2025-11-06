@@ -4,7 +4,9 @@ import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
-const Block = ({ size, className, gridClass, children }: BlockProps) => {
+const WidgetContainer = (props: BlockProps) => {
+  const { size, className, gridClass, children } = props;
+
   return (
     <section
       className={classNames(styles.block, styles[size], gridClass, className)}
@@ -14,4 +16,4 @@ const Block = ({ size, className, gridClass, children }: BlockProps) => {
   );
 };
 
-export default Block;
+export default WidgetContainer;

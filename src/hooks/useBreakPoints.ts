@@ -13,9 +13,11 @@ export const useBreakPoints = () => {
     const mobileQuery = window.matchMedia(
       `(max-width: ${MOBILE_BREAKPOINT}px)`,
     );
+
     const tabletQuery = window.matchMedia(
       `(min-width: ${MOBILE_BREAKPOINT}px) and (max-width: ${TABLET_BREAKPOINT}px)`,
     );
+
     const desktopQuery = window.matchMedia(
       `(min-width: ${TABLET_BREAKPOINT}px)`,
     );

@@ -1,53 +1,47 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { fetchWeatherRequest } from '@/actions/actions';
+import WeatherConditions from '@/components/WeatherConditions';
 import useAppSelector from '@/hooks/useAppSelector';
-import { useStatus } from '@/hooks/useStatus';
+import { useBreakPoints } from '@/hooks/useBreakPoints';
 import useApplyCurrentTheme from '@/hooks/useTheme';
 import { BlockSize } from '@/types/types';
-import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 
-import Block from '../Block';
 import CurrentLocation from '../CurrentLocation';
-import ErrorBlock from '../ErrorBlock';
-import Loader from '../Loader';
+import StatusWrapper from '../StatusWrapper';
+import TemperatureAndDate from '../TemperatureAndDate';
+import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
 const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
-  const { loading, error } = useStatus();
+  const { isTabletSize } = useBreakPoints();
+
   const dispatch = useDispatch();
+
   const weather = useAppSelector((state) => state.app.weather);
+
   const rehydrated = useAppSelector((state) => state._persist?.rehydrated);
 
   useApplyCurrentTheme();
   useEffect(() => {
-    if (!rehydrated || weather) return;
-    dispatch({ type: 'FETCH_WEATHER_REQUEST' });
+    if (rehydrated && !weather) {
+      dispatch(fetchWeatherRequest());
+    }
   }, [dispatch, rehydrated, weather]);
 
-  let content;
-
-  if (loading) {
-    content = <Loader />;
-  } else if (error) {
-    content = <ErrorBlock message={error} />;
-  } else {
-    content = (
-      <>
-        <CurrentLocation />
-        <div className={styles.condition}>{weather?.condition}</div>
-        <div className={styles.temperature}>{weather?.temperature}°C</div>
-        <div className={styles.date}>
-          {getFormatDate(new Date(), FormatType.FullDate)}
-        </div>
-      </>
-    );
-  }
-
   return (
-    <Block size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
-      {content}
-    </Block>
+    <WidgetContainer size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
+      <StatusWrapper>
+        <CurrentLocation />
+        {!isTabletSize && (
+          <div className={styles.wrapper}>
+            <WeatherConditions />
+            <TemperatureAndDate />
+          </div>
+        )}
+      </StatusWrapper>
+    </WidgetContainer>
   );
 };
 

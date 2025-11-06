@@ -16,6 +16,7 @@ export const getFormatDate = (date: Date, type: FormatType) => {
   switch (type) {
     case FormatType.FullDate: {
       const weekday = date.toLocaleDateString('en-US', { weekday: 'short' });
+
       const dayMonthYear = date.toLocaleDateString('en-US', {
         day: '2-digit',
         month: 'short',

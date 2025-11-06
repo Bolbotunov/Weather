@@ -17,8 +17,12 @@
   }
 
   &.big {
-    width: $layout-weatherIcon-size;
+    max-width: $layout-weatherIcon-size;
     height: $layout-weatherIcon-size;
+
+    @media (max-width: $breakpoints-tablet) {
+      height: $layout-weatherIcon-size-medium;
+    }
   }
 
   &.extraSmall {

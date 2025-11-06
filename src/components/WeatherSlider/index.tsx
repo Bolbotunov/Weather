@@ -1,18 +1,16 @@
 import { useEffect, useRef } from 'react';
 
 import WeatherIconWrapper from '@/components/ImageComponent';
-import SubBlock from '@/components/SubBlock';
+import InnerWidgetContainer from '@/components/InnerWidgetContainer';
 import { visibleCount } from '@/constants/constants';
-import { HourlyWeatherData, SubBlockSize, weatherConfig } from '@/types/types';
+import { weatherConfig } from '@/constants/weatherConfig';
+import { SubBlockSize, WeatherSliderProps } from '@/types/types';
 
 import styles from './styles.module.scss';
 
-type WeatherSliderProps = {
-  hourlyWeather: HourlyWeatherData[];
-};
-
 const WeatherSlider = ({ hourlyWeather }: WeatherSliderProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
+
   const currentHour = new Date().getHours();
 
   const visibleWeather = [...hourlyWeather].sort(
@@ -53,7 +51,7 @@ const WeatherSlider = ({ hourlyWeather }: WeatherSliderProps) => {
         const Icon = weatherConfig[hour.condition]?.icon;
 
         return (
-          <SubBlock
+          <InnerWidgetContainer
             key={`${index}-${hour.condition}`}
             size={SubBlockSize.HourlySubBlock}
           >
@@ -65,7 +63,7 @@ const WeatherSlider = ({ hourlyWeather }: WeatherSliderProps) => {
                 {new Date(hour.time).getHours()}:00
               </div>
             </div>
-          </SubBlock>
+          </InnerWidgetContainer>
         );
       })}
     </div>

@@ -1,4 +1,4 @@
-import { API_KEY } from '@/constants/constants';
+import { API_KEY } from '@/config/env';
 
 const BASE_URL = 'https://api.openweathermap.org';
 

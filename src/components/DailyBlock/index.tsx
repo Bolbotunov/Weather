@@ -6,13 +6,16 @@ import useAppSelector from '@/hooks/useAppSelector';
 import { BlockSize } from '@/types/types';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
-import Block from '../Block';
 import DailySlider from '../DailySlider';
 import WeatherDailyConditions from '../WeatherDailyConditions';
+import WidgetContainer from '../WidgetContainer';
+import styles from './styles.module.scss';
 
 const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
   const dailyWeather = useAppSelector((state) => state.app.dailyWeather);
+
   const dispatch = useDispatch();
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleDayChange = (index: number) => {
@@ -26,16 +29,16 @@ const DailyBlock = ({ gridClass }: { gridClass?: string }) => {
   }
 
   return (
-    <Block size={BlockSize.DailyBlock} gridClass={gridClass}>
+    <WidgetContainer size={BlockSize.DailyBlock} gridClass={gridClass}>
       <DailySlider
         forecast={dailyWeather}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
         handleDayChange={handleDayChange}
       />
-
+      <p className={styles.title}>AIR CONDITIONS</p>
       <WeatherDailyConditions conditions={dailyWeather[activeIndex]} />
-    </Block>
+    </WidgetContainer>
   );
 };
 

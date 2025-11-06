@@ -7,6 +7,7 @@ import { configRoutes } from './config';
 
 function App() {
   const theme = useAppSelector((state) => state.app.theme);
+
   const themeClass = `${theme}-theme`;
 
   useLayoutEffect(() => {
