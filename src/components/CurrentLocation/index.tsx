@@ -1,4 +1,4 @@
-import LocationIcon from '@/assets/locationIcon.svg?react';
+import LocationIcon from '@/assets/LocationIcon.svg?react';
 import { DEFAULT_CITY } from '@/constants/constants';
 import useAppSelector from '@/hooks/useAppSelector';
 

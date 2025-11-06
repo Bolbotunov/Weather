@@ -77,7 +77,7 @@ describe('appReducer', () => {
     const state = appReducer(undefined, { type: 'UNKNOWN' });
     expect(state).toEqual({
       weather: null,
-      suggestions: [],
+      citySuggestions: [],
       theme: 'sunny',
       hourlyWeather: [],
       dailyWeather: [],
