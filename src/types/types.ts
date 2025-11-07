@@ -76,6 +76,7 @@ export type LocationSuggestion = {
 export type AppState = {
   weather: WeatherData | null;
   citySuggestions: LocationSuggestion[];
+  selectedCity: LocationSuggestion | null;
   theme: string;
   hourlyWeather: HourlyWeatherData[];
   dailyWeather: OpenWeatherForecastEntry[];

@@ -16,19 +16,37 @@ import { FETCH_WEATHER_REQUEST } from '@/constants/constants';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import type { SagaIterator } from 'redux-saga';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 
 export function* fetchWeatherSaga(): SagaIterator {
   try {
     yield put(setLoading(true));
     yield put(setError(null));
-    const { lat, lon } = yield call(getUserCoordinates);
+    const { selectedCity } = yield select((state) => state.app);
+    console.log('[fetchWeatherSaga] selectedCity:', selectedCity);
+    let lat;
+    let lon;
+
+    if (selectedCity) {
+      lat = selectedCity.lat;
+      lon = selectedCity.lon;
+    } else {
+      console.warn(
+        '[fetchWeatherSaga] selectedCity is missing, using geolocation',
+      );
+      const coords = yield call(getUserCoordinates);
+      lat = coords.lat;
+      lon = coords.lon;
+    }
 
     const [currentWeather, hourlyWeather, dailyWeather] = yield all([
       call(getCurrentWeather, lat, lon),
       call(getHourlyWeather, lat, lon),
       call(getDailyWeather, lat, lon),
     ]);
+
+    console.log('cuurentweather', currentWeather);
+    console.log('selectedCity', selectedCity);
 
     yield put(setWeather(currentWeather));
     yield put(setHourlyWeather(hourlyWeather));

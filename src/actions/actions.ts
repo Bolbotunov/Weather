@@ -4,6 +4,7 @@ import {
   SET_ERROR,
   SET_HOURLY_WEATHER,
   SET_LOADING,
+  SET_SELECTED_CITY,
   SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
@@ -58,4 +59,9 @@ export const setLoading = (value: boolean) => ({
 export const setError = (message: string | null) => ({
   type: SET_ERROR,
   payload: message,
+});
+
+export const setSelectedCity = (city: LocationSuggestion | null) => ({
+  type: SET_SELECTED_CITY,
+  payload: city,
 });

@@ -3,6 +3,7 @@ import {
   SET_ERROR,
   SET_HOURLY_WEATHER,
   SET_LOADING,
+  SET_SELECTED_CITY,
   SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
@@ -43,9 +44,10 @@ export type AppAction =
   | SetThemeAction
   | SetHourlyWeather;
 
-const initialState: AppState = {
+export const initialState: AppState = {
   weather: null,
   citySuggestions: [],
+  selectedCity: null,
   theme: 'sunny',
   hourlyWeather: [],
   dailyWeather: [],
@@ -75,7 +77,10 @@ export const appReducer = (
       return { ...state, loading: action.payload };
     case SET_ERROR:
       return { ...state, error: action.payload };
+    case SET_SELECTED_CITY:
+      console.log('SET_SELECTED_CITY:', action.payload);
 
+      return { ...state, selectedCity: action.payload };
     default:
       return state;
   }
