@@ -1,42 +1,38 @@
 import { useEffect, useState } from 'react';
 
-import {
-  DESKTOP_SIZE,
-  MOBILE_BREAKPOINT,
-  MOBILE_SIZE,
-  TABLET_BREAKPOINT,
-  TABLET_SIZE,
-} from '@/constants/constants';
+import { BREAKPOINTS } from '@/constants/constants';
 
 export const useBreakPoints = () => {
-  const [screenSize, setScreenSize] = useState(DESKTOP_SIZE);
+  const { DESKTOP, TABLET, MOBILE } = BREAKPOINTS;
+
+  const [screenSize, setScreenSize] = useState(DESKTOP.SIZE);
 
   useEffect(() => {
     const mobileQuery = window.matchMedia(
-      `(max-width: ${MOBILE_BREAKPOINT}px)`,
+      `(max-width: ${MOBILE.BREAKPOINT}px)`,
     );
 
     const tabletQuery = window.matchMedia(
-      `(min-width: ${MOBILE_BREAKPOINT}px) and (max-width: ${TABLET_BREAKPOINT}px)`,
+      `(min-width: ${MOBILE.BREAKPOINT}px) and (max-width: ${TABLET.BREAKPOINT}px)`,
     );
 
     const desktopQuery = window.matchMedia(
-      `(min-width: ${TABLET_BREAKPOINT}px)`,
+      `(min-width: ${TABLET.BREAKPOINT}px)`,
     );
 
     const handleChange = () => {
       switch (true) {
         case mobileQuery.matches:
-          setScreenSize(MOBILE_SIZE);
+          setScreenSize(MOBILE.SIZE);
           break;
         case tabletQuery.matches:
-          setScreenSize(TABLET_SIZE);
+          setScreenSize(TABLET.SIZE);
           break;
         case desktopQuery.matches:
-          setScreenSize(DESKTOP_SIZE);
+          setScreenSize(DESKTOP.SIZE);
           break;
         default:
-          setScreenSize(DESKTOP_SIZE);
+          setScreenSize(DESKTOP.SIZE);
       }
     };
     handleChange();
@@ -53,8 +49,8 @@ export const useBreakPoints = () => {
   }, [screenSize]);
 
   return {
-    isMobileSize: screenSize === MOBILE_SIZE,
-    isTabletSize: screenSize === TABLET_SIZE,
-    isDesktopSize: screenSize === DESKTOP_SIZE,
+    isMobileSize: screenSize === MOBILE.SIZE,
+    isTabletSize: screenSize === TABLET.SIZE,
+    isDesktopSize: screenSize === DESKTOP.SIZE,
   };
 };

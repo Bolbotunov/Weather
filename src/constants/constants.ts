@@ -15,13 +15,22 @@ export const MINUTES_IN_HOUR = 60;
 export const MINUTES_IN_DAY = 1440;
 export const SLIDE_WIDTH = 80;
 export const CARD_OFFSET = 40;
-export const TABLET_BREAKPOINT = 768;
-export const MOBILE_BREAKPOINT = 430;
-export const MOBILE_SIZE = 'mobile';
-export const TABLET_SIZE = 'tablet';
-export const DESKTOP_SIZE = 'desktop';
 export const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/calendar.readonly';
 export const GOOGLE_DOCS =
   'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 export const DEFAULT_CITY = 'Your City';
 export const MOCK_TIMESTAMP = 123456;
+export const BREAKPOINTS = {
+  MOBILE: {
+    BREAKPOINT: 430,
+    SIZE: 'mobile',
+  },
+  TABLET: {
+    BREAKPOINT: 768,
+    SIZE: 'tablet',
+  },
+  DESKTOP: {
+    BREAKPOINT: 769,
+    SIZE: 'desktop',
+  },
+};
