@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 
-export const useDebounce = (callback: () => void, delay: number) => {
+export const useDebounce = (
+  callback: () => void,
+  delay: number,
+  query: string,
+) => {
   useEffect(() => {
     const timer = setTimeout(callback, delay);
 
     return () => clearTimeout(timer);
-  }, [callback, delay]);
+  }, [callback, delay, query]);
 };

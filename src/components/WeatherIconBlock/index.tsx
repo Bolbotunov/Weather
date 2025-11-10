@@ -51,7 +51,7 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
     }
   };
 
-  useDebounce(fetchCitySuggestions, 1000);
+  useDebounce(fetchCitySuggestions, 1000, query);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
