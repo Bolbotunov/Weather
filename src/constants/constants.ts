@@ -17,6 +17,9 @@ export const SLIDE_WIDTH = 80;
 export const CARD_OFFSET = 40;
 export const TABLET_BREAKPOINT = 768;
 export const MOBILE_BREAKPOINT = 430;
+export const MOBILE_SIZE = 'mobile';
+export const TABLET_SIZE = 'tablet';
+export const DESKTOP_SIZE = 'desktop';
 export const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/calendar.readonly';
 export const GOOGLE_DOCS =
   'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
