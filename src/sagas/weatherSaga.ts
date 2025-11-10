@@ -23,7 +23,6 @@ export function* fetchWeatherSaga(): SagaIterator {
     yield put(setLoading(true));
     yield put(setError(null));
     const { selectedCity } = yield select((state) => state.app);
-    console.log('[fetchWeatherSaga] selectedCity:', selectedCity);
     let lat;
     let lon;
 
@@ -44,9 +43,6 @@ export function* fetchWeatherSaga(): SagaIterator {
       call(getHourlyWeather, lat, lon),
       call(getDailyWeather, lat, lon),
     ]);
-
-    console.log('cuurentweather', currentWeather);
-    console.log('selectedCity', selectedCity);
 
     yield put(setWeather(currentWeather));
     yield put(setHourlyWeather(hourlyWeather));

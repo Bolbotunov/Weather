@@ -78,8 +78,6 @@ export const appReducer = (
     case SET_ERROR:
       return { ...state, error: action.payload };
     case SET_SELECTED_CITY:
-      console.log('SET_SELECTED_CITY:', action.payload);
-
       return { ...state, selectedCity: action.payload };
     default:
       return state;

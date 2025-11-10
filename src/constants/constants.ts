@@ -11,6 +11,7 @@ export const SET_CALENDAR_SIGNED_IN = 'SET_CALENDAR_SIGNED_IN';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_ERROR = 'SET_ERROR';
 export const FETCH_WEATHER_REQUEST = 'FETCH_WEATHER_REQUEST';
+export const EXPIRE_TIME = 3600000;
 export const MS_IN_MINUTE = 60 * 1000;
 export const MINUTES_IN_HOUR = 60;
 export const MINUTES_IN_DAY = 1440;

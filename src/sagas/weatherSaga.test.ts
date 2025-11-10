@@ -94,6 +94,16 @@ describe('fetchWeatherSaga', () => {
     await runSaga(
       {
         dispatch: (action: AppAction) => dispatched.push(action),
+        getState: () => ({
+          app: {
+            selectedCity: {
+              lat: 53.9,
+              lon: 27.5667,
+              name: 'Minsk',
+              country: 'BY',
+            },
+          },
+        }),
       },
       fetchWeatherSaga,
     ).toPromise();

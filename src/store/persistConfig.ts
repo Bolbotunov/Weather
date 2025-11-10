@@ -1,23 +1,20 @@
+import { EXPIRE_TIME } from '@/constants/constants';
 import { AppState } from '@/types/types';
-import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import storage from 'redux-persist/lib/storage';
 import expireIn from 'redux-persist-transform-expire-in';
 
-const expireTime = expireIn(3600, 'weatherExpire', {
+const expireTime = expireIn(EXPIRE_TIME, 'weatherExpire', {
+  autoExpire: true,
   expiredState: (state: AppState) => {
-    console.log('selectedCity:', state.selectedCity?.name);
-
     return {
       ...state,
       weather: null,
       hourlyWeather: [],
       dailyWeather: [],
-      selectedDate: formatDate(Date.now(), FormatType.RawDate),
       selectedCity: state.selectedCity,
     };
   },
-  autoExpire: true,
 });
 
 const persistConfig = {
