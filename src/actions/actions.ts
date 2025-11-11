@@ -10,7 +10,7 @@ import {
   SET_THEME,
   SET_WEATHER,
   SET_WEATHER_CACHE,
-} from '@/constants/constants';
+} from '@/constants';
 import {
   HourlyWeatherData,
   LocationSuggestion,

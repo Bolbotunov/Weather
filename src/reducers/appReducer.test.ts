@@ -5,7 +5,7 @@ import {
   SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
-} from '@/constants/constants';
+} from '@/constants';
 
 import { appReducer } from './appReducer';
 

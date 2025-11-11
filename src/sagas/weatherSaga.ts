@@ -13,7 +13,7 @@ import {
   getHourlyWeather,
   getUserCoordinates,
 } from '@/api';
-import { EXPIRE_TIME, FETCH_WEATHER_REQUEST } from '@/constants/constants';
+import { EXPIRE_TIME, FETCH_WEATHER_REQUEST } from '@/constants';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import type { SagaIterator } from 'redux-saga';

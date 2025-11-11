@@ -1,4 +1,5 @@
 import {
+  CACHE_SIZE,
   SET_CURRENT_WEATHER,
   SET_DAILY_WEATHER,
   SET_ERROR,
@@ -9,7 +10,7 @@ import {
   SET_THEME,
   SET_WEATHER,
   SET_WEATHER_CACHE,
-} from '@/constants/constants';
+} from '@/constants';
 import {
   AppState,
   HourlyWeatherData,
@@ -76,20 +77,29 @@ export const appReducer = (
           },
         },
       };
-    case SET_WEATHER_CACHE:
+    case SET_WEATHER_CACHE: {
+      const newCache = { ...state.weather.cityCache };
+
+      const keys = Object.keys(newCache);
+      if (keys.length > CACHE_SIZE) {
+        const oldestKey = keys.sort(
+          (a, b) => newCache[a].updated - newCache[b].updated,
+        )[0];
+        delete newCache[oldestKey];
+      }
+      newCache[action.payload.key] = {
+        data: action.payload.data,
+        updated: action.payload.updated,
+      };
+
       return {
         ...state,
         weather: {
           ...state.weather,
-          cityCache: {
-            ...state.weather.cityCache,
-            [action.payload.key]: {
-              data: action.payload.data,
-              updated: action.payload.updated,
-            },
-          },
+          cityCache: newCache,
         },
       };
+    }
     case SET_CURRENT_WEATHER:
       return {
         ...state,
