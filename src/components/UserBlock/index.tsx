@@ -10,9 +10,7 @@ import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
 const UserBlock = ({ gridClass }: { gridClass?: string }) => {
-  const events = useAppSelector((state) => state.calendar.events);
-
-  const isSignedIn = useAppSelector((state) => state.calendar.isSignedIn);
+  const { events, isSignedIn } = useAppSelector((state) => state.calendar);
 
   const { isTabletSize } = useBreakPoints();
 
