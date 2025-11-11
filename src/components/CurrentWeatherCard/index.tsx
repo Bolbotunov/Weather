@@ -23,14 +23,10 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
     (state) => state.app.weather.currentData,
   );
 
-  const weather = useAppSelector((state) => state.app.weather);
-
   const rehydrated = useAppSelector((state) => state._persist?.rehydrated);
 
   useApplyCurrentTheme();
   useEffect(() => {
-    console.log(currentWeather);
-    console.log(weather);
     if (rehydrated && !currentWeather) {
       dispatch(fetchWeatherRequest());
     }

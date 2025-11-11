@@ -29,20 +29,17 @@ export function* fetchWeatherSaga(): SagaIterator {
     let lat, lon;
 
     if (state.weather.currentData) {
-      console.log('есть в кеше', state.weather.currentData);
       lat = state.weather.currentData.lat;
       lon = state.weather.currentData.lon;
       const key = `${lat}_${lon}`;
 
       const cached = state.weather.cityCache[key];
       if (cached && now - cached.updated < EXPIRE_TIME) {
-        console.log('из кэша', key);
         yield put(setCurrentWeather(cached.data));
 
         return;
       }
     } else {
-      console.log('нет в кеше', state.weather.currentData);
       const coords = yield call(getUserCoordinates);
       lat = coords.lat;
       lon = coords.lon;
