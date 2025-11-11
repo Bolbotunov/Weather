@@ -4,11 +4,13 @@ import { FormatType, getFormatDate } from '@/utils/getFormatDate';
 import styles from './styles.module.scss';
 
 const TemperatureAndDate = () => {
-  const weather = useAppSelector((state) => state.app.weather);
+  const currentWeather = useAppSelector(
+    (state) => state.app.weather.currentData?.temperature,
+  );
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.temperature}>{weather?.temperature}°C</div>
+      <div className={styles.temperature}>{currentWeather}°C</div>
       <div className={styles.date}>
         {getFormatDate(new Date(), FormatType.FullDate)}
       </div>

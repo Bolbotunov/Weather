@@ -8,7 +8,7 @@ import {
   setCalendarSignedIn,
 } from '@/actions/calendarActions';
 import { GOOGLE_ID, GOOGLE_KEY } from '@/config/env';
-import { GOOGLE_DOCS, GOOGLE_SCOPE } from '@/constants/constants';
+import { GOOGLE_DOCS, GOOGLE_SCOPE } from '@/constants';
 import { GoogleCalendarEventRaw } from '@/types/types';
 
 import useAppSelector from './useAppSelector';

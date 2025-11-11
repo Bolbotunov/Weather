@@ -1,7 +1,7 @@
 import { getHourlyWeather } from '@/api/getHourlyWeather';
 import { WeatherCondition } from '@/types/types';
 
-jest.mock('@/constants/constants');
+jest.mock('@/constants');
 
 describe('getHourlyWeather', () => {
   const mockLat = 53.9;

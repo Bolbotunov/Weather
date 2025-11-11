@@ -1,15 +1,16 @@
 import {
   FETCH_WEATHER_REQUEST,
+  SET_CURRENT_WEATHER,
   SET_DAILY_WEATHER,
   SET_ERROR,
   SET_HOURLY_WEATHER,
   SET_LOADING,
-  SET_SELECTED_CITY,
   SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
   SET_WEATHER,
-} from '@/constants/constants';
+  SET_WEATHER_CACHE,
+} from '@/constants';
 import {
   HourlyWeatherData,
   LocationSuggestion,
@@ -19,6 +20,20 @@ import {
 
 export const setWeather = (data: WeatherData) => ({
   type: SET_WEATHER,
+  payload: { data, city: data.city, updated: Date.now() },
+});
+
+export const setWeatherCache = (data: WeatherData) => ({
+  type: SET_WEATHER_CACHE,
+  payload: {
+    key: `${data.lat}_${data.lon}`,
+    data,
+    updated: Date.now(),
+  },
+});
+
+export const setCurrentWeather = (data: WeatherData) => ({
+  type: SET_CURRENT_WEATHER,
   payload: data,
 });
 
@@ -59,9 +74,4 @@ export const setLoading = (value: boolean) => ({
 export const setError = (message: string | null) => ({
   type: SET_ERROR,
   payload: message,
-});
-
-export const setSelectedCity = (city: LocationSuggestion | null) => ({
-  type: SET_SELECTED_CITY,
-  payload: city,
 });

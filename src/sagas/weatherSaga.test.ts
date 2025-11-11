@@ -1,10 +1,11 @@
 import {
+  setCurrentWeather,
   setDailyWeather,
   setError,
   setHourlyWeather,
   setLoading,
   setSelectedDate,
-  setWeather,
+  setWeatherCache,
 } from '@/actions/actions';
 import { getCurrentWeather } from '@/api/getCurrentWeather';
 import { getDailyWeather } from '@/api/getDailyWeather';
@@ -23,7 +24,7 @@ import { formatDate } from '@/utils/getFormatDate';
 import { mocked } from 'jest-mock';
 import { runSaga } from 'redux-saga';
 
-jest.mock('@/constants/constants');
+jest.mock('@/constants');
 
 jest.mock('@/api/getUserCoordinates', () => ({
   getUserCoordinates: jest.fn(),
@@ -41,6 +42,8 @@ jest.mock('@/utils/getFormatDate', () => ({
   formatDate: jest.fn(),
   FormatType: { RawDate: 'RawDate' },
 }));
+const fixedNow = 1762864746085;
+jest.spyOn(Date, 'now').mockReturnValue(fixedNow);
 
 describe('fetchWeatherSaga', () => {
   it('dispatches weather actions in correct order', async () => {
@@ -52,6 +55,8 @@ describe('fetchWeatherSaga', () => {
       temperature: 10,
       condition: WeatherCondition.Clouds,
       city: 'Minsk',
+      lat: 53.9,
+      lon: 27.5667,
     };
 
     const mockHourly: HourlyWeatherData[] = [
@@ -96,6 +101,10 @@ describe('fetchWeatherSaga', () => {
         dispatch: (action: AppAction) => dispatched.push(action),
         getState: () => ({
           app: {
+            weather: {
+              currentData: null,
+              cityCache: {},
+            },
             selectedCity: {
               lat: 53.9,
               lon: 27.5667,
@@ -111,7 +120,8 @@ describe('fetchWeatherSaga', () => {
     expect(dispatched).toEqual([
       setLoading(true),
       setError(null),
-      setWeather(mockWeather),
+      setWeatherCache({ ...mockWeather, lat: 53.9, lon: 27.5667 }),
+      setCurrentWeather({ ...mockWeather, lat: 53.9, lon: 27.5667 }),
       setHourlyWeather(mockHourly),
       setDailyWeather(mockDaily),
       setSelectedDate(mockDate),

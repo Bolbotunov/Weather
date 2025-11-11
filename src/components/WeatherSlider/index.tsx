@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 import WeatherIconWrapper from '@/components/ImageComponent';
 import InnerWidgetContainer from '@/components/InnerWidgetContainer';
-import { visibleCount } from '@/constants/constants';
+import { visibleCount } from '@/constants';
 import { weatherConfig } from '@/constants/weatherConfig';
 import { SubBlockSize, WeatherSliderProps } from '@/types/types';
 

@@ -3,11 +3,13 @@ import useAppSelector from '@/hooks/useAppSelector';
 import styles from './styles.module.scss';
 
 const WeatherConditions = () => {
-  const CurrentWeatherData = useAppSelector((state) => state.app.weather);
+  const CurrentWeatherCondition = useAppSelector(
+    (state) => state.app.weather.currentData?.condition,
+  );
 
   return (
     <div className={styles.wrapper}>
-      <p className={styles.condition}>{CurrentWeatherData?.condition}</p>
+      <p className={styles.condition}>{CurrentWeatherCondition}</p>
     </div>
   );
 };

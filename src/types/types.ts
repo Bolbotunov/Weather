@@ -12,9 +12,11 @@ export type LocationData = {
 };
 
 export type WeatherData = {
-  temperature: number;
-  condition: WeatherCondition;
   city: string;
+  temperature?: number;
+  condition?: WeatherCondition;
+  lat: number;
+  lon: number;
 };
 export enum BlockSize {
   CurrentWeatherCard = 'currentWeatherCard',
@@ -68,15 +70,27 @@ export type WeatherThemeKey =
 
 export type LocationSuggestion = {
   name: string;
-  country: string;
+  country?: string;
   lat: number;
   lon: number;
 };
 
+export type CitiesCache = {
+  data: WeatherData;
+  updated: number;
+};
+
+export type WeatherCache = {
+  currentData: WeatherData | null;
+  cityCache: {
+    [coordsKey: string]: CitiesCache;
+  };
+};
+
 export type AppState = {
-  weather: WeatherData | null;
+  weather: WeatherCache;
   citySuggestions: LocationSuggestion[];
-  selectedCity: null;
+  selectedCity: LocationSuggestion | null;
   theme: string;
   hourlyWeather: HourlyWeatherData[];
   dailyWeather: OpenWeatherForecastEntry[];

@@ -1,23 +1,29 @@
 import {
+  SET_CURRENT_WEATHER,
   SET_DAILY_WEATHER,
   SET_HOURLY_WEATHER,
   SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
-  SET_WEATHER,
-} from '@/constants/constants';
+} from '@/constants';
 
 import { appReducer } from './appReducer';
 
 describe('appReducer', () => {
   it('should set weather', () => {
     const action = {
-      type: SET_WEATHER,
-      payload: { temperature: 20, condition: 'Clouds', city: 'Minsk' },
+      type: SET_CURRENT_WEATHER,
+      payload: {
+        temperature: 20,
+        condition: 'Clouds',
+        city: 'Minsk',
+        lat: 53.9,
+        lon: 27.5667,
+      },
     };
 
     const state = appReducer(undefined, action);
-    expect(state.weather).toEqual(action.payload);
+    expect(state.weather.currentData).toEqual(action.payload);
   });
 
   it('should set theme', () => {
@@ -76,7 +82,7 @@ describe('appReducer', () => {
   it('should return initial state for unknown action', () => {
     const state = appReducer(undefined, { type: 'UNKNOWN' });
     expect(state).toEqual({
-      weather: null,
+      weather: { currentData: null, cityCache: {} },
       citySuggestions: [],
       selectedCity: null,
       theme: 'sunny',
