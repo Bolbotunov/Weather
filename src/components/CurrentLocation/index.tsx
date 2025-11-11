@@ -5,12 +5,14 @@ import useAppSelector from '@/hooks/useAppSelector';
 import styles from './styles.module.scss';
 
 const CurrentLocation = () => {
-  const weather = useAppSelector((state) => state.app.weather);
+  const currentCity = useAppSelector(
+    (state) => state.app.weather.currentData?.city,
+  );
 
   return (
     <div className={styles.location}>
       <LocationIcon className={styles.locationIcon} />
-      <div className={styles.locationText}>{weather?.city ?? DEFAULT_CITY}</div>
+      <div className={styles.locationText}>{currentCity ?? DEFAULT_CITY}</div>
     </div>
   );
 };

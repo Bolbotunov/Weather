@@ -32,5 +32,7 @@ export const getCurrentWeather = async (
     temperature: Math.round(data.main.temp),
     condition: data.weather[0].main,
     city: data.name,
+    lat,
+    lon,
   };
 };

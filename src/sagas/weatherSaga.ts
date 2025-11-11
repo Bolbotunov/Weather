@@ -1,10 +1,11 @@
 import {
+  setCurrentWeather,
   setDailyWeather,
   setError,
   setHourlyWeather,
   setLoading,
   setSelectedDate,
-  setWeather,
+  setWeatherCache,
 } from '@/actions/actions';
 import {
   getCurrentWeather,
@@ -12,7 +13,7 @@ import {
   getHourlyWeather,
   getUserCoordinates,
 } from '@/api';
-import { FETCH_WEATHER_REQUEST } from '@/constants/constants';
+import { EXPIRE_TIME, FETCH_WEATHER_REQUEST } from '@/constants/constants';
 import { formatDate, FormatType } from '@/utils/getFormatDate';
 
 import type { SagaIterator } from 'redux-saga';
@@ -22,17 +23,26 @@ export function* fetchWeatherSaga(): SagaIterator {
   try {
     yield put(setLoading(true));
     yield put(setError(null));
-    const { selectedCity } = yield select((state) => state.app);
-    let lat;
-    let lon;
+    const state = yield select((state) => state.app);
 
-    if (selectedCity) {
-      lat = selectedCity.lat;
-      lon = selectedCity.lon;
+    const now = Date.now();
+    let lat, lon;
+
+    if (state.weather.currentData) {
+      console.log('есть в кеше', state.weather.currentData);
+      lat = state.weather.currentData.lat;
+      lon = state.weather.currentData.lon;
+      const key = `${lat}_${lon}`;
+
+      const cached = state.weather.cityCache[key];
+      if (cached && now - cached.updated < EXPIRE_TIME) {
+        console.log('из кэша', key);
+        yield put(setCurrentWeather(cached.data));
+
+        return;
+      }
     } else {
-      console.warn(
-        '[fetchWeatherSaga] selectedCity is missing, using geolocation',
-      );
+      console.log('нет в кеше', state.weather.currentData);
       const coords = yield call(getUserCoordinates);
       lat = coords.lat;
       lon = coords.lon;
@@ -44,10 +54,10 @@ export function* fetchWeatherSaga(): SagaIterator {
       call(getDailyWeather, lat, lon),
     ]);
 
-    yield put(setWeather(currentWeather));
+    yield put(setWeatherCache({ ...currentWeather, lat, lon }));
+    yield put(setCurrentWeather({ ...currentWeather, lat, lon }));
     yield put(setHourlyWeather(hourlyWeather));
     yield put(setDailyWeather(dailyWeather));
-
     yield put(
       setSelectedDate(formatDate(dailyWeather[0].dt, FormatType.RawDate)),
     );

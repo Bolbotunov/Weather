@@ -1,13 +1,14 @@
 import {
+  SET_CURRENT_WEATHER,
   SET_DAILY_WEATHER,
   SET_ERROR,
   SET_HOURLY_WEATHER,
   SET_LOADING,
-  SET_SELECTED_CITY,
   SET_SELECTED_DATE,
   SET_SUGGESTIONS,
   SET_THEME,
   SET_WEATHER,
+  SET_WEATHER_CACHE,
 } from '@/constants/constants';
 import {
   AppState,
@@ -45,7 +46,10 @@ export type AppAction =
   | SetHourlyWeather;
 
 export const initialState: AppState = {
-  weather: null,
+  weather: {
+    currentData: null,
+    cityCache: {},
+  },
   citySuggestions: [],
   selectedCity: null,
   theme: 'sunny',
@@ -62,7 +66,38 @@ export const appReducer = (
 ): AppState => {
   switch (action.type) {
     case SET_WEATHER:
-      return { ...state, weather: action.payload };
+      return {
+        ...state,
+        weather: {
+          ...state.weather,
+          [action.payload.city]: {
+            data: action.payload.data,
+            updated: action.payload.updated,
+          },
+        },
+      };
+    case SET_WEATHER_CACHE:
+      return {
+        ...state,
+        weather: {
+          ...state.weather,
+          cityCache: {
+            ...state.weather.cityCache,
+            [action.payload.key]: {
+              data: action.payload.data,
+              updated: action.payload.updated,
+            },
+          },
+        },
+      };
+    case SET_CURRENT_WEATHER:
+      return {
+        ...state,
+        weather: {
+          ...state.weather,
+          currentData: action.payload,
+        },
+      };
     case SET_SUGGESTIONS:
       return { ...state, citySuggestions: action.payload ?? [] };
     case SET_THEME:
@@ -77,8 +112,6 @@ export const appReducer = (
       return { ...state, loading: action.payload };
     case SET_ERROR:
       return { ...state, error: action.payload };
-    case SET_SELECTED_CITY:
-      return { ...state, selectedCity: action.payload };
     default:
       return state;
   }

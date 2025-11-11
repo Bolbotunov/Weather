@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import {
   fetchWeatherRequest,
-  setSelectedCity,
+  setCurrentWeather,
   setSuggestions,
 } from '@/actions/actions';
 import WeatherConditions from '@/components/WeatherConditions';
@@ -24,9 +24,11 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
 
   const dispatch = useDispatch();
 
-  const { citySuggestions, weather } = useAppSelector((state) => state.app);
+  const { citySuggestions } = useAppSelector((state) => state.app);
 
-  const conditionKey = weather?.condition;
+  const conditionKey = useAppSelector(
+    (state) => state.app.weather.currentData?.condition,
+  );
 
   const WeatherIcon = conditionKey ? weatherConfig[conditionKey]?.icon : null;
 
@@ -68,7 +70,13 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
 
   const handleCitySelect = (city: LocationSuggestion) => async () => {
     try {
-      dispatch(setSelectedCity(city));
+      dispatch(
+        setCurrentWeather({
+          city: city.name,
+          lat: city.lat,
+          lon: city.lon,
+        }),
+      );
       dispatch(fetchWeatherRequest());
       dispatch(setSuggestions([]));
       setQuery('');
@@ -94,21 +102,19 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
             {inputError && (
               <div className={styles.inputError}>{inputError}</div>
             )}
-            {debouncedQuery &&
-              Array.isArray(citySuggestions) &&
-              citySuggestions.length > 0 && (
-                <ul className={styles.suggestions}>
-                  {citySuggestions.map(({ name, country, lat, lon }) => (
-                    <li
-                      key={name}
-                      className={styles.suggestion}
-                      onClick={handleCitySelect({ name, country, lat, lon })}
-                    >
-                      {name}, {country}
-                    </li>
-                  ))}
-                </ul>
-              )}
+            {debouncedQuery && citySuggestions.length > 0 && (
+              <ul className={styles.suggestions}>
+                {citySuggestions.map(({ name, country, lat, lon }) => (
+                  <li
+                    key={`${lat}-${lon}`}
+                    className={styles.suggestion}
+                    onClick={handleCitySelect({ name, country, lat, lon })}
+                  >
+                    {name}, {country}
+                  </li>
+                ))}
+              </ul>
+            )}
             {isTabletSize && <WeatherConditions />}
             {WeatherIcon && (
               <WeatherIconWrapper icon={<WeatherIcon />} variant="big" />
