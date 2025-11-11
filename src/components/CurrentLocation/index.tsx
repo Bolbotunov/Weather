@@ -1,5 +1,5 @@
-import { DEFAULT_CITY } from '@/constants';
 import LocationIcon from '@/assets/LocationIcon.svg?react';
+import { DEFAULT_CITY } from '@/constants';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import styles from './styles.module.scss';
