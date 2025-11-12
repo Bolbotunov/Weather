@@ -1,0 +1,47 @@
+@use './variables.scss' as *;
+@use './theme.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-family;
+  color: $color-text-primary;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--color-background);
+}
+
+.appContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+main {
+  width: 100%;
+  max-width: $layout-main-width;
+  padding: $spacing-40;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($layout-width-sm, 1fr));
+  grid-template-rows: auto;
+  gap: $spacing-20;
+
+  @media (max-width: $breakpoints-tablet) {
+    grid-template-columns: minmax(0px, 1fr);
+    grid-template-rows: auto;
+    max-width: $breakpoints-tablet;
+    place-items: center;
+    max-width: $layout-main-tablet-width;
+    padding: $spacing-12;
+  }
+}

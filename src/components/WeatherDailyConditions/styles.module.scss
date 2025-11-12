@@ -1,0 +1,26 @@
+@use '@/styles/variables.scss' as *;
+.airConditions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-16;
+  width: 100%;
+}
+
+.airItem {
+  display: flex;
+  flex-direction: column;
+  font-size: $font-size-24;
+
+  @media (max-width: $breakpoints-tablet) {
+    font-size: $font-size-20;
+  }
+}
+
+.label {
+  color: $color-text-primary;
+}
+
+.value {
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+}

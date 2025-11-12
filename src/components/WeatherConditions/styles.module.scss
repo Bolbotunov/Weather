@@ -1,0 +1,16 @@
+@use '@/styles/variables.scss' as *;
+
+.condition {
+  font-size: $font-size-48;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-54;
+  @media (max-width: $breakpoints-tablet) {
+    margin: $spacing-54 0 0 0;
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

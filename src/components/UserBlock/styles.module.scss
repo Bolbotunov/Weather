@@ -1,0 +1,60 @@
+@use '@/styles/variables.scss' as *;
+
+.taskWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: $spacing-8;
+  flex-direction: column;
+  width: 100%;
+  max-height: $layout-tasks-height;
+  overflow-y: auto;
+  height: 100%;
+  margin: $spacing-16 $spacing-20 0;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  scrollbar-width: none;
+}
+
+.taskTime,
+.taskTitle {
+  justify-content: flex-start;
+  display: flex;
+  width: 100%;
+
+  @media (max-width: $breakpoints-tablet) {
+    justify-content: center;
+  }
+}
+
+.taskTime {
+  font-size: $font-size-36;
+  font-weight: $font-weight-medium;
+  flex: 1;
+
+  @media (max-width: $breakpoints-tablet) {
+    font-size: $font-size-20;
+  }
+}
+
+.taskTitle {
+  font-size: $font-size-20;
+  font-weight: $font-weight-regular;
+  flex: 2;
+
+  @media (max-width: $breakpoints-tablet) {
+    font-size: $font-size-20;
+  }
+}
+
+.noTasks {
+  font-size: $font-size-36;
+  font-weight: $font-weight-medium;
+
+  @media (max-width: $breakpoints-tablet) {
+    font-size: $font-size-20;
+  }
+}

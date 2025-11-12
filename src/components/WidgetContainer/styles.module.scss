@@ -1,0 +1,38 @@
+@use '@/styles/variables.scss' as *;
+
+.block {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--color-block);
+  width: 100%;
+  border-radius: $radius-40;
+  padding: $spacing-28 $spacing-24;
+  height: 100%;
+}
+
+.currentWeatherCard {
+  max-width: $layout-width-sm;
+  height: $layout-height-md;
+}
+
+.dailyBlock {
+  max-width: $layout-width-md;
+  height: $layout-height-lg;
+}
+
+.hourlyBlock {
+  max-width: $layout-width-lg;
+  height: $layout-height-md;
+}
+
+.userEvents {
+  max-width: $layout-width-lg;
+  height: $layout-height-sm;
+}
+
+.userBlock {
+  max-width: $layout-width-md;
+  height: $layout-height-md;
+}

@@ -1,0 +1,93 @@
+@use './variables.scss' as *;
+
+:root {
+  --color-rainy: #{$color-rainy};
+  --color-rainy-dark: #{$color-rainy-dark};
+  --color-rainy-light: #{$color-white-10};
+
+  --color-thunderstorm: #{$color-thunderstorm};
+  --color-thunderstorm-dark: #{$color-thunderstorm-dark};
+  --color-thunderstorm-light: #{$color-white-10};
+
+  --color-sunny: #{$color-sunny};
+  --color-sunny-dark: #{$color-sunny-dark};
+  --color-sunny-light: #{$color-white-10};
+
+  --color-snow: #{$color-snow};
+  --color-snow-dark: #{$color-snow-dark};
+  --color-snow-light: #{$color-white-10};
+
+  --color-overcast: #{$color-overcast};
+  --color-overcast-dark: #{$color-overcast-dark};
+  --color-overcast-light: #{$color-white-10};
+
+  --color-windy: #{$color-windy};
+  --color-windy-dark: #{$color-windy-dark};
+  --color-windy-light: #{$color-white-10};
+
+  --color-fog: #{$color-fog};
+  --color-fog-dark: #{$color-fog-dark};
+  --color-fog-light: #{$color-white-10};
+
+  --color-cloudy: #{$color-cloudy};
+  --color-cloudy-dark: #{$color-cloudy-dark};
+  --color-cloudy-light: #{$color-white-10};
+
+  --color-mist: #{$color-rainy};
+  --color-mist-dark: #{$color-rainy-dark};
+  --color-mist-light: #{$color-white-10};
+}
+
+.rainy-theme {
+  --color-background: var(--color-rainy);
+  --color-block: var(--color-rainy-dark);
+  --color-subBlock: var(--color-rainy-light);
+}
+
+.thunderstorm-theme {
+  --color-background: var(--color-thunderstorm);
+  --color-block: var(--color-thunderstorm-dark);
+  --color-subBlock: var(--color-thunderstorm-light);
+}
+
+.sunny-theme {
+  --color-background: var(--color-sunny);
+  --color-block: var(--color-sunny-dark);
+  --color-subBlock: var(--color-sunny-light);
+}
+
+.snow-theme {
+  --color-background: var(--color-snow);
+  --color-block: var(--color-snow-dark);
+  --color-subBlock: var(--color-snow-light);
+}
+
+.overcast-theme {
+  --color-background: var(--color-overcast);
+  --color-block: var(--color-overcast-dark);
+  --color-subBlock: var(--color-overcast-light);
+}
+
+.windy-theme {
+  --color-background: var(--color-windy);
+  --color-block: var(--color-windy-dark);
+  --color-subBlock: var(--color-windy-light);
+}
+
+.fog-theme {
+  --color-background: var(--color-fog);
+  --color-block: var(--color-fog-dark);
+  --color-subBlock: var(--color-fog-light);
+}
+
+.cloudy-theme {
+  --color-background: var(--color-cloudy);
+  --color-block: var(--color-cloudy-dark);
+  --color-subBlock: var(--color-cloudy-light);
+}
+
+.mist-theme {
+  --color-background: var(--color-rainy);
+  --color-block: var(--color-rainy-dark);
+  --color-subBlock: var(--color-rainy-light);
+}

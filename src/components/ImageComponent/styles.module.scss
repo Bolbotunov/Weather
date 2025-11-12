@@ -1,0 +1,32 @@
+@use '@/styles/variables.scss' as *;
+
+.weatherIconContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: $spacing-8;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &.small {
+    width: $layout-weatherIcon-size-small;
+    height: $layout-weatherIcon-size-small;
+  }
+
+  &.big {
+    max-width: $layout-weatherIcon-size;
+    height: $layout-weatherIcon-size;
+
+    @media (max-width: $breakpoints-tablet) {
+      height: $layout-weatherIcon-size-medium;
+    }
+  }
+
+  &.extraSmall {
+    width: $layout-weatherIcon-size-extraSmall;
+    height: $layout-weatherIcon-size-extraSmall;
+  }
+}

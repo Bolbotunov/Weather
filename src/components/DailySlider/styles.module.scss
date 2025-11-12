@@ -1,0 +1,70 @@
+@use '@/styles/variables.scss' as *;
+
+.sliderWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: $layout-slider-width;
+}
+
+.sliderViewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: $spacing-4;
+}
+
+.iconRow {
+  display: flex;
+  transition: $transition;
+}
+
+.forecastItem {
+  flex: 0 0 auto;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  opacity: $opacity-05;
+  transition: $transition;
+}
+
+.forecastItem span {
+  margin-top: $spacing-4;
+  font-size: $font-size-20;
+}
+
+.active {
+  opacity: 1;
+  transform: $scale-20;
+}
+
+.dateRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-16;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.dateDisplay {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-24;
+  text-align: center;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  padding: $spacing-8;
+  font-size: $font-size-12;
+  cursor: pointer;
+  transition: $transition;
+  &:hover {
+    transform: $scale-20;
+  }
+}

@@ -1,0 +1,46 @@
+@use '@/styles/variables.scss' as *;
+
+.subBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-subBlock);
+  width: 100%;
+  border-radius: $radius-40;
+  padding: $spacing-40;
+  height: auto;
+  flex: 0 0 $layout-subBlock-fraction;
+  min-width: $layout-subBlock-fraction;
+
+  @media (max-width: $breakpoints-tablet) {
+    flex: 1;
+    min-width: initial;
+  }
+}
+
+.hourlySubBlock {
+  max-width: $layout-subBlock-width;
+  transition: $transition;
+
+  &:hover {
+    background-color: $color-hover;
+    cursor: pointer;
+    color: $color-text-hover;
+  }
+}
+
+.userSubBlock {
+  max-width: $layout-task-subBlock-width;
+  max-height: $signOut-button-height;
+  padding: $spacing-12;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.noTasksSubBlock {
+  max-width: $layout-task-subBlock-width;
+  height: $layout-noTask-subBlock-height;
+  text-align: center;
+  padding: $spacing-20;
+}
