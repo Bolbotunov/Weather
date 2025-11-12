@@ -1,8 +1,4 @@
-import {
-  MINUTES_IN_DAY,
-  MINUTES_IN_HOUR,
-  MS_IN_MINUTE,
-} from '@/constants/constants';
+import { MINUTES_IN_DAY, MINUTES_IN_HOUR, MS_IN_MINUTE } from '@/constants';
 
 export default function getTimeBeforeEvent(start: string) {
   const now = new Date();

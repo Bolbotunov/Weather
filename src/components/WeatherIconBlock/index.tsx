@@ -2,14 +2,10 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
-  setDailyWeather,
-  setHourlyWeather,
+  fetchWeatherRequest,
+  setCurrentWeather,
   setSuggestions,
-  setWeather,
 } from '@/actions/actions';
-import { getCurrentWeather } from '@/api/getCurrentWeather';
-import { getDailyWeather } from '@/api/getDailyWeather';
-import { getHourlyWeather } from '@/api/getHourlyWeather';
 import WeatherConditions from '@/components/WeatherConditions';
 import { weatherConfig } from '@/constants/weatherConfig';
 import useAppSelector from '@/hooks/useAppSelector';
@@ -28,9 +24,11 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
 
   const dispatch = useDispatch();
 
-  const { citySuggestions, weather } = useAppSelector((state) => state.app);
+  const { citySuggestions } = useAppSelector((state) => state.app);
 
-  const conditionKey = weather?.condition;
+  const conditionKey = useAppSelector(
+    (state) => state.app.weather.currentData?.condition,
+  );
 
   const WeatherIcon = conditionKey ? weatherConfig[conditionKey]?.icon : null;
 
@@ -72,12 +70,15 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
 
   const handleCitySelect = (city: LocationSuggestion) => async () => {
     try {
-      const weatherData = await getCurrentWeather(city.lat, city.lon);
-      dispatch(setWeather(weatherData));
-      const hourlyData = await getHourlyWeather(city.lat, city.lon);
-      dispatch(setHourlyWeather(hourlyData));
-      const dailyData = await getDailyWeather(city.lat, city.lon);
-      dispatch(setDailyWeather(dailyData));
+      dispatch(
+        setCurrentWeather({
+          city: city.name,
+          lat: city.lat,
+          lon: city.lon,
+        }),
+      );
+      dispatch(fetchWeatherRequest());
+      dispatch(setSuggestions([]));
       setQuery('');
     } catch (error) {
       console.error('Error fetching weather for selected city:', error);
@@ -105,7 +106,7 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
               <ul className={styles.suggestions}>
                 {citySuggestions.map(({ name, country, lat, lon }) => (
                   <li
-                    key={name}
+                    key={`${lat}-${lon}`}
                     className={styles.suggestion}
                     onClick={handleCitySelect({ name, country, lat, lon })}
                   >

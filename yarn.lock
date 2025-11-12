@@ -5846,6 +5846,11 @@ redux-mock-store@^1.5.5:
   dependencies:
     lodash.isplainobject "^4.0.6"
 
+redux-persist-transform-expire-in@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/redux-persist-transform-expire-in/-/redux-persist-transform-expire-in-1.1.3.tgz#d02203aba5319b71cadd8e4eb10b4681083926aa"
+  integrity sha512-4IIQDF3logd+BwbOViBwW2xgEmvQK2tSkvLipoE6DJ3jgb802LAQZENoQ+l7zG9VpFxiJmRMKEmd79OOs/910Q==
+
 redux-persist@*, redux-persist@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"

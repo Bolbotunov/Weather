@@ -14,13 +14,15 @@ const HourlyBlock = ({ gridClass }: { gridClass?: string }) => {
 
   const selectedDate = useAppSelector((state) => state.app.selectedDate);
 
-  const filteredWeather = hourlyWeather
-    .filter((entry) => {
-      const entryDate = new Date(entry.time).toDateString();
+  const filteredWeather = Array.isArray(hourlyWeather)
+    ? hourlyWeather
+        .filter((entry) => {
+          const entryDate = new Date(entry.time).toDateString();
 
-      return entryDate === selectedDate;
-    })
-    .slice(0, 8);
+          return entryDate === selectedDate;
+        })
+        .slice(0, 8)
+    : [];
 
   return (
     <Block size={BlockSize.HourlyBlock} gridClass={gridClass}>

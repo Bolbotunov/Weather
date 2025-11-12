@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from '@/constants/constants';
+import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from '@/constants';
 
 export const useBreakPoints = () => {
   const [matches, setMatches] = useState({

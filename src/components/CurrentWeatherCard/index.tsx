@@ -19,16 +19,18 @@ const CurrentWeatherCard = ({ gridClass }: { gridClass?: string }) => {
 
   const dispatch = useDispatch();
 
-  const weather = useAppSelector((state) => state.app.weather);
+  const currentWeather = useAppSelector(
+    (state) => state.app.weather.currentData,
+  );
 
   const rehydrated = useAppSelector((state) => state._persist?.rehydrated);
 
   useApplyCurrentTheme();
   useEffect(() => {
-    if (rehydrated && !weather) {
+    if (rehydrated && !currentWeather) {
       dispatch(fetchWeatherRequest());
     }
-  }, [dispatch, rehydrated, weather]);
+  }, [dispatch, rehydrated, currentWeather]);
 
   return (
     <WidgetContainer size={BlockSize.CurrentWeatherCard} gridClass={gridClass}>
