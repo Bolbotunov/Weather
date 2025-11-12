@@ -19,6 +19,8 @@ describe('getCurrentWeather', () => {
       temperature: 23,
       condition: 'Clear',
       city: 'Minsk',
+      lat: 53.9,
+      lon: 27.5667,
     });
   });
 

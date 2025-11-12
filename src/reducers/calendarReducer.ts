@@ -1,7 +1,4 @@
-import {
-  SET_CALENDAR_EVENTS,
-  SET_CALENDAR_SIGNED_IN,
-} from '@/constants/constants';
+import { SET_CALENDAR_EVENTS, SET_CALENDAR_SIGNED_IN } from '@/constants';
 
 import { AnyAction } from 'redux';
 

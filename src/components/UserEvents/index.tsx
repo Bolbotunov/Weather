@@ -7,8 +7,6 @@ import getTimeBeforeEvent from '@/utils/getTimeBeforeEvent';
 import WidgetContainer from '../WidgetContainer';
 import styles from './styles.module.scss';
 
-import '@/styles/global.scss';
-
 const UserEvents = ({ gridClass }: { gridClass?: string }) => {
   const { isSignedIn, events } = useAppSelector((state) => state.calendar);
 

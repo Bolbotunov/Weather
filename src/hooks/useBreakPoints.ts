@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { BREAKPOINTS } from '@/constants/constants';
+import { BREAKPOINTS } from '@/constants';
 
 export const useBreakPoints = () => {
   const { DESKTOP, TABLET, MOBILE } = BREAKPOINTS;

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 import LeftIcon from '@/assets/LeftIcon.svg?react';
 import RightIcon from '@/assets/RightIcon.svg?react';
-import { CARD_OFFSET, SLIDE_WIDTH } from '@/constants/constants';
+import { CARD_OFFSET, SLIDE_WIDTH } from '@/constants';
 import { weatherConfig } from '@/constants/weatherConfig';
 import { DailySliderProps } from '@/types/types';
 import { formatDate, FormatType } from '@/utils/getFormatDate';

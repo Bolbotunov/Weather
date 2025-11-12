@@ -9,7 +9,9 @@ import useAppSelector from './useAppSelector';
 const useApplyCurrentTheme = () => {
   const dispatch = useDispatch();
 
-  const condition = useAppSelector((state) => state.app.weather?.condition);
+  const condition = useAppSelector(
+    (state) => state.app.weather.currentData?.condition,
+  );
 
   useEffect(() => {
     if (condition) {

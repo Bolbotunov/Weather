@@ -1,5 +1,5 @@
 import { getDailyWeather } from '@/api/getDailyWeather';
-import { MOCK_TIMESTAMP } from '@/constants/constants';
+import { MOCK_TIMESTAMP } from '@/constants';
 import { WeatherCondition } from '@/types/types';
 
 jest.mock('@/utils/getFormatDate', () => ({

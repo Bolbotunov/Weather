@@ -1,4 +1,6 @@
 import {
+  CACHE_SIZE,
+  SET_CURRENT_WEATHER,
   SET_DAILY_WEATHER,
   SET_ERROR,
   SET_HOURLY_WEATHER,
@@ -7,7 +9,8 @@ import {
   SET_SUGGESTIONS,
   SET_THEME,
   SET_WEATHER,
-} from '@/constants/constants';
+  SET_WEATHER_CACHE,
+} from '@/constants';
 import {
   AppState,
   HourlyWeatherData,
@@ -43,9 +46,13 @@ export type AppAction =
   | SetThemeAction
   | SetHourlyWeather;
 
-const initialState: AppState = {
-  weather: null,
+export const initialState: AppState = {
+  weather: {
+    currentData: null,
+    cityCache: {},
+  },
   citySuggestions: [],
+  selectedCity: null,
   theme: 'sunny',
   hourlyWeather: [],
   dailyWeather: [],
@@ -60,7 +67,47 @@ export const appReducer = (
 ): AppState => {
   switch (action.type) {
     case SET_WEATHER:
-      return { ...state, weather: action.payload };
+      return {
+        ...state,
+        weather: {
+          ...state.weather,
+          [action.payload.city]: {
+            data: action.payload.data,
+            updated: action.payload.updated,
+          },
+        },
+      };
+    case SET_WEATHER_CACHE: {
+      const newCache = { ...state.weather.cityCache };
+
+      const keys = Object.keys(newCache);
+      if (keys.length > CACHE_SIZE) {
+        const oldestKey = keys.sort(
+          (a, b) => newCache[a].updated - newCache[b].updated,
+        )[0];
+        delete newCache[oldestKey];
+      }
+      newCache[action.payload.key] = {
+        data: action.payload.data,
+        updated: action.payload.updated,
+      };
+
+      return {
+        ...state,
+        weather: {
+          ...state.weather,
+          cityCache: newCache,
+        },
+      };
+    }
+    case SET_CURRENT_WEATHER:
+      return {
+        ...state,
+        weather: {
+          ...state.weather,
+          currentData: action.payload,
+        },
+      };
     case SET_SUGGESTIONS:
       return { ...state, citySuggestions: action.payload ?? [] };
     case SET_THEME:
@@ -75,7 +122,6 @@ export const appReducer = (
       return { ...state, loading: action.payload };
     case SET_ERROR:
       return { ...state, error: action.payload };
-
     default:
       return state;
   }
