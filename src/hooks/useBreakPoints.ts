@@ -1,35 +1,40 @@
 import { useEffect, useState } from 'react';
 
-import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from '@/constants';
+import { BREAKPOINTS } from '@/constants';
 
 export const useBreakPoints = () => {
-  const [matches, setMatches] = useState({
-    isMobileSize: false,
-    isTabletSize: false,
-    isDesktopSize: false,
-  });
+  const { DESKTOP, TABLET, MOBILE } = BREAKPOINTS;
+
+  const [screenSize, setScreenSize] = useState(DESKTOP.SIZE);
 
   useEffect(() => {
     const mobileQuery = window.matchMedia(
-      `(max-width: ${MOBILE_BREAKPOINT}px)`,
+      `(max-width: ${MOBILE.BREAKPOINT}px)`,
     );
 
     const tabletQuery = window.matchMedia(
-      `(min-width: ${MOBILE_BREAKPOINT}px) and (max-width: ${TABLET_BREAKPOINT}px)`,
+      `(min-width: ${MOBILE.BREAKPOINT}px) and (max-width: ${TABLET.BREAKPOINT}px)`,
     );
 
     const desktopQuery = window.matchMedia(
-      `(min-width: ${TABLET_BREAKPOINT}px)`,
+      `(min-width: ${TABLET.BREAKPOINT}px)`,
     );
 
     const handleChange = () => {
-      setMatches({
-        isMobileSize: mobileQuery.matches,
-        isTabletSize: tabletQuery.matches,
-        isDesktopSize: desktopQuery.matches,
-      });
+      switch (true) {
+        case mobileQuery.matches:
+          setScreenSize(MOBILE.SIZE);
+          break;
+        case tabletQuery.matches:
+          setScreenSize(TABLET.SIZE);
+          break;
+        case desktopQuery.matches:
+          setScreenSize(DESKTOP.SIZE);
+          break;
+        default:
+          setScreenSize(DESKTOP.SIZE);
+      }
     };
-
     handleChange();
 
     mobileQuery.addEventListener('change', handleChange);
@@ -41,7 +46,11 @@ export const useBreakPoints = () => {
       tabletQuery.removeEventListener('change', handleChange);
       desktopQuery.removeEventListener('change', handleChange);
     };
-  }, [matches.isDesktopSize, matches.isMobileSize, matches.isTabletSize]);
+  }, [screenSize]);
 
-  return matches;
+  return {
+    isMobileSize: screenSize === MOBILE.SIZE,
+    isTabletSize: screenSize === TABLET.SIZE,
+    isDesktopSize: screenSize === DESKTOP.SIZE,
+  };
 };

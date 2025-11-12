@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -32,30 +32,24 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
 
   const WeatherIcon = conditionKey ? weatherConfig[conditionKey]?.icon : null;
 
-  const debouncedQuery = useDebounce(query, 1000);
-
   const [inputError, setInputError] = useState<string | null>(null);
 
   const { isTabletSize } = useBreakPoints();
 
-  useEffect(() => {
-    if (!debouncedQuery) return;
+  const fetchCitySuggestions = async () => {
+    if (!query) return;
     dispatch(setSuggestions([]));
+    try {
+      const response = await fetch(getWeatherUrl({ endpoint: 'geo', query }));
 
-    const fetchCitySuggestions = async () => {
-      try {
-        const response = await fetch(
-          getWeatherUrl({ endpoint: 'geo', query: debouncedQuery }),
-        );
+      const data = await response.json();
+      dispatch(setSuggestions(data));
+    } catch (error) {
+      console.error('Error fetching city suggestions:', error);
+    }
+  };
 
-        const data = await response.json();
-        dispatch(setSuggestions(data));
-      } catch (error) {
-        console.error('Error fetching city suggestions:', error);
-      }
-    };
-    fetchCitySuggestions();
-  }, [debouncedQuery, dispatch]);
+  useDebounce(fetchCitySuggestions, 1000, query);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -102,7 +96,7 @@ const WeatherIconBlock = ({ className }: ClassNameProps) => {
             {inputError && (
               <div className={styles.inputError}>{inputError}</div>
             )}
-            {debouncedQuery && citySuggestions.length > 0 && (
+            {query && citySuggestions.length > 0 && (
               <ul className={styles.suggestions}>
                 {citySuggestions.map(({ name, country, lat, lon }) => (
                   <li
