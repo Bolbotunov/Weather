@@ -50,7 +50,7 @@ export const useGoogleCalendar = () => {
       const events = response.result.items.map(
         ({ id, summary, start }: GoogleCalendarEventRaw) => ({
           id,
-          summary,
+          summary: summary ?? 'no event name',
           start: start.dateTime || start.date,
         }),
       );

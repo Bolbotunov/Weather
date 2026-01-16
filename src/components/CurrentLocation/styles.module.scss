@@ -5,7 +5,8 @@
   align-items: center;
   gap: $spacing-8;
   margin-bottom: $spacing-54;
-
+  max-width: 100%;
+  overflow: hidden;
   @media (max-width: $breakpoints-tablet) {
     margin-bottom: 0px;
   }
@@ -20,6 +21,8 @@
 
 .locationText {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: $font-size-36;
   font-weight: $font-weight-medium;
 
