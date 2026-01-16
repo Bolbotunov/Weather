@@ -165,3 +165,9 @@ export type ClassNameProps = {
 export type WeatherSliderProps = {
   hourlyWeather: HourlyWeatherData[];
 };
+
+export type CalendarEvent = {
+  id: string;
+  summary: string;
+  start: string;
+};
